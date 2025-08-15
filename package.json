@@ -1,0 +1,27 @@
+{
+  "name": "open-pocket-backend-server",
+  "version": "1.0.0",
+  "description": "Backend server for open pocket",
+  "keywords": [
+    "open-pocket",
+    "pocket",
+    "read-it-later",
+    "bookmark-manager",
+    "bookmark"
+  ],
+  "homepage": "https://github.com/abdulrahim2002/open-pocket-backend-server#readme",
+  "bugs": {
+    "url": "https://github.com/abdulrahim2002/open-pocket-backend-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdulrahim2002/open-pocket-backend-server.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "src/app.ts",
+  "scripts": {
+    "test": ""
+  }
+}
