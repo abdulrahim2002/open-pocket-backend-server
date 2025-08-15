@@ -2,6 +2,11 @@
   "name": "open-pocket-backend-server",
   "version": "1.0.0",
   "description": "Backend server for open pocket",
+  "main": "src/app.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
   "private": true,
   "keywords": [
     "open-pocket",
@@ -21,8 +26,9 @@
   "license": "MIT",
   "author": "",
   "type": "module",
-  "main": "src/app.ts",
-  "scripts": {
-    "test": ""
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
