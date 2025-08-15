@@ -2,6 +2,7 @@
   "name": "open-pocket-backend-server",
   "version": "1.0.0",
   "description": "Backend server for open pocket",
+  "private": true,
   "keywords": [
     "open-pocket",
     "pocket",
