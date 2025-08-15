@@ -7,6 +7,14 @@
     "build": "tsc",
     "start": "node dist/app.js"
   },
+  "dependencies": {
+    "fastify": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
   "private": true,
   "keywords": [
     "open-pocket",
@@ -25,10 +33,5 @@
   },
   "license": "MIT",
   "author": "",
-  "type": "module",
-  "devDependencies": {
-    "@types/node": "^24.3.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
-  }
+  "type": "module"
 }
