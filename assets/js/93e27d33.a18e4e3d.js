@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[793],{8428:e=>{e.exports=JSON.parse('{"tags":[{"label":"OpenPocket","permalink":"/open-pocket-backend-server/blog/tags/openpocket","description":"open pocket tag","count":1}]}')}}]);
