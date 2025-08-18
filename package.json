@@ -33,5 +33,5 @@
   },
   "license": "MIT",
   "author": "",
-  "type": "module"
+  "type": "commonjs"
 }
