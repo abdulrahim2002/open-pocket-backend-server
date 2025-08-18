@@ -1,7 +1,4 @@
-import { error } from "console";
 import Fastify, { type FastifySchema } from "fastify";
-import { url } from "inspector";
-import { title } from "process";
 
 const app = Fastify({
     logger: true,
