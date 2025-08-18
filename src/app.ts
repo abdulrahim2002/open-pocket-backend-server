@@ -1,7 +1,7 @@
-import Fastify, { type FastifySchema } from "fastify";
-import addEndpoint from "./routes/add";
-import getEndpoint from "./routes/get";
-import sendEndpoint from "./routes/send";
+import Fastify from "fastify";
+import addEndpoint from "./routes/add.js";
+import getEndpoint from "./routes/get.js";
+import sendEndpoint from "./routes/send.js";
 
 const app = Fastify({
     logger: true,

@@ -1,4 +1,4 @@
-import { FastifySchema, FastifyInstance } from "fastify";
+import { FastifySchema, type FastifyInstance } from "fastify";
 
 /**
  * /send endpoint
