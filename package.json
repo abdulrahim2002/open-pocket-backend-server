@@ -4,7 +4,7 @@
   "description": "Backend server for open pocket",
   "main": "src/app.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "start": "node dist/app.js"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@types/node": "^24.3.0",
     "fastify-tsconfig": "^3.0.0",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.2"
   },
   "private": true,

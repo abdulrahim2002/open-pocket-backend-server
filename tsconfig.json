@@ -1,6 +1,6 @@
 {
   "extends": "fastify-tsconfig",
-  // Visit https://aka.ms/tsconfig to read more about this file
+
   "compilerOptions": {
     // File Layout
     "rootDir": "./src",
@@ -8,6 +8,12 @@
 
     // "types": [],
     // "types": ["node"],
+
+    // path aliases
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["./src/*"],
+    },
 
     // Other Outputs
     "sourceMap": true,
