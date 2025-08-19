@@ -5,13 +5,19 @@
   "main": "src/app.ts",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "db:init": "docker run -d --name postgresql --env-file .env -p 5432:5432 -v pgdata:/bitnami/postgresql bitnami/postgresql:latest",
+    "db:start": "docker start postgresql",
+    "db:stop": "docker stop postgresql",
+    "db:shell": "dotenv -- sh -c 'docker exec -it postgresql psql postgresql://$POSTGRESQL_USERNAME:$POSTGRESQL_PASSWORD@localhost:5432/$POSTGRESQL_DATABASE' ",
+    "db:purge": "npm run db:stop && docker rm -f postgresql && docker volume rm pgdata && docker image rm bitnami/postgresql:latest"
   },
   "dependencies": {
     "fastify": "^5.5.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
+    "dotenv-cli": "^10.0.0",
     "fastify-tsconfig": "^3.0.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.16",
