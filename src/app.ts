@@ -14,7 +14,7 @@ app.register(sendEndpoint);
 
 
 /* Health Check endpoint */
-app.get("/", async (_, _) => "Server is live!"});
+app.get("/", async (request, reply) => "Server is live!");
 
 /**
  * Start the server!
