@@ -1,7 +1,10 @@
 import Fastify from "fastify";
+import { config } from "dotenv";
 import addEndpoint from "@src/routes/add.js";
 import getEndpoint from "@src/routes/get.js";
 import sendEndpoint from "@src/routes/send.js";
+
+config();
 
 const app = Fastify({
     logger: true,
