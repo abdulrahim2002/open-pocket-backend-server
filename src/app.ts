@@ -1,10 +1,9 @@
 import Fastify from "fastify";
-import { config } from "dotenv";
+import mainConfig from "@src/configs/main.config.js";
 import addEndpoint from "@src/routes/add.js";
 import getEndpoint from "@src/routes/get.js";
 import sendEndpoint from "@src/routes/send.js";
 
-config();
 
 const app = Fastify({
     logger: true,
@@ -24,8 +23,8 @@ app.get("/", async (request, reply) => "Server is live!");
  **/
 app.listen(
     {
-        port: Number(process.env.CUR_SERVER_PORT) || 7860, 
-        host: process.env.CUR_SERVER_HOST || "0.0.0.0",
+        port: mainConfig.CUR_SERVER_PORT, 
+        host: mainConfig.CUR_SERVER_HOST,
     }, 
     (err, addr) => {
         if (err) {
