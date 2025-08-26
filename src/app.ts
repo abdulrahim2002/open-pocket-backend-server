@@ -22,10 +22,16 @@ app.get("/", async (request, reply) => "Server is live!");
 /**
  * Start the server!
  **/
-app.listen({port:7860, host: "0.0.0.0"}, (err, addr) => {
-    if (err) {
-        app.log.error(err);
-        process.exit(1);
+app.listen(
+    {
+        port: Number(process.env.CUR_SERVER_PORT) || 7860, 
+        host: process.env.CUR_SERVER_HOST || "0.0.0.0",
+    }, 
+    (err, addr) => {
+        if (err) {
+            app.log.error(err);
+            process.exit(1);
+        }
+        app.log.debug(`Server is running on http://localhost:${addr}`);
     }
-    app.log.debug(`Server is running on http://localhost:${addr}`);
-});
+);
