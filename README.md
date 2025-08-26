@@ -10,5 +10,4 @@ for more details on the project.
 
 - The code in this repository implements REST API for open-pocket.
 - The implementation tries to conform to [get pocket's REST API
-  spec](https://getpocket.com/developer/docs/overview). Although no
-  guarantees are made
+  spec](https://getpocket.com/developer/docs/overview).
