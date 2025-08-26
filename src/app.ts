@@ -35,3 +35,5 @@ app.listen(
         app.log.debug(`Server is running on http://localhost:${addr}`);
     }
 );
+
+export default app;
