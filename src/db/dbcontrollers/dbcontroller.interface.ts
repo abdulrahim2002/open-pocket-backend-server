@@ -27,6 +27,7 @@ interface IDbControllerResponse<T=any> {
     message?: string,
     
     // the recommended response code, based on the nature of database failure
+    // this is non binding, and actual httpResponseCode depends on req controller
     recommendedHttpResponseCode?: number,
     
     // data, the dbcontroller is successfully able to retrieve data from 
