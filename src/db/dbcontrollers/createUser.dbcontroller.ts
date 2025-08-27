@@ -16,7 +16,7 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
         const insertedUser = await db.insert(usersSchema).values(user).returning();
 
         if ( insertedUser[0] === undefined ) {
-            throw new Error("Unknown Error"); // handled below
+            throw new Error("Unknown Failure"); // handled below
         }
 
         app.log.info(`User created successfully with uid: ${insertedUser[0].uid}`);
