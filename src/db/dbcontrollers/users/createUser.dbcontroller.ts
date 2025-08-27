@@ -5,7 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import { DrizzleQueryError } from "drizzle-orm";
 // TODO: Remove dependency on pg-protocol since it is not mentioned in dependencies
 import { DatabaseError }     from "pg-protocol";
-import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/dbcontroller.interface.js";
+import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/IDbControllerResponse.js";
 
 type UserInsertShape = typeof usersSchema.$inferInsert;
 type UserShape       = typeof usersSchema.$inferSelect;
