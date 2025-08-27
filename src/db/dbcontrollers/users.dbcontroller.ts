@@ -31,11 +31,14 @@ export async function createUser(user: UserInsertShape): Promise<IDbControllerRe
 
     catch (err: any) {
 
+        app.log.error(err);
+        
         // if error has not originated from pg driver, no useful information can be extracted
         if ( !(err instanceof DrizzleQueryError) || !(err.cause instanceof DatabaseError) ) {
             return {
                 success: false,
                 status: OPSTATUS.UNKNOWN_FAILURE,
+                message: "Unknown Failure"
             }
         }
 
@@ -53,8 +56,8 @@ export async function createUser(user: UserInsertShape): Promise<IDbControllerRe
                 break;
             }
             case OPSTATUS.CONNECTION_FAILURE: {
-                recommendedHttpResponseCode: StatusCodes.INTERNAL_SERVER_ERROR;
-                message: "Broken connection to database server";
+                recommendedHttpResponseCode = StatusCodes.INTERNAL_SERVER_ERROR;
+                message = "Broken connection to database server";
                 break;
             }
         }
