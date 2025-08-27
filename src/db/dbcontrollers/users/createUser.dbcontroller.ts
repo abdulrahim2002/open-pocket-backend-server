@@ -10,7 +10,7 @@ import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/dbcontrol
 type UserInsertShape = typeof usersSchema.$inferInsert;
 type UserShape       = typeof usersSchema.$inferSelect;
 
-export async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<UserShape>> {
+async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<UserShape>> {
 
     try {
         const insertedUser = await db.insert(usersSchema).values(user).returning();
@@ -71,3 +71,5 @@ export async function createUser(user: UserInsertShape): Promise<IDbControllerRe
         }
     }
 }
+
+export default createUser;
