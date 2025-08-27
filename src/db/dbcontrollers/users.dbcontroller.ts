@@ -3,6 +3,7 @@ import app             from "@src/app.js";
 import { usersSchema } from "@src/db/schemas/users.schema.js";
 import { StatusCodes } from "http-status-codes";
 import { DrizzleQueryError } from "drizzle-orm";
+// TODO: Remove dependency on pg-protocol since it is not mentioned in dependencies
 import { DatabaseError }     from "pg-protocol";
 import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/dbcontroller.interface.js";
 
@@ -32,7 +33,7 @@ export async function createUser(user: UserInsertShape): Promise<IDbControllerRe
     catch (err: any) {
 
         app.log.error(err);
-        
+
         // if error has not originated from pg driver, no useful information can be extracted
         if ( !(err instanceof DrizzleQueryError) || !(err.cause instanceof DatabaseError) ) {
             return {
