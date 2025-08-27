@@ -66,7 +66,7 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
         return {
             success: false,
             status: errCode,
-            recommendedHttpResponseCode: recommendedHttpResponseCode || StatusCodes.INTERNAL_SERVER_ERROR,
+            recommendedHttpResponseCode: recommendedHttpResponseCode,
             message: message || "Unknown Failure",
         }
     }
