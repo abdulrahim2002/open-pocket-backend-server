@@ -13,7 +13,7 @@ async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>
                                     .where( eq(usersSchema.uid, uid) ).returning();
         
         if ( deletedUser[0] === undefined ) {
-            throw new Error("Unidentified Failure");
+            throw new Error("Unknown Failure");
         }
 
         return {
