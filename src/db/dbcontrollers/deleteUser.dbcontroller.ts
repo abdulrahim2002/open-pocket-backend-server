@@ -12,6 +12,8 @@ async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>
         const deletedUser = await db.delete(usersSchema)
                                     .where( eq(usersSchema.uid, uid) ).returning();
         
+        // this is dangerous, because this is returned even when the database server is unavailable
+        // TODO:
         if ( deletedUser[0] === undefined ) {
             throw new Error("Unknown Failure");
         }
