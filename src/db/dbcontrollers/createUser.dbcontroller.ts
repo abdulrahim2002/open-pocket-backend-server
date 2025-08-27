@@ -57,7 +57,7 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
                 break;
             }
             case OPSTATUS.CONNECTION_FAILURE: {
-                recommendedHttpResponseCode = StatusCodes.INTERNAL_SERVER_ERROR;
+                // recommendedHttpResponseCode remains undefined
                 message = "Broken connection to database server";
                 break;
             }
