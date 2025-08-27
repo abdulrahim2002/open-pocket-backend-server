@@ -3,7 +3,7 @@ import app             from "@src/app.js";
 import { usersSchema } from "@src/db/schemas/users.schema.js";
 import { StatusCodes } from "http-status-codes";
 import { DrizzleQueryError } from "drizzle-orm";
-// TODO: Remove dependency on pg-protocol since it is not mentioned in dependencies
+// TODO: Remove dependency on pg-protocol since it is not mentioned in package.json
 import { DatabaseError }     from "pg-protocol";
 import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/IDbControllerResponse.js";
 
