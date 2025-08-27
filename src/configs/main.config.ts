@@ -33,8 +33,7 @@ const mainConfigSchema: Schema = {
 }
 
 
-const testRes = ajv.validate(mainConfigSchema, mainConfig);
-if ( !testRes ) {
+if ( !ajv.validate(mainConfigSchema, mainConfig) ) {
     throw new Error("Please set environment variables properly.\n" + 
                         ajv.errorsText());
 }
