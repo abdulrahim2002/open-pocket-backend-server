@@ -8,6 +8,7 @@
 
     // "types": [],
     // "types": ["node"],
+    "rewriteRelativeImportExtensions": true,
 
     // path aliases
     "baseUrl": ".",
