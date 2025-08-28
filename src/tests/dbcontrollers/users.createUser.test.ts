@@ -1,45 +1,50 @@
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
-import deleteAll        from "@src/db/dbcontrollers/users.deleteAll.js";
+import deleteUser from "@src/db/dbcontrollers/users.deleteUser.js";
 import { OPSTATUS }     from "@src/db/dbcontrollers/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
 
-afterEach(async () => {
-    await deleteAll();
-});
 
-const testUser = {
-    provider: "vitest",
-    name: "randomuser",
-    email: "randomuser@mail.com",
+const testUserForCreateUserAPI = {
+    provider:   "vitest",
+    name:       "createUser-single",
+    email:      "createUser-single@mail.com",
 };
 
-test("Create a new user", async () => {
-    const res = await createUser(testUser);
+test("createUser-single", async () => {
+    const res = await createUser(testUserForCreateUserAPI);
+
+    // delete the user to reverse the change
+    if (res.success) {
+        await deleteUser(res.data!.uid);
+    }
 
     expect(res).toMatchObject({
         success: true,
         status: OPSTATUS.SUCCESS,
         message: "User created successfully",
         recommendedHttpResponseCode: StatusCodes.CREATED,
-        data: {
-            // uid must be generated automatically
-            provider: "vitest",
-            name: "randomuser",
-            email: "randomuser@mail.com",
-        },
+        data: testUserForCreateUserAPI,
     });
 });
 
-const duplicateUser = {
-    provider: "jest",
-    name: "duplicateuser",
-    email: "duplicateuser@mail.com",
+const testUserForDuplicateChecking = {
+    provider:   "vitest",
+    name:       "testUserForDuplicateChecking",
+    email:      "testUserForDuplicateChecking@mail.com",
 };
 
-test("Create duplicate user", async () => {
-    await createUser(duplicateUser);
+test("Try creating a duplicate user", async () => {
+    const res1 = await createUser(testUserForDuplicateChecking);
     // since email is unique attribute, this should fail
-    const res2 = await createUser(duplicateUser);
+    const res2 = await createUser(testUserForDuplicateChecking);
+
+    // delete user to reverse change
+    if (res1.success) {
+        await deleteUser(res1.data!.uid);
+    }
+    else {
+        fail("Precondition failure. Couldn't create the user in the first place!");
+    }
 
     expect(res2).toMatchObject({
         success: false,
