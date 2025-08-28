@@ -1,0 +1,34 @@
+import { usersSchema }  from "@src/db/schemas/users.schema.js";
+import createUser       from "@src/db/dbcontrollers/users.createUser.js";
+import deleteUser       from "@src/db/dbcontrollers/users.deleteUser.js";
+import deleteAll        from "@src/db/dbcontrollers/users.deleteAll.js";
+import { OPSTATUS }     from "@src/db/dbcontrollers/IDbControllerResponse.js";
+import { StatusCodes }  from "http-status-codes";
+
+afterEach(async () => {
+    await deleteAll();
+});
+
+const testUser: typeof usersSchema.$inferInsert = {
+    provider: "vitest",
+    name: "testdeleteuser",
+    email: "testdeleteuser@mail.com",
+};
+
+test("Delete a user", async () => {
+    // to test deleting a user, create a user first
+    const res = await createUser(testUser);
+    if (!res.success) {
+        fail("Pre-condition failed, could not create user");
+    }
+
+    const res2  = await deleteUser(res.data!.uid);
+
+    expect(res2).toMatchObject({
+        success: true,
+        status: OPSTATUS.SUCCESS,
+        recommendedHttpResponseCode: StatusCodes.OK,
+        message: `Deleted User with uid: ${res.data!.uid} successfully`,
+        data: testUser,
+    });
+});
