@@ -11,7 +11,7 @@ const testUser = {
     provider: "vitest",
     name: "randomuser",
     email: "randomuser@mail.com",
-}
+};
 
 test("Create a new user", async () => {
     const res = await createUser(testUser);
@@ -34,7 +34,7 @@ const duplicateUser = {
     provider: "jest",
     name: "duplicateuser",
     email: "duplicateuser@mail.com",
-}
+};
 
 test("Create duplicate user", async () => {
     await createUser(duplicateUser);
