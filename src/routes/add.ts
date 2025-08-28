@@ -105,7 +105,7 @@ const addRequestSchema: FastifySchema = {
                 },
             },
             required: [
-                'item_id', 'normal_url', 'resolved_id', 'resolved_url', 'domain_id', 
+                'item_id', 'normal_url', 'resolved_id', 'resolved_url', 'domain_id',
                 'origin_domain_id', 'date_resolved', 'date_published'
             ],
         }

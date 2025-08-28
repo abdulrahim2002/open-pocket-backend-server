@@ -11,7 +11,7 @@ async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>
     try {
         const deletedUser = await db.delete(usersSchema)
                                     .where( eq(usersSchema.uid, uid) ).returning();
-        
+
         // this is dangerous, because this is returned even when the database server is unavailable
         // TODO:
         if ( deletedUser[0] === undefined ) {
@@ -39,7 +39,7 @@ async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>
                 message = "",
                 originalError: DatabaseError = error.cause,
                 originalErrorCode: number = Number(originalError.code);
-        
+
         switch (originalErrorCode) {
             case OPSTATUS.CONNECTION_DOES_NOT_EXIST: {
                 recommendedHttpResponseCode = StatusCodes.SERVICE_UNAVAILABLE;

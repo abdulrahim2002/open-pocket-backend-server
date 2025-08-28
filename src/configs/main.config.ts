@@ -34,7 +34,7 @@ const mainConfigSchema: Schema = {
 
 
 if ( !ajv.validate(mainConfigSchema, mainConfig) ) {
-    throw new Error("Please set environment variables properly.\n" + 
+    throw new Error("Please set environment variables properly.\n" +
                         ajv.errorsText());
 }
 

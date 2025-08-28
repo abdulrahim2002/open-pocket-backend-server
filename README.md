@@ -6,7 +6,7 @@
 for more details on the project.
 
 
-#### Details 
+#### Details
 
 - The code in this repository implements REST API for open-pocket.
 - The implementation tries to conform to [get pocket's REST API

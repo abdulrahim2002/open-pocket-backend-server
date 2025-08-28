@@ -47,7 +47,7 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
             message = "",
             originalError: DatabaseError = err.cause,
             errCode: number = Number(originalError.code);
-        
+
         // try to find out what went wrong?
         switch (errCode) {
 

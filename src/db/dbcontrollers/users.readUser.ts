@@ -11,11 +11,11 @@ async function readUser(uid: number): Promise<IDbControllerResponse<userShape>> 
     try {
         const foundUser = await db.select().from(usersSchema)
                                     .where(eq(usersSchema.uid, uid));
-        
+
         if ( foundUser[0] === undefined ) {
             throw new Error("Unable to find the user");
         }
-        
+
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
@@ -40,7 +40,7 @@ async function readUser(uid: number): Promise<IDbControllerResponse<userShape>> 
                 message = "",
                 originalError = err.cause,
                 originalErrorCode = Number(originalError.code);
-        
+
         switch (originalErrorCode) {
             case OPSTATUS.CONNECTION_DOES_NOT_EXIST: {
                 recommendedHttpResponseCode = StatusCodes.SERVICE_UNAVAILABLE;

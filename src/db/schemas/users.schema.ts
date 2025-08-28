@@ -14,5 +14,5 @@ export const usersSchema = dpg.pgTable(
     },
     (table) => [
         dpg.index("email_index").on(table.email),
-    ]    
+    ]
 );

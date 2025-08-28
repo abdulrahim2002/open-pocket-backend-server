@@ -23,9 +23,9 @@ app.get("/", async (request, reply) => "Server is live!");
  **/
 app.listen(
     {
-        port: mainConfig.CUR_SERVER_PORT, 
+        port: mainConfig.CUR_SERVER_PORT,
         host: mainConfig.CUR_SERVER_HOST,
-    }, 
+    },
     (err, addr) => {
         if (err) {
             app.log.error(err);
