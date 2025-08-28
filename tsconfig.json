@@ -8,7 +8,9 @@
 
     // "types": [],
     // "types": ["node"],
-    // "rewriteRelativeImportExtensions": true, // useful option but does not work with path aliased imports
+
+    // useful option but does not work with path aliased imports
+    // "rewriteRelativeImportExtensions": true,
 
     // path aliases
     "baseUrl": ".",
