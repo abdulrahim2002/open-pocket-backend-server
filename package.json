@@ -12,7 +12,7 @@
     "db:stop": "docker stop postgresql",
     "db:shell": "dotenv -- sh -c 'docker exec -it postgresql psql postgresql://$POSTGRESQL_USERNAME:$POSTGRESQL_PASSWORD@localhost:5432/$POSTGRESQL_DATABASE' ",
     "db:purge": "npm run db:stop && docker rm -f postgresql && docker volume rm pgdata && docker image rm bitnami/postgresql:latest",
-    "drizzle:apply": "npx drizzle-kit generate && npx drizzle-kit migrate"
+    "drizzle:apply": "NODE_OPTIONS='--import tsx' npx drizzle-kit generate && npx drizzle-kit migrate"
   },
   "dependencies": {
     "ajv": "^8.17.1",
@@ -29,6 +29,7 @@
     "fastify-tsconfig": "^3.0.0",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.16",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"

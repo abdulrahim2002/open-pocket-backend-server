@@ -3,7 +3,7 @@
  * See: https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/#tagging
  **/
 import * as dpg from "drizzle-orm/pg-core";
-import { usersSchema } from "./users.schema.ts";
+import { usersSchema } from "@src/db/schemas/users.schema.js";
 
 export const tagsSchema = dpg.pgTable(
     "tags",
