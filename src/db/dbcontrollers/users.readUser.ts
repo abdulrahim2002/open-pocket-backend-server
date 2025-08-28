@@ -7,10 +7,10 @@ import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/IDbContro
 
 type userShape = typeof usersSchema.$inferSelect;
 
-async function readUser(uid: number): Promise<IDbControllerResponse<userShape>> {
+async function readUser(user_id: number): Promise<IDbControllerResponse<userShape>> {
     try {
         const foundUser = await db.select().from(usersSchema)
-                                    .where(eq(usersSchema.uid, uid));
+                                    .where(eq(usersSchema.user_id, user_id));
 
         if ( foundUser[0] === undefined ) {
             throw new Error("Unable to find the user");

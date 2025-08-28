@@ -17,13 +17,13 @@ test("Delete a user", async () => {
         fail("Pre-condition failed, could not create user");
     }
 
-    const res2  = await deleteUser(res.data!.uid);
+    const res2  = await deleteUser(res.data!.user_id);
 
     expect(res2).toMatchObject({
         success: true,
         status: OPSTATUS.SUCCESS,
         recommendedHttpResponseCode: StatusCodes.OK,
-        message: `Deleted User with uid: ${res.data!.uid} successfully`,
+        message: `Deleted User with user_id: ${res.data!.user_id} successfully`,
         data: testUserDeleteAPI,
     });
 });

@@ -19,7 +19,7 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
             throw new Error("Unknown Failure"); // handled below
         }
 
-        app.log.info(`User created successfully with uid: ${insertedUser[0].uid}`);
+        app.log.info(`User created successfully with user_id: ${insertedUser[0].user_id}`);
 
         return {
             success: true,

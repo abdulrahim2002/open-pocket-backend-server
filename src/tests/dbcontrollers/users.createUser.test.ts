@@ -15,7 +15,7 @@ test("createUser-single", async () => {
 
     // delete the user to reverse the change
     if (res.success) {
-        await deleteUser(res.data!.uid);
+        await deleteUser(res.data!.user_id);
     }
 
     expect(res).toMatchObject({
@@ -40,7 +40,7 @@ test("Try creating a duplicate user", async () => {
 
     // delete user to reverse change
     if (res1.success) {
-        await deleteUser(res1.data!.uid);
+        await deleteUser(res1.data!.user_id);
     }
     else {
         fail("Precondition failure. Couldn't create the user in the first place!");

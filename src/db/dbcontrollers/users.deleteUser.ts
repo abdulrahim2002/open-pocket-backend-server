@@ -7,10 +7,10 @@ import { DatabaseError } from "pg-protocol";
 
 type userShape = typeof usersSchema.$inferSelect;
 
-async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>> {
+async function deleteUser(user_id: number): Promise<IDbControllerResponse<userShape>> {
     try {
         const deletedUser = await db.delete(usersSchema)
-                                    .where( eq(usersSchema.uid, uid) ).returning();
+                                    .where( eq(usersSchema.user_id, user_id) ).returning();
 
         // this is dangerous, because this is returned even when the database server is unavailable
         // TODO:
@@ -21,7 +21,7 @@ async function deleteUser(uid: number): Promise<IDbControllerResponse<userShape>
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
-            message: `Deleted User with uid: ${uid} successfully`,
+            message: `Deleted User with user_id: ${user_id} successfully`,
             recommendedHttpResponseCode: StatusCodes.OK,
             data: deletedUser[0],
         }

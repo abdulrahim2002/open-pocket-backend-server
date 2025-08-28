@@ -7,7 +7,7 @@ import * as dpg from "drizzle-orm/pg-core";
 export const usersSchema = dpg.pgTable(
     "users",
     {
-        uid:        dpg.serial().primaryKey(),
+        user_id:    dpg.serial().primaryKey(),
         provider:   dpg.text().notNull().default("open-pocket"),
         name:       dpg.text().notNull(),
         email:      dpg.text().unique(),
