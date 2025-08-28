@@ -38,6 +38,7 @@ const duplicateUser = {
 
 test("Create duplicate user", async () => {
     await createUser(duplicateUser);
+    // since email is unique attribute, this should fail
     const res2 = await createUser(duplicateUser);
 
     expect(res2).toMatchObject({
