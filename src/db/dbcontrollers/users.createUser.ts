@@ -28,14 +28,9 @@ async function createUser(user: UserInsertShape): Promise<IDbControllerResponse<
             data: insertedUser[0],
         }
     }
-
     catch (err: any) {
-
         app.log.error(err);
-
-        const errorDetails = houndError(err);
-
-        return errorDetails;
+        return houndError(err);
     }
 }
 
