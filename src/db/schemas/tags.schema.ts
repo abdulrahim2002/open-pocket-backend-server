@@ -18,7 +18,8 @@ export const tagsSchema = pgTable(
             columns: [ tagsSchema.user_id ],
             foreignColumns: [ usersSchema.user_id ]
         }),
-        index().on(table.tag_name),
+        index().on(table.tag_name, table.user_id),
+        index().on(table.user_id, table.article_id),
         unique().on(table.tag_name, table.user_id, table.article_id),
     ]
 );
