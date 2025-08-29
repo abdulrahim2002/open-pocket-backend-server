@@ -19,7 +19,7 @@ async function deleteAll(): Promise<IDbControllerResponse<void>> {
         return {
             success: false,
             status: OPSTATUS.UNKNOWN_FAILURE,
-            message: "Something went wrong",
+            message: "Cannot delete all users. Something went wrong!",
         }
     }
 }
