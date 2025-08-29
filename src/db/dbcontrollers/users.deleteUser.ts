@@ -1,9 +1,10 @@
-import db   from "@src/db/index.js";
-import { usersSchema } from "@src/db/schemas/users.schema.js";
+import db               from "@src/db/index.js";
+import { usersSchema }  from "@src/db/schemas/users.schema.js";
 import { DrizzleQueryError, eq } from "drizzle-orm";
-import IDbControllerResponse, { OPSTATUS } from "./IDbControllerResponse.js";
-import { StatusCodes } from "http-status-codes";
-import { DatabaseError } from "pg-protocol";
+import IDbControllerResponse, { OPSTATUS }
+    from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import { StatusCodes }      from "http-status-codes";
+import { DatabaseError }    from "pg-protocol";
 
 type userShape = typeof usersSchema.$inferSelect;
 

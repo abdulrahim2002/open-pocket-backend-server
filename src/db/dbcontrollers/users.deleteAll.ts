@@ -4,7 +4,7 @@
  **/
 import db   from "@src/db/index.js";
 import { usersSchema } from "../schemas/users.schema.js";
-import IDbControllerResponse, { OPSTATUS } from "./IDbControllerResponse.js";
+import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 async function deleteAll(): Promise<IDbControllerResponse<void>> {
     try {

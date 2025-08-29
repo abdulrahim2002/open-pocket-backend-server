@@ -1,7 +1,7 @@
 import { usersSchema }  from "@src/db/schemas/users.schema.js";
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
 import deleteUser       from "@src/db/dbcontrollers/users.deleteUser.js";
-import { OPSTATUS }     from "@src/db/dbcontrollers/IDbControllerResponse.js";
+import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
 
 const testUserDeleteAPI: typeof usersSchema.$inferInsert = {

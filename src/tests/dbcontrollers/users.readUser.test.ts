@@ -1,7 +1,7 @@
 import readUser         from "@src/db/dbcontrollers/users.readUser.js";
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
 import { usersSchema }  from "@src/db/schemas/users.schema.js";
-import { OPSTATUS } from "@src/db/dbcontrollers/IDbControllerResponse.js";
+import { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes } from "http-status-codes";
 
 const testUserForReadUser: typeof usersSchema.$inferInsert = {

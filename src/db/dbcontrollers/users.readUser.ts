@@ -3,7 +3,7 @@ import { usersSchema } from "@src/db/schemas/users.schema.js";
 import { StatusCodes } from "http-status-codes";
 import { DrizzleQueryError, eq } from "drizzle-orm";
 import { DatabaseError } from "pg-protocol";
-import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/IDbControllerResponse.js";
+import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 type userShape = typeof usersSchema.$inferSelect;
 

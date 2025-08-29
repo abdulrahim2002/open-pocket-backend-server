@@ -2,7 +2,7 @@ import db              from "@src/db/index.js";
 import app             from "@src/app.js";
 import { tagsSchema }  from "@src/db/schemas/tags.schema.js";
 import { StatusCodes } from "http-status-codes";
-import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/IDbControllerResponse.js";
+import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { DrizzleQueryError } from "drizzle-orm";
 import { DatabaseError }     from "pg-protocol";
 
