@@ -10,14 +10,14 @@ export const tagsSchema = pgTable(
     {
         user_id:        serial().notNull(),
         article_id:     serial().notNull(),
-        tag:            text().notNull(),
+        tag_name:       text().notNull(),
     },
     (table): any[] => [
-        primaryKey({columns: [tagsSchema.tag, tagsSchema.user_id]}),
+        primaryKey({columns: [tagsSchema.tag_name, tagsSchema.user_id]}),
         foreignKey({
             columns: [ tagsSchema.user_id ],
             foreignColumns: [ usersSchema.user_id ]
         }),
-        index().on(table.tag),
+        index().on(table.tag_name),
     ]
 );
