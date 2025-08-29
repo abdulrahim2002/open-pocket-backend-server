@@ -30,12 +30,20 @@ export function houndError(error: Error): IDbControllerResponse<any> {
 
         case OPSTATUS.UNIQUE_VIOLATION: {
             recommendedHttpResponseCode = StatusCodes.CONFLICT;
-            message = "User already exists";
+            message = "You probably tried to insert a duplicate record";
             break;
         }
         case OPSTATUS.CONNECTION_FAILURE: {
             recommendedHttpResponseCode = StatusCodes.SERVICE_UNAVAILABLE;
-            message = "Broken connection to database server";
+            message = "Database Server is probably down. Please try again later";
+            break;
+        }
+        case OPSTATUS.FOREIGN_KEY_VIOLATION: {
+            recommendedHttpResponseCode = StatusCodes.BAD_REQUEST;
+            message = "Foreign Key Violation: The operation failed because the referenced value " +
+                    "in the parent table does not exist. Please ensure that the foreign key being " +
+                    "referenced points to a valid record in the parent table. If you're trying to " +
+                    "delete or update records, double-check that there are no dependent rows in the child table";
             break;
         }
     }
