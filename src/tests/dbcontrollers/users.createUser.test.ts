@@ -55,6 +55,6 @@ test("createUser-duplicate-user", async () => {
         success: false,
         status: OPSTATUS.UNIQUE_VIOLATION,
         recommendedHttpResponseCode: StatusCodes.CONFLICT,
-        message: "User already exists",
+        message: "You probably tried to insert a duplicate record",
     });
 });
