@@ -33,7 +33,7 @@ const testUserForDuplicateChecking = {
     email:      "testUserForDuplicateChecking@mail.com",
 };
 
-test("Try creating a duplicate user", async () => {
+test("createUser-duplicate-user", async () => {
     const res1 = await createUser(testUserForDuplicateChecking);
     // since email is unique attribute, this should fail
     const res2 = await createUser(testUserForDuplicateChecking);
