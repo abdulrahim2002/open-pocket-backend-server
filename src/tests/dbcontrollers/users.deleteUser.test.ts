@@ -14,7 +14,7 @@ test("Delete a user", async () => {
     // to test deleting a user, create a user first
     const res = await createUser(testUserDeleteAPI);
     if (!res.success) {
-        fail("Pre-condition failed, could not create user");
+        throw new Error("Pre-condition failed, could not create user");
     }
 
     const res2  = await deleteUser(res.data!.user_id);

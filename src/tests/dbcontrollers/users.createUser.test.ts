@@ -43,7 +43,7 @@ test("createUser-duplicate-user", async () => {
         await deleteUser(res1.data!.user_id);
     }
     else {
-        fail("Precondition failure. Couldn't create the user in the first place!");
+        throw new Error("Precondition failure. Couldn't create the user in the first place!");
     }
 
     expect(res2).toMatchObject({
