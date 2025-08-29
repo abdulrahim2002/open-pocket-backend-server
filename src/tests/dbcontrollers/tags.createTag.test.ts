@@ -2,6 +2,7 @@ import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
 import { usersSchema }  from "@src/db/schemas/users.schema.js";
 import { tagsSchema }   from "@src/db/schemas/tags.schema.js";
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
+import deleteUser from "@src/db/dbcontrollers/users.deleteUser.js";
 import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
 
@@ -27,6 +28,9 @@ test("createTag", async () => {
     };
 
     const res2 = await createTag(testTagForCreateTag);
+
+    // reverse the operations -> delete user and tag
+    await deleteUser(res1.data!.user_id);
 
     expect(res2).toMatchObject({
         success: true,
