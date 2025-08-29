@@ -11,7 +11,6 @@ export enum OPSTATUS {
     INVALID_TRANSACTION_STATE=25000,
 
     // connection failure
-    CONNECTION_DOES_NOT_EXIST=8006,
     CONNECTION_FAILURE=8006,
 
     // other
