@@ -12,7 +12,7 @@ type tagShape       = typeof tagsSchema.$inferSelect;
 async function createTag(tag: tagInsertShape): Promise<IDbControllerResponse<tagShape>> {
 
     try {
-        const res = await db.insert(tagsSchema).values(tag);
+        const res = await db.insert(tagsSchema).values(tag).returning();
 
         if (res[0] === undefined) {
             throw new Error("Unknown Failure"); // handle below
