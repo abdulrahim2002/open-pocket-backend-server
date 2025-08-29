@@ -1,9 +1,11 @@
+import app from "@src/app.js";
 import db   from "@src/db/index.js";
 import { usersSchema } from "@src/db/schemas/users.schema.js";
+import { houndError } from "@src/db/dbcontrollers/commons/errorHounder.js";
+import { eq } from "drizzle-orm";
 import { StatusCodes } from "http-status-codes";
-import { DrizzleQueryError, eq } from "drizzle-orm";
-import { DatabaseError } from "pg-protocol";
-import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse, { OPSTATUS }
+    from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 type userShape = typeof usersSchema.$inferSelect;
 
@@ -26,35 +28,8 @@ async function readUser(user_id: number): Promise<IDbControllerResponse<userShap
 
     }
     catch (err: any) {
-        // no useful information can be retrieved when error does not originate in pg driver
-        if ( !(err instanceof DrizzleQueryError) || !(err.cause instanceof DatabaseError) ) {
-            return {
-                success: false,
-                status: OPSTATUS.UNKNOWN_FAILURE,
-                message: "Unknown Failure",
-            }
-        }
-
-        // try to guess what went wrong?
-        let     recommendedHttpResponseCode: number|undefined = undefined,
-                message = "",
-                originalError = err.cause,
-                originalErrorCode = Number(originalError.code);
-
-        switch (originalErrorCode) {
-            case OPSTATUS.CONNECTION_DOES_NOT_EXIST: {
-                recommendedHttpResponseCode = StatusCodes.SERVICE_UNAVAILABLE;
-                message = "Database server unrechable";
-                break;
-            }
-        }
-
-        return {
-            success: false,
-            status: originalErrorCode || -1,
-            message: message || "Unknown Failure",
-            recommendedHttpResponseCode: recommendedHttpResponseCode,
-        }
+        app.log.error(err);
+        return houndError(err);
     }
 
 }
