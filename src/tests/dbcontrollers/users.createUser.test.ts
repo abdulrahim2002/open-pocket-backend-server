@@ -2,17 +2,12 @@ import createUser       from "@src/db/dbcontrollers/users.createUser.js";
 import deleteUser from "@src/db/dbcontrollers/users.deleteUser.js";
 import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
-import deleteAll from "@src/db/dbcontrollers/users.deleteAll.js";
-
-beforeAll(async () => {
-    // before running any tests, delete all records currently present.
-    await deleteAll();
-});
 
 const testUserForCreateUserAPI = {
     provider:   "vitest",
     name:       "createUser-single",
     email:      "createUser-single@mail.com",
+    hashed_password: "1y987dy283gd873h39d3",
 };
 
 test("createUser-single", async () => {
