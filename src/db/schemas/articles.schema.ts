@@ -30,6 +30,7 @@ const articlesSchema = pgTable(
     (table) => [
         index().on(table.user_id),
         index().on(table.author_name),
+        index().on(table.time_added),
     ]
 );
 
