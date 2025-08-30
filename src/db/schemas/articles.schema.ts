@@ -1,5 +1,5 @@
 /**
- * Define schema for `users` table.
+ * Define schema for `articles` table.
  * See: https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/#articles
  **/
 import {    bigint, integer, smallint,
