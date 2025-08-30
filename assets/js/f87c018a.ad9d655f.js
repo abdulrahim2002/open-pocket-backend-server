@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[951],{5292:e=>{e.exports=JSON.parse('{"authors":[{"name":"Open Pocket Team","title":"Open Pocket Team","page":null,"imageURL":"img/logo.png","key":"openpocket","count":1}]}')}}]);
