@@ -14,7 +14,7 @@ const usersSchema = pgTable(
         hashed_password: text(),
     },
     (table) => [
-        index("email_index").on(table.email),
+        index().on(table.email),
     ]
 );
 
