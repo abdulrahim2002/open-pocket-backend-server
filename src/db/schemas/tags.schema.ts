@@ -2,13 +2,13 @@
  * Define schema for `users` table.
  * See: https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/#tags
  **/
-import { integer, pgTable, serial, text, foreignKey, index, unique } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, foreignKey, index, unique } from "drizzle-orm/pg-core";
 import { usersSchema } from "@src/db/schemas/users.schema.js";
 
 export const tagsSchema = pgTable(
     "tags",
     {
-        tag_id:         serial().primaryKey(),
+        tag_id:         integer().primaryKey().generatedAlwaysAsIdentity(),
         user_id:        integer().notNull(),
         article_id:     integer().notNull(),
         tag_name:       text().notNull(),
