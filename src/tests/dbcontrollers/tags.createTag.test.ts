@@ -10,7 +10,7 @@ import { StatusCodes }  from "http-status-codes";
 const testUserForCreateTag: typeof usersSchema.$inferInsert = {
     provider:   "vitest",
     name:       "test-user-for-create-tag",
-    email:      "test-user-for-create-tag",
+    email:      "test-user-for-create-tag@mail.com",
 };
 
 test("createTag", async () => {
