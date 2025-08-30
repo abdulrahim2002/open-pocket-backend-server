@@ -1,5 +1,6 @@
 import readUser         from "@src/db/dbcontrollers/users.readUser.js";
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
+import deleteUser from "@src/db/dbcontrollers/users.deleteUser.js";
 import { usersSchema }  from "@src/db/schemas/users.schema.js";
 import { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes } from "http-status-codes";
@@ -17,6 +18,9 @@ test("readUser", async () => {
     }
 
     const res2 = await readUser(res1.data!.user_id);
+
+    // reverse the changes made
+    await deleteUser(res1.data!.user_id);
 
     expect(res2).toMatchObject({
         success: true,
