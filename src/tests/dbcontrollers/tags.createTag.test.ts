@@ -15,7 +15,7 @@ const testUserForCreateTag: typeof usersSchema.$inferInsert = {
 };
 
 test("createTag", async () => {
-    // step 1: create a test user
+    // create a test user
     const resCreateUser = await createUser(testUserForCreateTag);
     if (!resCreateUser.success) {
         throw new Error("Precondition Failure: Couldn't create a user in the first place");
