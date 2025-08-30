@@ -11,7 +11,7 @@ import { StatusCodes } from "http-status-codes";
 import IDbControllerResponse, { OPSTATUS }
             from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
-export function houndError(error: Error): IDbControllerResponse<any> {
+export default function houndError(error: Error): IDbControllerResponse<any> {
 
     if ( !(error instanceof DrizzleQueryError) || !(error.cause instanceof DatabaseError) ) {
         return {
