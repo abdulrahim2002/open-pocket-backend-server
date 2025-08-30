@@ -10,7 +10,7 @@ const tagsSchema = pgTable(
     {
         tag_id:         integer().primaryKey().generatedAlwaysAsIdentity(),
         user_id:        integer().notNull(),
-        article_id:     integer().notNull(),
+        item_id:        integer().notNull(),
         tag_name:       text().notNull(),
     },
     (table): any[] => [
@@ -19,8 +19,8 @@ const tagsSchema = pgTable(
             foreignColumns: [ usersSchema.user_id ]
         }),
         index().on(table.tag_name, table.user_id),
-        index().on(table.user_id, table.article_id),
-        unique().on(table.tag_name, table.user_id, table.article_id),
+        index().on(table.user_id, table.item_id),
+        unique().on(table.tag_name, table.user_id, table.item_id),
     ]
 );
 

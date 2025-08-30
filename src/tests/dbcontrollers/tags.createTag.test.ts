@@ -25,7 +25,7 @@ test("createTag", async () => {
     const testTagForCreateTag: typeof tagsSchema.$inferInsert =  {
         tag_name: "vitest",
         user_id: resCreateUser.data!.user_id,
-        article_id: 123,
+        item_id: 123,
     };
 
     const resCreateTag = await createTag(testTagForCreateTag);
