@@ -1,11 +1,11 @@
 import db               from "@src/db/index.js";
+import app              from "@src/app.js";
 import { usersSchema }  from "@src/db/schemas/users.schema.js";
-import { eq } from "drizzle-orm";
+import { eq }           from "drizzle-orm";
+import { StatusCodes }  from "http-status-codes";
+import { houndError }   from "./commons/errorHounder.js";
 import IDbControllerResponse, { OPSTATUS }
-    from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
-import { StatusCodes }      from "http-status-codes";
-import app from "@src/app.js";
-import { houndError } from "./commons/errorHounder.js";
+                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 type userShape = typeof usersSchema.$inferSelect;
 

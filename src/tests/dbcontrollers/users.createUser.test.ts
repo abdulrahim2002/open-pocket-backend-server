@@ -1,5 +1,5 @@
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
-import deleteUser from "@src/db/dbcontrollers/users.deleteUser.js";
+import deleteUser       from "@src/db/dbcontrollers/users.deleteUser.js";
 import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
 

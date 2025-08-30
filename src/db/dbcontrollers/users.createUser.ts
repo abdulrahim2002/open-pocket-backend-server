@@ -1,10 +1,10 @@
-import db              from "@src/db/index.js";
-import app             from "@src/app.js";
-import { usersSchema } from "@src/db/schemas/users.schema.js";
-import { StatusCodes } from "http-status-codes";
-import { houndError }  from "./commons/errorHounder.js";
+import db               from "@src/db/index.js";
+import app              from "@src/app.js";
+import { usersSchema }  from "@src/db/schemas/users.schema.js";
+import { StatusCodes }  from "http-status-codes";
+import { houndError }   from "./commons/errorHounder.js";
 import IDbControllerResponse, { OPSTATUS }
-        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 type UserInsertShape = typeof usersSchema.$inferInsert;
 type UserShape       = typeof usersSchema.$inferSelect;

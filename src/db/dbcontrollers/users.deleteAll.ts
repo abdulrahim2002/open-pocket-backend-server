@@ -2,9 +2,10 @@
  * WARNING: deleteAll function would delete all rows in users table
  * It is intended for use in tests only.
  **/
-import db   from "@src/db/index.js";
-import { usersSchema } from "../schemas/users.schema.js";
-import IDbControllerResponse, { OPSTATUS } from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import db               from "@src/db/index.js";
+import { usersSchema }  from "../schemas/users.schema.js";
+import IDbControllerResponse, { OPSTATUS }
+                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 async function deleteAll(): Promise<IDbControllerResponse<void>> {
     try {
