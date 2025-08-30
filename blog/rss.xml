@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Open Pocket Blog</title>
-        <link>https://abdulrahim2002.github.io/open-pocket-backend-server/blog</link>
+        <link>https://abdulrahim2002.github.io/open-pocket-backend-server/blog/</link>
         <description>Open Pocket Blog</description>
         <lastBuildDate>Sat, 16 Aug 2025 14:32:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,16 +10,16 @@
         <language>en</language>
         <item>
             <title><![CDATA[Genesis]]></title>
-            <link>https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis</link>
-            <guid>https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis</guid>
+            <link>https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/</link>
+            <guid>https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/</guid>
             <pubDate>Sat, 16 Aug 2025 14:32:16 GMT</pubDate>
             <description><![CDATA[Update: Pocket is shutting down on July 8, 2025]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="update-pocket-is-shutting-down-on-july-8-2025">Update: Pocket is shutting down on July 8, 2025<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#update-pocket-is-shutting-down-on-july-8-2025" class="hash-link" aria-label="Direct link to Update: Pocket is shutting down on July 8, 2025" title="Direct link to Update: Pocket is shutting down on July 8, 2025">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="update-pocket-is-shutting-down-on-july-8-2025">Update: Pocket is shutting down on July 8, 2025<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#update-pocket-is-shutting-down-on-july-8-2025" class="hash-link" aria-label="Direct link to Update: Pocket is shutting down on July 8, 2025" title="Direct link to Update: Pocket is shutting down on July 8, 2025">​</a></h2>
 <p><a href="https://support.mozilla.org/en-US/kb/future-of-pocket" target="_blank" rel="noopener noreferrer">Pocket is Saying Goodbye: What You Need to Know</a></p>
 <p>There is no mention if any other part of the codebase will be open-sourced.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="recent-discussions">Recent Discussions<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#recent-discussions" class="hash-link" aria-label="Direct link to Recent Discussions" title="Direct link to Recent Discussions">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="recent-discussions">Recent Discussions<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#recent-discussions" class="hash-link" aria-label="Direct link to Recent Discussions" title="Direct link to Recent Discussions">​</a></h2>
 <p><a href="https://news.ycombinator.com/item?id=44597668" target="_blank" rel="noopener noreferrer">Ask HN: What Pocket alternatives did you move to?</a></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background">Background<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#background" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background">Background<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#background" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Pocket_(service)" target="_blank" rel="noopener noreferrer">Pocket</a>, previously known as Read It Later, is an application and web service for managing a reading list of articles and videos from the Internet.</p>
 <p>In February 2017, Mozilla <a href="https://blog.mozilla.org/blog/2017/02/27/mozilla-acquires-pocket/" target="_blank" rel="noopener noreferrer">acquired Pocket</a> and stated that Pocket "will become part of the Mozilla open source project".</p>
 <p>A <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1343006" target="_blank" rel="noopener noreferrer">ticket</a> to open source the code was opened the same day, but closed in 2018.</p>
@@ -30,7 +30,7 @@
 <li><a href="https://github.com/Pocket/extension-save-to-pocket/issues/75" target="_blank" rel="noopener noreferrer">https://github.com/Pocket/extension-save-to-pocket/issues/75</a> (July 2020)</li>
 </ul>
 <p>The issues raised are valid. Open-sourcing a previously private codebase has many challenges.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-open-pocket-mission">The Open Pocket Mission<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#the-open-pocket-mission" class="hash-link" aria-label="Direct link to The Open Pocket Mission" title="Direct link to The Open Pocket Mission">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-open-pocket-mission">The Open Pocket Mission<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#the-open-pocket-mission" class="hash-link" aria-label="Direct link to The Open Pocket Mission" title="Direct link to The Open Pocket Mission">​</a></h2>
 <p>Pocket is a great app and ecosystem, but its future success isn't guaranteed.</p>
 <p>In 2020, Mozilla had <a href="https://arstechnica.com/information-technology/2020/08/firefox-maker-mozilla-lays-off-250-workers-says-covid-19-lowered-revenue/" target="_blank" rel="noopener noreferrer">large lay-offs</a>. Although these didn't appear to impact Pocket, it does raise questions about Mozilla's financial health.</p>
 <p>The purpose of the Open Pocket organization is to gather those who are interested in building a '<a href="https://en.wikipedia.org/wiki/Clean_room_design" target="_blank" rel="noopener noreferrer">clean room</a>' open-source implementation of Pocket comprising of:</p>
@@ -39,13 +39,13 @@
 <li>An API compatible with the current (<a href="https://getpocket.com/developer/docs/v3/retrieve" target="_blank" rel="noopener noreferrer">v3</a>) Pocket API.</li>
 <li>Clients such as an iOS and Android app</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-help">How to Help<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#how-to-help" class="hash-link" aria-label="Direct link to How to Help" title="Direct link to How to Help">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-help">How to Help<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#how-to-help" class="hash-link" aria-label="Direct link to How to Help" title="Direct link to How to Help">​</a></h2>
 <ul>
 <li>Star and Watch this repo to follow the latest updates.</li>
 <li>If you have thoughts on how to help build Open Pocket, create an <a href="https://github.com/open-pocket/open-pocket/issues" target="_blank" rel="noopener noreferrer">issue</a> or <a href="https://github.com/open-pocket/open-pocket/discussions" target="_blank" rel="noopener noreferrer">discussion topic</a> to help find others to work with.</li>
 <li>If you've already started building something, consider joining forces with the Open Pocket organization.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="available-projects">Available Projects<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#available-projects" class="hash-link" aria-label="Direct link to Available Projects" title="Direct link to Available Projects">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="available-projects">Available Projects<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#available-projects" class="hash-link" aria-label="Direct link to Available Projects" title="Direct link to Available Projects">​</a></h2>
 <p>The following projects have already been open-sourced. (This list excludes infrastructure projects, and those not updated in the past 5 years).</p>
 <ul>
 <li><a href="https://github.com/mozmeao/pocket-marketing-pages" target="_blank" rel="noopener noreferrer">https://github.com/mozmeao/pocket-marketing-pages</a> marketing pages for <a href="https://getpocket.com/" target="_blank" rel="noopener noreferrer">getpocket.com</a></li>
@@ -62,19 +62,19 @@
 <li><a href="https://github.com/Pocket/pocket-ios" target="_blank" rel="noopener noreferrer">https://github.com/Pocket/pocket-ios</a> This appears to be the Pocket iOS app but there no is no README or description yet and it does not seem possible to build.</li>
 <li><a href="https://github.com/Pocket/pocket-monorepo" target="_blank" rel="noopener noreferrer">https://github.com/Pocket/pocket-monorepo</a> "This repo contains all the Pocket Typescript systems built as a monorepo but deployed as microservices."</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="legal">Legal<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#legal" class="hash-link" aria-label="Direct link to Legal" title="Direct link to Legal">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="legal">Legal<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#legal" class="hash-link" aria-label="Direct link to Legal" title="Direct link to Legal">​</a></h2>
 <ul>
 <li>Any open source code should follow Pocket's <a href="https://getpocket.com/developer/docs/branding" target="_blank" rel="noopener noreferrer">branding guidance</a>.</li>
 <li>It is not yet known if Pocket/Mozilla hold any patents on Pocket behaviour.</li>
 <li><a href="https://news.ycombinator.com/item?id=9520668" target="_blank" rel="noopener noreferrer">Pocket is a registered trademark</a></li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background-1">Background<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#background-1" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="background-1">Background<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#background-1" class="hash-link" aria-label="Direct link to Background" title="Direct link to Background">​</a></h2>
 <p>Open Pocket was founded by <a href="https://github.com/andyw8" target="_blank" rel="noopener noreferrer">@andyw8</a>. I was a long-term fan of Pocket. and a Premium subscriber from 2014 to 2023.
 My favorite way to consume Pocket articles is with the Android app on a <a href="https://twitter.com/BoyueTechnology" target="_blank" rel="noopener noreferrer">Boyue Likebook</a> e-reader.
 I'm also one of the maintainers of the <a href="https://github.com/turadg/pocket-ruby" target="_blank" rel="noopener noreferrer">pocket-ruby</a> API client.
 For full transparency, I am also building a commercial product relating to Pocket (not yet released).</p>
 <p>Update (2024): I'm no longer working on my own product since <a href="https://readwise.io/read" target="_blank" rel="noopener noreferrer">Readwise Reader</a> is a very promising successor to Pocket.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="related-and-similar-open-source-projects">Related and Similar Open Source Projects<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#related-and-similar-open-source-projects" class="hash-link" aria-label="Direct link to Related and Similar Open Source Projects" title="Direct link to Related and Similar Open Source Projects">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="related-and-similar-open-source-projects">Related and Similar Open Source Projects<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#related-and-similar-open-source-projects" class="hash-link" aria-label="Direct link to Related and Similar Open Source Projects" title="Direct link to Related and Similar Open Source Projects">​</a></h2>
 <ul>
 <li><a href="https://github.com/omnivore-app/omnivore" target="_blank" rel="noopener noreferrer">https://github.com/omnivore-app/omnivore</a> (Node)<!-- -->
 <ul>
@@ -89,7 +89,7 @@ For full transparency, I am also building a commercial product relating to Pocke
 <li><a href="https://github.com/zhy0216/OhMyPocket" target="_blank" rel="noopener noreferrer">https://github.com/zhy0216/OhMyPocket</a> (Python) (last updated in 2016)</li>
 <li><a href="https://github.com/kavinderd/icebox" target="_blank" rel="noopener noreferrer">https://github.com/kavinderd/icebox</a> (Ruby) (last updated since 2015)</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="related-and-similar-commercial-products">Related and Similar Commercial Products<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis#related-and-similar-commercial-products" class="hash-link" aria-label="Direct link to Related and Similar Commercial Products" title="Direct link to Related and Similar Commercial Products">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="related-and-similar-commercial-products">Related and Similar Commercial Products<a href="https://abdulrahim2002.github.io/open-pocket-backend-server/blog/genesis/#related-and-similar-commercial-products" class="hash-link" aria-label="Direct link to Related and Similar Commercial Products" title="Direct link to Related and Similar Commercial Products">​</a></h2>
 <ul>
 <li><a href="https://readwise.io/read" target="_blank" rel="noopener noreferrer">Readwise Reader</a> (<a href="https://blog.readwise.io/the-next-chapter-of-reader-public-beta/" target="_blank" rel="noopener noreferrer">announcement blog post</a>)</li>
 </ul>]]></content:encoded>

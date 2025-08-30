@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Genesis","permalink":"/open-pocket-backend-server/blog/genesis","unlisted":false,"date":"2025-08-16T14:32:16.000Z"}]}')}}]);
