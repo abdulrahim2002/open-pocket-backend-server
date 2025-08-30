@@ -5,7 +5,7 @@
 import { integer, pgTable, text, foreignKey, index, unique } from "drizzle-orm/pg-core";
 import { usersSchema } from "@src/db/schemas/users.schema.js";
 
-export const tagsSchema = pgTable(
+const tagsSchema = pgTable(
     "tags",
     {
         tag_id:         integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -23,3 +23,5 @@ export const tagsSchema = pgTable(
         unique().on(table.tag_name, table.user_id, table.article_id),
     ]
 );
+
+export default tagsSchema;

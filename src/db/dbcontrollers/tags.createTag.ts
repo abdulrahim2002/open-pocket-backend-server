@@ -1,6 +1,6 @@
 import db              from "@src/db/index.js";
 import app             from "@src/app.js";
-import { tagsSchema }  from "@src/db/schemas/tags.schema.js";
+import tagsSchema      from "@src/db/schemas/tags.schema.js";
 import { StatusCodes } from "http-status-codes";
 import { houndError }  from "@src/db/dbcontrollers/commons/errorHounder.js";
 import IDbControllerResponse, { OPSTATUS }
