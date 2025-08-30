@@ -13,5 +13,6 @@ export default defineConfig({
     // TODO: find a better fix than turing file parallelism off
     // https://vitest.dev/guide/parallelism.html#file-parallelism
     fileParallelism: false,
+    setupFiles: "src/tests/dbcontrollers/setup.ts",
   },
 });
