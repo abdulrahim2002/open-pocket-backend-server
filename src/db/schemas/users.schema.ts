@@ -11,6 +11,7 @@ export const usersSchema = pgTable(
         provider:   text().notNull().default("open-pocket"),
         name:       text().notNull(),
         email:      text().unique(),
+        hashed_password: text(),
     },
     (table) => [
         index("email_index").on(table.email),
