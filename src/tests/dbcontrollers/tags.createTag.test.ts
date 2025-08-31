@@ -16,30 +16,30 @@ const testUserForCreateTag: typeof usersSchema.$inferInsert = {
     email:      "testUser-createTag@mail.com",
 };
 
-const testArticleForCreateTag: typeof articlesSchema.$inferInsert = {
-    user_id: 123,
-    status: 0,
-    favorite: false,
-    resolved_title: "Sample Resolved Title",
-    resolved_url: "https://sample-resolved-url.com/",
-    excerpt: "sample excerpt describing the item in detail",
-    is_article: true,
-    is_index: false,
-    has_video: 0,
-    has_image: 0,
-    word_count: 123,
-    time_added: new Date(),
-    time_updated: new Date(),
-    top_image_url: "https://topimage.io/image.png/",
-    author_name: "sample-author",
-};
-
 test("createTag", async () => {
     // create a test user
     const resCreateUser = await createUser(testUserForCreateTag);
     if (!resCreateUser.success) {
         throw new Error("Precondition Failure: Couldn't create a user in the first place");
     }
+
+    const testArticleForCreateTag: typeof articlesSchema.$inferInsert = {
+        user_id: resCreateUser.data!.user_id,
+        status: 0,
+        favorite: false,
+        resolved_title: "Sample Resolved Title",
+        resolved_url: "https://sample-resolved-url.com/",
+        excerpt: "sample excerpt describing the item in detail",
+        is_article: true,
+        is_index: false,
+        has_video: 0,
+        has_image: 0,
+        word_count: 123,
+        time_added: new Date(),
+        time_updated: new Date(),
+        top_image_url: "https://topimage.io/image.png/",
+        author_name: "sample-author",
+    };
 
     // create a test article
     const resCreateArticle = await createArticle(testArticleForCreateTag);
