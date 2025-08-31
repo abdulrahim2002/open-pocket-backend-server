@@ -26,11 +26,11 @@ const articlesSchema = pgTable(
         time_added:         timestamp({withTimezone: true}).defaultNow(),
         time_updated:       timestamp({withTimezone: true}).defaultNow(),
         top_image_url:      text(),
-        author_name:        text(),
+        author_id:          integer(),
     },
     (table): any[] => [
         index().on(table.user_id),
-        index().on(table.author_name),
+        index().on(table.author_id),
         index().on(table.time_added),
         foreignKey({
             columns: [ articlesSchema.user_id ],
