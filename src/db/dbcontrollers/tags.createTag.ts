@@ -18,6 +18,8 @@ async function createTag(tag: tagInsertShape): Promise<IDbControllerResponse<tag
             throw new Error("Unknown Failure"); // handle below
         }
 
+        app.log.info(`tag created successfully with tag_id: ${res[0].tag_id}`);
+
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
