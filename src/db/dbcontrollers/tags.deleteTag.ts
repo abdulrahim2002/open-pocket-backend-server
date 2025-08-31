@@ -18,6 +18,8 @@ async function deleteTag(tag_id: number): Promise<IDbControllerResponse<tagShape
             throw new Error("Unknown Failure"); // handled below
         }
 
+        app.log.info(`tag with tag_id: ${deletedTags[0].tag_id} deleted successfully`);
+
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
