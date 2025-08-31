@@ -3,6 +3,7 @@
  * See: https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/#tags
  **/
 import usersSchema  from "@src/db/schemas/users.schema.js";
+import articlesSchema from "./articles.schema.js";
 import {    integer, bigint, pgTable, text,
             foreignKey, index, unique } from "drizzle-orm/pg-core";
 
@@ -18,6 +19,10 @@ const tagsSchema = pgTable(
         foreignKey({
             columns: [ tagsSchema.user_id ],
             foreignColumns: [ usersSchema.user_id ]
+        }),
+        foreignKey({
+            columns: [ tagsSchema.item_id ],
+            foreignColumns: [ articlesSchema.item_id ],
         }),
         index().on(table.tag_name, table.user_id),
         index().on(table.user_id, table.item_id),
