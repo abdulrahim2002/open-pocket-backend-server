@@ -1,4 +1,5 @@
 import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
+import deleteArticle    from "@src/db/dbcontrollers/articles.deleteArticle.js";
 import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 import { StatusCodes }  from "http-status-codes";
@@ -26,7 +27,8 @@ const testArticleForCreateArticle: typeof articlesSchema.$inferInsert = {
 test("createArticle", async () => {
     const resCreateArticle = await createArticle(testArticleForCreateArticle);
 
-    // TODO: delete the article to reverse changes made
+    // delete the article to reverse changes made
+    await deleteArticle(resCreateArticle.data!.item_id);
 
     expect(resCreateArticle).toMatchObject({
         success: true,
