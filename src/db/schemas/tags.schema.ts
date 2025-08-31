@@ -3,7 +3,7 @@
  * See: https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/#tags
  **/
 import usersSchema      from "@src/db/schemas/users.schema.js";
-import articlesSchema   from "./articles.schema.js";
+import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import {    integer, bigint, pgTable, text,
             foreignKey, index, unique } from "drizzle-orm/pg-core";
 
