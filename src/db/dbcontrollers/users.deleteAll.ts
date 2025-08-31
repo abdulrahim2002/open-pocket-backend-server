@@ -4,6 +4,7 @@
  **/
 import db               from "@src/db/index.js";
 import usersSchema      from "../schemas/users.schema.js";
+import { StatusCodes }  from "http-status-codes";
 import IDbControllerResponse, { OPSTATUS }
                         from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
@@ -14,6 +15,7 @@ async function deleteAll(): Promise<IDbControllerResponse<void>> {
             success: true,
             status: OPSTATUS.SUCCESS,
             message: "All rows deleted successfully for `users` table",
+            recommendedHttpResponseCode: StatusCodes.OK,
         }
     }
     catch (error) {
