@@ -14,6 +14,7 @@ const testUserForCreateTag: typeof usersSchema.$inferInsert = {
     provider:   "vitest",
     name:       "testUser-createTag",
     email:      "testUser-createTag@mail.com",
+    hashed_password: "ohw98dh023h9dh3hd",
 };
 
 test("createTag", async () => {
