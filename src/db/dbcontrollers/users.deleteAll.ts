@@ -4,7 +4,7 @@
  * any API endpoint
  **/
 import db               from "@src/db/index.js";
-import usersSchema      from "../schemas/users.schema.js";
+import usersSchema      from "@src/db/schemas/users.schema.js";
 import IDbControllerResponse, { OPSTATUS }
                         from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
