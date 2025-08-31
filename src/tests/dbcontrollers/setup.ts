@@ -1,5 +1,6 @@
 import db               from "@src/db/index.js";
 import { reset }        from "drizzle-seed";
+import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import usersSchema      from "@src/db/schemas/users.schema.js";
 import tagsSchema       from "@src/db/schemas/tags.schema.js";
 
@@ -12,6 +13,7 @@ beforeAll(async () => {
     // delete users and tags table before running any test suite
     await reset(db, {
         // table_name: tableSchemaObject
+        articles: articlesSchema,
         users: usersSchema,
         tags: tagsSchema,
     });
