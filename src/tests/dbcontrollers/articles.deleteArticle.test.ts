@@ -37,7 +37,7 @@ test("deleteArticle", async () => {
         time_added: new Date(),
         time_updated: new Date(),
         top_image_url: "https://topimage.io/image.png/",
-        author_name: "sample-author",
+        author_id: 12,
     };
 
 
