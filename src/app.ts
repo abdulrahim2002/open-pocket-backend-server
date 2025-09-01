@@ -3,6 +3,7 @@ import mainConfig   from "@src/configs/main.config.js";
 import addEndpoint  from "@src/routes/add.js";
 import getEndpoint  from "@src/routes/get.js";
 import sendEndpoint from "@src/routes/send.js";
+import registerEndpoint from "@src/routes/register.js";
 
 
 const app = Fastify({
@@ -12,7 +13,7 @@ const app = Fastify({
 app.register(addEndpoint);
 app.register(getEndpoint);
 app.register(sendEndpoint);
-
+app.register(registerEndpoint);
 
 
 /* Health Check endpoint */
