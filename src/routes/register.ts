@@ -5,6 +5,7 @@
 
 import type { FastifyInstance, FastifySchema } from "fastify";
 import type { FastifyRequest } from "fastify";
+import bcrypt from "bcrypt";
 
 interface IRequestBody {
     name: string,
@@ -60,6 +61,10 @@ async function registerEndpoint( app: FastifyInstance ) {
         app.log.info(`name: ${name}`);
         app.log.info(`email: ${email}`);
         app.log.info(`password: ${password}`);
+
+        // hash the password
+        const hashed_password: string = await bcrypt.hash(password, 8);
+        app.log.info(`hashed_password: ${hashed_password}`);
 
         // send a dummy response
         return {
