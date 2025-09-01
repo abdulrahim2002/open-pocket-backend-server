@@ -21,6 +21,7 @@ export default function houndError(error: Error): IDbControllerResponse<any> {
         }
     }
 
+    // TODO: the originalErrorCode is not always an integer
     let recommendedHttpResponseCode: number|undefined = undefined,
         message = "",
         originalErrorCode = Number(error.cause.code);
