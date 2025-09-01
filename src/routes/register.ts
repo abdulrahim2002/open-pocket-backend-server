@@ -2,6 +2,7 @@
  * The purpose of this file is to register the user. We shall retrieve the required
  * fields, and then insert the user into the database
 **/
+import createUser               from "@src/db/dbcontrollers/users.createUser.js";
 import registerRequestSchema    from "@src/routes/schemas/register.schema.js";
 import type { FastifyInstance } from "fastify";
 import type { FastifyRequest }  from "fastify";
@@ -29,11 +30,26 @@ async function registerEndpoint( app: FastifyInstance ) {
         const hashed_password: string = await bcrypt.hash(password, 8);
         app.log.info(`hashed_password: ${hashed_password}`);
 
-        // send a dummy response
-        return {
-            status: 1,
+        const resCreateUser = await createUser({
+            name: name,
+            email: email,
+            hashed_password: hashed_password,
+        });
+
+        if ( resCreateUser.success ) {
+            reply.statusCode = resCreateUser.recommendedHttpResponseCode || 200;
+            return {
+                status: 1,
+                message: "Created Successfully",
+            }
         }
-    })
+        else {
+            reply.statusCode = resCreateUser.recommendedHttpResponseCode || 400;
+            return {
+                error: true,
+            }
+        }
+    });
 }
 
 export default registerEndpoint;
