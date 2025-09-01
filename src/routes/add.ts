@@ -5,8 +5,6 @@ import type { FastifyInstance } from "fastify";
  * /add endpoint
  * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/add
  **/
-
-
 async function addEndpoint(app: FastifyInstance) {
     app.post('/add', { schema: addRequestSchema }, async (request, reply) => {
         // dummy response
