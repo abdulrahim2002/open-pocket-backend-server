@@ -1,5 +1,7 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
+import fastifyAuth      from "@fastify/auth";
+import fastifyJwt       from "@fastify/jwt";
 import addEndpoint      from "@src/api/v1/add.js";
 import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
@@ -8,6 +10,11 @@ import registerEndpoint from "@src/api/v1/register.js";
 const app = Fastify({
     logger: true,
 });
+
+
+// auth functionaly. TODO: remove hardcoded secret
+app.register(fastifyAuth);
+app.register(fastifyJwt, { secret: "some_secret_that_is_atleat_as_long" });
 
 // Register routes
 app.register(addEndpoint);
