@@ -2,7 +2,7 @@ import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
 import addEndpoint      from "@src/api/v1/add.js";
 import getEndpoint      from "@src/api/v1/get.js";
-import sendEndpoint     from "@src/api/send.js";
+import sendEndpoint     from "@src/api/v1/send.js";
 import registerEndpoint from "@src/api/v1/register.js";
 
 const app = Fastify({
