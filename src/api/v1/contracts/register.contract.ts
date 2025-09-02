@@ -1,4 +1,4 @@
-const registerRequestSchema = {
+const registerEndpointContract = {
     // request body
     body: {
         type: 'object',
@@ -35,4 +35,4 @@ const registerRequestSchema = {
     },
 } as const; // this is important for type inference on `req.body`
 
-export default registerRequestSchema;
+export default registerEndpointContract;
