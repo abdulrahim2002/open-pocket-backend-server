@@ -33,6 +33,6 @@ const registerRequestSchema = {
             required: ['status'],
         }
     },
-} as const;
+} as const; // this is important for type inference on `req.body`
 
 export default registerRequestSchema;

@@ -1,16 +1,16 @@
-import Fastify      from "fastify";
-import addEndpoint  from "@src/routes/add.js";
-import getEndpoint  from "@src/routes/get.js";
-import sendEndpoint from "@src/routes/send.js";
+import Fastify          from "fastify";
+import fastifyEnv       from "@fastify/env";
+import configOpts       from "./configs/config.js";
+import addEndpoint      from "@src/routes/add.js";
+import getEndpoint      from "@src/routes/get.js";
+import sendEndpoint     from "@src/routes/send.js";
 import registerEndpoint from "@src/routes/register.js";
-import fastifyEnv from "@fastify/env";
-import configOpts from "./configs/config.js";
 
 const app = Fastify({
     logger: true,
 });
 
-// Register app.config first
+// Register `app.config` first
 await app.register(fastifyEnv, configOpts);
 
 // Register routes
