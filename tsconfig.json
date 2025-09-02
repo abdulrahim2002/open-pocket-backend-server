@@ -12,6 +12,9 @@
     // useful option but does not work with path aliased imports
     // "rewriteRelativeImportExtensions": true,
 
+    // https://github.com/fastify/fastify-type-provider-json-schema-to-ts#typescript-requirements
+    "noStrictGenericChecks": false,
+
     // path aliases
     "baseUrl": ".",
     "paths": {
