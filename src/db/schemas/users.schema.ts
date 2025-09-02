@@ -10,7 +10,7 @@ const usersSchema = pgTable(
         user_id:    integer().primaryKey().generatedAlwaysAsIdentity(),
         provider:   text().notNull().default("open-pocket"),
         name:       text().notNull(),
-        email:      text().unique(),
+        email:      text().notNull().unique(),
         hashed_password: text(),
     },
     (table) => [
