@@ -11,7 +11,7 @@ const testUserForReadUser: typeof usersSchema.$inferInsert = {
     email: "testUser-readUser@mail.com",
 }
 
-test("readUser", async () => {
+test("readUser-by-user_id", async () => {
     const res1 = await createUser(testUserForReadUser);
     if (!res1.success) {
         throw new Error("Precondition failure: Cannot create the user in the first place");
@@ -23,6 +23,25 @@ test("readUser", async () => {
     await deleteUser(res1.data!.user_id);
 
     expect(res2).toMatchObject({
+        success: true,
+        status: OPSTATUS.SUCCESS,
+        recommendedHttpResponseCode: StatusCodes.OK,
+        message: "User retrieved successfully",
+        data: testUserForReadUser,
+    });
+});
+
+test("readUser-by-email", async () => {
+    const resCreateUser = await createUser(testUserForReadUser);
+    if (!resCreateUser.success) {
+        throw new Error("Precondition failure: Cannot create the user in the first place");
+    }
+
+    const resReadUser = await readUser(resCreateUser.data!.email);
+
+    await deleteUser(resCreateUser.data!.user_id);
+
+    expect(resReadUser).toMatchObject({
         success: true,
         status: OPSTATUS.SUCCESS,
         recommendedHttpResponseCode: StatusCodes.OK,
