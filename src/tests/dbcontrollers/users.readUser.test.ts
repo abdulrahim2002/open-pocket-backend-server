@@ -9,20 +9,20 @@ const testUserForReadUser: typeof usersSchema.$inferInsert = {
     provider: "vitest",
     name: "testUser-readUser",
     email: "testUser-readUser@mail.com",
-}
+};
 
 test("readUser-by-user_id", async () => {
-    const res1 = await createUser(testUserForReadUser);
-    if (!res1.success) {
+    const resCreateUser = await createUser(testUserForReadUser);
+    if (!resCreateUser.success) {
         throw new Error("Precondition failure: Cannot create the user in the first place");
     }
 
-    const res2 = await readUser(res1.data!.user_id);
+    const resReadUser = await readUser(resCreateUser.data!.user_id);
 
     // reverse the changes made
-    await deleteUser(res1.data!.user_id);
+    await deleteUser(resCreateUser.data!.user_id);
 
-    expect(res2).toMatchObject({
+    expect(resReadUser).toMatchObject({
         success: true,
         status: OPSTATUS.SUCCESS,
         recommendedHttpResponseCode: StatusCodes.OK,
