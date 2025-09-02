@@ -1,24 +1,13 @@
-/**
- * The purpose of this file is to register the user. We shall retrieve the required
- * fields, and then insert the user into the database
-**/
 import createUser               from "@src/db/dbcontrollers/users.createUser.js";
-import registerRequestSchema    from "@src/routes/schemas/register.schema.js";
-import type { FastifyInstance } from "fastify";
-import type { FastifyRequest }  from "fastify";
-import bcrypt from "bcrypt";
+import bcrypt                   from "bcrypt";
+import { FastifyPluginAsyncJsonSchemaToTs } from "@fastify/type-provider-json-schema-to-ts";
+import registerRequestSchema from "./schemas/register.schema.js";
 
-interface IRequestBody {
-    name: string,
-    email: string,
-    password: string,
-};
-
-async function registerEndpoint( app: FastifyInstance ) {
+const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) {
     app.post(
         "/register",
-        { schema: registerRequestSchema },
-        async (request: FastifyRequest<{Body: IRequestBody}>, reply) => {
+        {schema: registerRequestSchema},
+        async (request, reply) => {
 
         const { name, email, password } = request.body;
         app.log.info(`user received with name: ${name}, email: ${email}`);

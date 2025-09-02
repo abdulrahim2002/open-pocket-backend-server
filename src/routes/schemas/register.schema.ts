@@ -1,6 +1,4 @@
-import type { FastifySchema } from "fastify";
-
-const registerRequestSchema: FastifySchema = {
+const registerRequestSchema = {
     // request body
     body: {
         type: 'object',
@@ -35,6 +33,6 @@ const registerRequestSchema: FastifySchema = {
             required: ['status'],
         }
     },
-};
+} as const;
 
 export default registerRequestSchema;
