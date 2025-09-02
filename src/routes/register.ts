@@ -21,14 +21,10 @@ async function registerEndpoint( app: FastifyInstance ) {
         async (request: FastifyRequest<{Body: IRequestBody}>, reply) => {
 
         const { name, email, password } = request.body;
-
-        app.log.info(`name: ${name}`);
-        app.log.info(`email: ${email}`);
-        app.log.info(`password: ${password}`);
+        app.log.info(`user received with name: ${name}, email: ${email}`);
 
         // hash the password
         const hashed_password: string = await bcrypt.hash(password, 8);
-        app.log.info(`hashed_password: ${hashed_password}`);
 
         const resCreateUser = await createUser({
             name: name,
