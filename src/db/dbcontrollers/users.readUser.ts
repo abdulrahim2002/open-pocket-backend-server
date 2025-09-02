@@ -9,10 +9,24 @@ import IDbControllerResponse, { OPSTATUS }
 
 type userShape = typeof usersSchema.$inferSelect;
 
-async function readUser(user_id: number): Promise<IDbControllerResponse<userShape>> {
+// define function signatures for email/id overloads
+function readUser(user_id: number): Promise<IDbControllerResponse<userShape>>;
+function readUser(email: string): Promise<IDbControllerResponse<userShape>>;
+
+async function readUser(identifier: number|string): Promise<IDbControllerResponse<userShape>> {
     try {
-        const foundUser = await db.select().from(usersSchema)
-                                    .where(eq(usersSchema.user_id, user_id));
+
+        let foundUser;
+
+        // find user by email or id depending on the input type
+        if ( typeof identifier === "number" ) {
+            foundUser = await db.select().from(usersSchema)
+                                        .where( eq(usersSchema.user_id, identifier) );
+        }
+        else {
+            foundUser = await db.select().from(usersSchema)
+                                        .where( eq(usersSchema.email, identifier) );
+        }
 
         if ( foundUser[0] === undefined ) {
             throw new Error("Unable to find the user");
