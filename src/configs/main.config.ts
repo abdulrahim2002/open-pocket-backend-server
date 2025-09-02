@@ -10,26 +10,31 @@ config({ processEnv: mainConfig });
 
 // define the interface/contract for mainConfig
 export interface IMainConfig {
-    POSTGRESQL_DATABASE: string,
-    POSTGRESQL_USERNAME: string,
-    POSTGRESQL_PASSWORD: string,
-    DATABASE_URL:        string,
-    CUR_SERVER_PORT:     number,
-    CUR_SERVER_HOST:     string,
+    POSTGRESQL_DATABASE:    string,
+    POSTGRESQL_USERNAME:    string,
+    POSTGRESQL_PASSWORD:    string,
+    DATABASE_URL:           string,
+    CUR_SERVER_PORT:        number,
+    CUR_SERVER_HOST:        string,
+    JWT_GENERATION_SECRET:  string,
+    JWT_EXPIRES_IN:         string,
 }
 
 
 const mainConfigSchema: Schema = {
     type: "object",
     properties: {
-        POSTGRESQL_DATABASE: { type: "string" },
-        POSTGRESQL_USERNAME: { type: "string" },
-        POSTGRESQL_PASSWORD: { type: "string" },
-        DATABASE_URL:        { type: "string" },
-        CUR_SERVER_PORT:     { type: "number", default: 7860 },
-        CUR_SERVER_HOST:     { type: "string", default: "0.0.0.0" },
+        POSTGRESQL_DATABASE:    { type: "string" },
+        POSTGRESQL_USERNAME:    { type: "string" },
+        POSTGRESQL_PASSWORD:    { type: "string" },
+        DATABASE_URL:           { type: "string" },
+        CUR_SERVER_PORT:        { type: "number", default: 7860 },
+        CUR_SERVER_HOST:        { type: "string", default: "0.0.0.0" },
+        JWT_GENERATION_SECRET:  { type: "string" },
+        JWT_EXPIRES_IN:         { type: "string" },
+
     },
-    required: [ "DATABASE_URL" ],
+    required: [ "DATABASE_URL", "JWT_GENERATION_SECRET", "JWT_EXPIRES_IN" ],
 }
 
 
