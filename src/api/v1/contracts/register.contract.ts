@@ -25,13 +25,40 @@ const registerEndpointContract = {
                 error: { type: "boolean", default: true },
             },
         },
+        // see: https://jsonapi.org/format/#crud-creating-responses
         "2xx": {
             type: "object",
+            additionalProperties: false,
             properties: {
-                status: { type: "integer", default: 1 }
+                data: {
+                    type: "object",
+                    additionalProperties: false,
+                    properties: {
+                        type: { type: "string", default: "users" },
+                        id:   { type: "string" },
+                        attributes: {
+                            type: "object",
+                            additionalProperties: false,
+                            properties: {
+                                name: { type: "string" },
+                                email: { type: "string" }
+                            },
+                            required: [ "name", "email" ]
+                        }
+                    },
+                    required: [ "type", "id", "attributes" ]
+                },
+                links: {
+                    type: "object",
+                    additionalProperties: false,
+                    properties: {
+                        self: { type: "string" }
+                    },
+                    required: [ "self" ]
+                }
             },
-            required: ["status"],
-        },
+            required: ["data"]
+        }
     },
 } as const; // this is important for type inference on `req.body`
 
