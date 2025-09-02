@@ -1,6 +1,5 @@
 import Fastify          from "fastify";
-import fastifyEnv       from "@fastify/env";
-import configOpts       from "@src/configs/main.config.js";
+import mainConfig       from "@src/configs/main.config.js";
 import addEndpoint      from "@src/routes/add.js";
 import getEndpoint      from "@src/routes/get.js";
 import sendEndpoint     from "@src/routes/send.js";
@@ -9,9 +8,6 @@ import registerEndpoint from "@src/routes/register.js";
 const app = Fastify({
     logger: true,
 });
-
-// Register `app.config` first
-await app.register(fastifyEnv, configOpts);
 
 // Register routes
 app.register(addEndpoint);
@@ -27,8 +23,8 @@ app.get("/", async (request, reply) => "Server is live!");
  **/
 app.listen(
     {
-        port: app.config.CUR_SERVER_PORT,
-        host: app.config.CUR_SERVER_HOST,
+        port: mainConfig.CUR_SERVER_PORT,
+        host: mainConfig.CUR_SERVER_HOST,
     },
     (err, addr) => {
         if (err) {

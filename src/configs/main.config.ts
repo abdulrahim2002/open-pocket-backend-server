@@ -1,33 +1,42 @@
-declare module 'fastify' {
-  export interface FastifyInstance {
-    config: {
+import { config } from "dotenv";
+import { Ajv, type Schema } from "ajv";
+
+const ajv = new Ajv({useDefaults: true, coerceTypes: true});
+
+
+// load environment variables into mainConfig
+const mainConfig = {};
+config({ processEnv: mainConfig });
+
+// define the interface/contract for mainConfig
+export interface IMainConfig {
     POSTGRESQL_DATABASE: string,
     POSTGRESQL_USERNAME: string,
     POSTGRESQL_PASSWORD: string,
     DATABASE_URL:        string,
     CUR_SERVER_PORT:     number,
     CUR_SERVER_HOST:     string,
-    };
-  }
 }
 
-const configSchema = {
-  type: "object",
-  properties: {
-    POSTGRESQL_DATABASE: { type: "string" },
-    POSTGRESQL_USERNAME: { type: "string" },
-    POSTGRESQL_PASSWORD: { type: "string" },
-    DATABASE_URL: { type: "string" },
-    CUR_SERVER_PORT: { type: "number", default: 7860 },
-    CUR_SERVER_HOST: { type: "string", default: "0.0.0.0" },
-  },
-  required: ["DATABASE_URL"],
-};
 
-const configOpts = {
-  confKey: "config",
-  schema: configSchema,
-  dotenv: true,
-};
+const mainConfigSchema: Schema = {
+    type: "object",
+    properties: {
+        POSTGRESQL_DATABASE: { type: "string" },
+        POSTGRESQL_USERNAME: { type: "string" },
+        POSTGRESQL_PASSWORD: { type: "string" },
+        DATABASE_URL:        { type: "string" },
+        CUR_SERVER_PORT:     { type: "number", default: 7860 },
+        CUR_SERVER_HOST:     { type: "string", default: "0.0.0.0" },
+    },
+    required: [ "DATABASE_URL" ],
+}
 
-export default configOpts;
+
+if ( !ajv.validate(mainConfigSchema, mainConfig) ) {
+    throw new Error("Please set environment variables properly.\n" +
+                        ajv.errorsText());
+}
+
+
+export default mainConfig as IMainConfig;
