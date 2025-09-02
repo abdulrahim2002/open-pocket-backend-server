@@ -1,6 +1,6 @@
 import Fastify          from "fastify";
 import fastifyEnv       from "@fastify/env";
-import configOpts       from "./configs/config.js";
+import configOpts       from "@src/configs/main.config.js";
 import addEndpoint      from "@src/routes/add.js";
 import getEndpoint      from "@src/routes/get.js";
 import sendEndpoint     from "@src/routes/send.js";
