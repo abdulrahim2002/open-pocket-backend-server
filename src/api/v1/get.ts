@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import getRequestSchema         from '@src/api/v1/schemas/get.schema.js';
+import getRequestSchema         from '@src/api/v1/contracts/get.contract.js';
 
 /**
  * /get endpoint

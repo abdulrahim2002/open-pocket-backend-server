@@ -1,7 +1,7 @@
 import { FastifyPluginAsyncJsonSchemaToTs } from "@fastify/type-provider-json-schema-to-ts";
 import bcrypt                   from "bcrypt";
 import createUser               from "@src/db/dbcontrollers/users.createUser.js";
-import registerRequestSchema    from "./schemas/register.schema.js";
+import registerRequestSchema    from "./contracts/register.contract.js";
 
 const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) {
     app.post(
