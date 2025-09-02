@@ -1,9 +1,9 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
-import addEndpoint      from "@src/routes/add.js";
-import getEndpoint      from "@src/routes/get.js";
-import sendEndpoint     from "@src/routes/send.js";
-import registerEndpoint from "@src/routes/register.js";
+import addEndpoint      from "@src/api/v1/add.js";
+import getEndpoint      from "@src/api/get.js";
+import sendEndpoint     from "@src/api/send.js";
+import registerEndpoint from "@src/api/register.js";
 
 const app = Fastify({
     logger: true,

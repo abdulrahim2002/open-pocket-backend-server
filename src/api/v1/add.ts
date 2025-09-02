@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import addRequestSchema         from "@src/routes/schemas/add.schema.js";
+import addRequestSchema         from "@src/api/schemas/add.schema.js";
 
 /**
  * /add endpoint
