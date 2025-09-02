@@ -16,18 +16,16 @@ const app = Fastify({
 app.register(fastifyAuth);
 app.register(fastifyJwt, { secret: "some_secret_that_is_atleat_as_long" });
 
-// Register routes
+// register routes
 app.register(addEndpoint);
 app.register(getEndpoint);
 app.register(sendEndpoint);
 app.register(registerEndpoint);
 
-/* Health Check endpoint */
+// health check endpoint
 app.get("/", async (request, reply) => "Server is live!");
 
-/**
- * Start the server!
- **/
+// start the server
 app.listen(
     {
         port: mainConfig.CUR_SERVER_PORT,
