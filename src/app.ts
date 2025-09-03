@@ -23,7 +23,7 @@ app.register(sendEndpoint);
 app.register(registerEndpoint);
 
 // health check endpoint
-app.get("/", async (request, reply) => "Server is live!");
+app.get("/", async (request, response) => "Server is live!");
 
 // start the server
 app.listen(
