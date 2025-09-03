@@ -13,7 +13,7 @@ const app = Fastify({
 });
 
 
-// auth functionaly. TODO: remove hardcoded secret
+// auth functionaly
 app.register(fastifyAuth);
 app.register(fastifyJwt, { secret: mainConfig.JWT_GENERATION_SECRET });
 
