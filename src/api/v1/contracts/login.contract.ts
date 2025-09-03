@@ -72,12 +72,12 @@ const loginEndpointContract = {
                     properties: {
                         accessToken:   { type: "string" },
                         refreshToken:  { type: "string" },
-                        tokenType:     { type: "string", const: "Bearer" },
+                        tokenType:     { type: "string" }, // MUST be "Bearer"
                     },
                     required: [ "accessToken", "refreshToken", "tokenType" ]
                 }
             },
-            required: [ "data" ] // TODO re add tokens
+            required: [ "data", "tokens" ]
         }
     },
 } as const; // this is important for type inference on `req.body`
