@@ -1,8 +1,6 @@
 import { defineConfig } from 'drizzle-kit';
 
-/**
- * See: https://orm.drizzle.team/docs/drizzle-config-file
- **/
+// see: https://orm.drizzle.team/docs/drizzle-config-file
 export default defineConfig({
     out: './drizzle',
     dialect: 'postgresql',
