@@ -19,6 +19,8 @@ async function readUser(identifier: number|string): Promise<IDbControllerRespons
         let foundUser;
 
         // find user by email or id depending on the input type
+        // TODO: use query to find only one record
+        // https://orm.drizzle.team/docs/rqb#find-first
         if ( typeof identifier === "number" ) {
             foundUser = await db.select().from(usersSchema)
                                         .where( eq(usersSchema.user_id, identifier) );
