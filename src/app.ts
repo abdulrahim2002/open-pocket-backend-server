@@ -14,7 +14,7 @@ const app = Fastify({
 
 // auth functionaly. TODO: remove hardcoded secret
 app.register(fastifyAuth);
-app.register(fastifyJwt, { secret: "some_secret_that_is_atleat_as_long" });
+app.register(fastifyJwt, { secret: mainConfig.JWT_GENERATION_SECRET });
 
 // register routes
 app.register(addEndpoint);
