@@ -6,6 +6,7 @@ import addEndpoint      from "@src/api/v1/add.js";
 import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
 import registerEndpoint from "@src/api/v1/register.js";
+import loginEndpoint    from "@src/api/v1/login.js";
 
 const app = Fastify({
     logger: true,
@@ -21,6 +22,7 @@ app.register(addEndpoint);
 app.register(getEndpoint);
 app.register(sendEndpoint);
 app.register(registerEndpoint);
+app.register(loginEndpoint);
 
 // health check endpoint
 app.get("/", async (request, response) => "Server is live!");
