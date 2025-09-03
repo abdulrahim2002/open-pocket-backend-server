@@ -11,7 +11,7 @@ const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) 
     app.post(
         "/register",
         {schema: registerEndpointContract},
-        async (request, reply) => {
+        async (request, response) => {
 
             const { name, email, password } = request.body;
             const hashed_password = await bcrypt.hash(password, 3);
@@ -25,7 +25,7 @@ const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) 
             const resCreateUser = await createUser(newUser);
 
             if (resCreateUser.success) {
-                reply.status(StatusCodes.CREATED);
+                response.status(StatusCodes.CREATED);
                 return {
                     data: {
                         type: "users",
@@ -44,7 +44,7 @@ const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) 
                     message = resCreateUser.message
                                 ?? "Something Went Wrong, please try again later";
 
-            reply.status(errorStatusCode);
+            response.status(errorStatusCode);
             return {
                 error: {
                     code: errorStatusCode,
