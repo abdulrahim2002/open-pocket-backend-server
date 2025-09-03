@@ -78,7 +78,7 @@ const loginEndpointContract = {
                     required: [ "accessToken", "refreshToken", "tokenType" ]
                 }
             },
-            required: [ "user" ] // TODO re add tokens
+            required: [ "data" ] // TODO re add tokens
         }
     },
 } as const; // this is important for type inference on `req.body`
