@@ -1,4 +1,4 @@
-const registerEndpointContract = {
+const loginEndpointContract = {
     // request body
     body: {
         type: "object",
@@ -83,4 +83,4 @@ const registerEndpointContract = {
     },
 } as const; // this is important for type inference on `req.body`
 
-export default registerEndpointContract;
+export default loginEndpointContract;
