@@ -44,7 +44,6 @@ const loginEndpointContract = {
             },
             required: [ "error" ]
         },
-        // on success, return the users properties
         "2xx": {
             type: "object",
             additionalProperties: false,
