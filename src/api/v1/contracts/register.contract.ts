@@ -77,7 +77,7 @@ const registerEndpointContract = {
                     required: [ "self" ]
                 }
             },
-            required: [ "token", "data" ]
+            required: [ "data" ]
         }
     },
 } as const; // this is important for type inference on `req.body`
