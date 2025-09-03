@@ -15,9 +15,8 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             const { email, password } = request.body;
 
             const resReadUser = await readUser(email);
-            const hashed_password_from_db = resReadUser.data!.hashed_password;
 
-            if ( !resReadUser.success || !hashed_password_from_db ) {
+            if ( !resReadUser.success || !resReadUser.data!.hashed_password ) {
                 // user does not exist or something else went wrong
                 // TODO: segregate these 2 issues
                 response.status(StatusCodes.UNAUTHORIZED);
@@ -29,6 +28,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
 
+            const hashed_password_from_db = resReadUser.data!.hashed_password;
             if ( !bcrypt.compare(password, hashed_password_from_db) ) {
                 response.status(StatusCodes.UNAUTHORIZED);
                 return {
