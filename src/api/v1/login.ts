@@ -29,7 +29,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             }
 
             const hashed_password_from_db = resReadUser.data!.hashed_password;
-            if ( !bcrypt.compare(password, hashed_password_from_db) ) {
+            if ( (!await bcrypt.compare(password, hashed_password_from_db)) ) {
                 response.status(StatusCodes.UNAUTHORIZED);
                 return {
                     error: {
