@@ -44,20 +44,28 @@ const registerEndpointContract = {
             },
             required: [ "error" ]
         },
+        // on success, return the users properties
         "2xx": {
             type: "object",
             additionalProperties: false,
             properties: {
-                user: {
+                data: {
                     type: "object",
                     additionalProperties: false,
                     properties: {
-                        id:     { type: "string" },
-                        name:   { type: "string" },
-                        email:  { type: "string" },
-                        provider: { type: "string" },
+                        type: { type: "string", default: "users" },
+                        id:   { type: "string" },
+                        attributes: {
+                            type: "object",
+                            additionalProperties: false,
+                            properties: {
+                                name: { type: "string" },
+                                email: { type: "string" }
+                            },
+                            required: [ "name", "email" ]
+                        }
                     },
-                    required: [ "id", "email" ]
+                    required: [ "type", "id", "attributes" ]
                 },
                 tokens: {
                     type: "object",
