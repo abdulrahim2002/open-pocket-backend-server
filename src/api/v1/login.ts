@@ -2,7 +2,7 @@ import loginEndpointContract        from "@src/api/v1/contracts/login.contract.j
 import { StatusCodes }              from "http-status-codes";
 import mainConfig                   from "@src/configs/main.config.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
-                                    from "@fastify/type-provider-json-schema-to-ts"
+                                    from "@fastify/type-provider-json-schema-to-ts";
 import { fastifyPassport }          from "@src/app.js";
 
 const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
