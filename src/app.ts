@@ -31,30 +31,6 @@ app.register(fastifyJwt, {
 // TODO: this file is getting fatter. Turn relevant things into plugins
 const fastifyPassport = new Authenticator();
 
-fastifyPassport.use(new LocalStrategy(
-    {
-        usernameField: "email",     // we ask user for email not username
-        passwordField: "password",
-    },
-    async (email, password, done) => {
-        const resReadUser = await readUser(email);
-
-        if ( !resReadUser.success ) {
-            // TODO: when no user is retrieved and when an error occured
-            // these cases should return differently. For this to happen
-            // we need to stop throwing an error if user is not found
-            return done(null, false); // password wrong case.
-        }
-
-        const hashed_password_from_db = resReadUser.data!.hashed_password;
-        if ( (!await bcrypt.compare(password, hashed_password_from_db!)) ) {
-            return done(null, false);
-        }
-
-        return done(null, resReadUser.data);
-    }
-));
-
 /**
  * This function shall return a user_id, or something that can uniquely identify a user
  * Here we will use: { user_id, email }; to allow both options.
@@ -87,6 +63,30 @@ fastifyPassport.registerUserDeserializer(
     }
 );
 
+
+fastifyPassport.use(new LocalStrategy(
+    {
+        usernameField: "email",     // we ask user for email not username
+        passwordField: "password",
+    },
+    async (email, password, done) => {
+        const resReadUser = await readUser(email);
+
+        if ( !resReadUser.success ) {
+            // TODO: when no user is retrieved and when an error occured
+            // these cases should return differently. For this to happen
+            // we need to stop throwing an error if user is not found
+            return done(null, false); // password wrong case.
+        }
+
+        const hashed_password_from_db = resReadUser.data!.hashed_password;
+        if ( (!await bcrypt.compare(password, hashed_password_from_db!)) ) {
+            return done(null, false);
+        }
+
+        return done(null, resReadUser.data);
+    }
+));
 
 // add support for jwt tokens
 fastifyPassport.use(new JwtStrategy(
