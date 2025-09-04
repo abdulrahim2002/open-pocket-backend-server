@@ -18,6 +18,7 @@ export interface IMainConfig {
     CUR_SERVER_HOST:        string,
     JWT_GENERATION_SECRET:  string,
     JWT_EXPIRES_IN:         string,
+    SECURE_SESSION_KEY:     string,
 }
 
 
@@ -32,9 +33,10 @@ const mainConfigSchema: Schema = {
         CUR_SERVER_HOST:        { type: "string", default: "0.0.0.0" },
         JWT_GENERATION_SECRET:  { type: "string" },
         JWT_EXPIRES_IN:         { type: "string" },
+        SECURE_SESSION_KEY:     { type: "string" }
 
     },
-    required: [ "DATABASE_URL", "JWT_GENERATION_SECRET", "JWT_EXPIRES_IN" ],
+    required: [ "DATABASE_URL", "JWT_GENERATION_SECRET", "JWT_EXPIRES_IN", "SECURE_SESSION_KEY" ],
 }
 
 
