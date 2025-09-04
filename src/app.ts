@@ -1,6 +1,5 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
-import fastifyAuth      from "@fastify/auth";
 import addEndpoint      from "@src/api/v1/add.js";
 import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
@@ -12,8 +11,6 @@ const app = Fastify({
 });
 
 
-// auth functionaly
-app.register(fastifyAuth);
 
 // register routes
 app.register(addEndpoint);
