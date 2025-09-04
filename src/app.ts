@@ -83,7 +83,18 @@ fastifyPassport.use(new LocalStrategy(
             return done(null, false);
         }
 
-        return done(null, resReadUser.data);
+        const userInfoForSession = {
+            user_id: resReadUser.data!.user_id,
+            name: resReadUser.data!.name,
+            email: resReadUser.data!.email,
+        }
+
+        /**
+         * Note: userInfoForSession is what will get attached to `request.user` on successfull
+         * authentication. Therefore, it is important that we do not supply sensitive information
+         * here
+        */
+        return done(null, userInfoForSession);
     }
 ));
 
@@ -104,7 +115,18 @@ fastifyPassport.use(new JwtStrategy(
                                     // should be send
         }
 
-        return done(null, resReadUser.data);
+        const userInfoForSession = {
+            user_id: resReadUser.data!.user_id,
+            name: resReadUser.data!.name,
+            email: resReadUser.data!.email,
+        }
+
+        /**
+         * Note: userInfoForSession is what will get attached to `request.user` on successfull
+         * authentication. Therefore, it is important that we do not supply sensitive information
+         * here
+        */
+        return done(null, userInfoForSession);
     }
 ));
 
