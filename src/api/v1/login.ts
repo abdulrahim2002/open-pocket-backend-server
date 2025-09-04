@@ -28,7 +28,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // TODO: but what happens to old refresh tokens that this user had?
             // We need to augment the structure of our key-value store. To allow
             // us to track and delete active refresh tokens for a given user
-            const refreshToken = crypto.randomBytes(256).toString("hex");
+            const refreshToken = crypto.randomBytes(32).toString("hex");
             refTokenMap.set(refreshToken, {
                 user_id,
                 email

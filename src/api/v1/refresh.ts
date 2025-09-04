@@ -62,7 +62,7 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
-            const newRefreshToken = crypto.randomBytes(256).toString("hex");
+            const newRefreshToken = crypto.randomBytes(32).toString("hex");
             refTokenMap.set(newRefreshToken, {
                 user_id,
                 email
