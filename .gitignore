@@ -41,3 +41,6 @@ logs/
 
 #Database
 prisma/dev.db
+
+# personal
+todays_target
