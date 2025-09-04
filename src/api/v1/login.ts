@@ -2,7 +2,6 @@ import loginEndpointContract        from "@src/api/v1/contracts/login.contract.j
 import readUser                     from "@src/db/dbcontrollers/users.readUser.js";
 import { StatusCodes }              from "http-status-codes";
 import bcrypt                       from "bcrypt";
-import mainConfig                   from "@src/configs/main.config.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                                     from "@fastify/type-provider-json-schema-to-ts"
 
@@ -40,12 +39,6 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
 
-            const jwtToken = app.jwt.sign({
-                email: email,
-                id: resReadUser.data!.user_id,
-                expiresIn: mainConfig.JWT_EXPIRES_IN
-            });
-
             response.status(StatusCodes.OK);
             return {
                 data: {
@@ -57,7 +50,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                     }
                 },
                 tokens: {
-                    accessToken:    jwtToken,
+                    accessToken:    "sorry! not implemented yet.",
                     refreshToken:   "sorry! not implemented yet. Get a new token please.",
                     tokenType:      "Bearer",
                 }

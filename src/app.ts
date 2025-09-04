@@ -1,7 +1,6 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
 import fastifyAuth      from "@fastify/auth";
-import fastifyJwt       from "@fastify/jwt";
 import addEndpoint      from "@src/api/v1/add.js";
 import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
@@ -15,7 +14,6 @@ const app = Fastify({
 
 // auth functionaly
 app.register(fastifyAuth);
-app.register(fastifyJwt, { secret: mainConfig.JWT_GENERATION_SECRET });
 
 // register routes
 app.register(addEndpoint);
