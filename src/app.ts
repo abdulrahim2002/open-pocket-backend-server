@@ -5,6 +5,7 @@ import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
 import registerEndpoint from "@src/api/v1/register.js";
 import loginEndpoint    from "@src/api/v1/login.js";
+import refreshEndpoint  from "@src/api/v1/refresh.js";
 import usersSchema      from "@src/db/schemas/users.schema.js";
 import readUser         from "@src/db/dbcontrollers/users.readUser.js";
 import { Authenticator }
@@ -142,6 +143,7 @@ app.register(getEndpoint);
 app.register(sendEndpoint);
 app.register(registerEndpoint);
 app.register(loginEndpoint);
+app.register(refreshEndpoint);
 
 // health check endpoint
 app.get("/", async (request, response) => "Server is live!");

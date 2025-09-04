@@ -4,6 +4,8 @@ import mainConfig                   from "@src/configs/main.config.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                                     from "@fastify/type-provider-json-schema-to-ts";
 import { fastifyPassport }          from "@src/app.js";
+import refTokenMap                  from "@src/api/v1/commons/abstractStore.js";
+import crypto                       from "node:crypto";
 
 const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
 
@@ -22,6 +24,16 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
+            // create a new refresh token.
+            // TODO: but what happens to old refresh tokens that this user had?
+            // We need to augment the structure of our key-value store. To allow
+            // us to track and delete active refresh tokens for a given user
+            const refreshToken = crypto.randomBytes(256).toString("hex");
+            refTokenMap.set(refreshToken, {
+                user_id,
+                email
+            });
+
             response.status(StatusCodes.OK);
             return {
                 data: {
@@ -34,7 +46,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 },
                 tokens: {
                     accessToken:    jwtToken,
-                    refreshToken:   "sorry! not implemented yet. Get a new token please.",
+                    refreshToken:   refreshToken,
                     tokenType:      "Bearer",
                 }
             };
