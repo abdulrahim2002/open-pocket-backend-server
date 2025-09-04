@@ -1,12 +1,19 @@
 import type { FastifyInstance } from 'fastify';
 import getRequestSchema         from '@src/api/v1/contracts/get.contract.js';
+import { fastifyPassport }      from '@src/app.js';
 
 /**
  * /get endpoint
- * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/get
+ * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/get/
  **/
 async function getEndpoint( app: FastifyInstance ) {
-    app.post( "/get", { schema: getRequestSchema }, async (request, reply) => {
+    app.post(
+        "/get",
+        {
+            schema: getRequestSchema,
+            preValidation: fastifyPassport.authenticate("jwt")
+        },
+        async (request, reply) => {
         // send a dummy response
         return {
             status: 1,
