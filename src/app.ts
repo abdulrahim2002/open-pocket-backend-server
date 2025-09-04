@@ -13,10 +13,21 @@ import fastifySecureSession
                         from "@fastify/secure-session";
 import { Strategy as LocalStrategy }
                         from "passport-local";
+
+import { Strategy as JwtStrategy, ExtractJwt }
+                        from "passport-jwt";
+
+import fastifyJwt       from "@fastify/jwt";
+
 import bcrypt           from "bcrypt";
 
 const app = Fastify({
     logger: true,
+});
+
+app.register(fastifyJwt, {
+    secret: mainConfig.JWT_GENERATION_SECRET,
+    decoratorName: ""
 });
 
 // TODO: this file is getting fatter. Turn relevant things into plugins
@@ -76,6 +87,28 @@ fastifyPassport.registerUserDeserializer(
         return resReadUser.data;
     }
 );
+
+
+// add support for jwt tokens
+fastifyPassport.use(new JwtStrategy(
+    {
+        secretOrKey: mainConfig.JWT_GENERATION_SECRET,
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    },
+    async (jwtPayload, done) => {
+        const { id } = jwtPayload; // { id, email }
+
+        const resReadUser = await readUser(id);
+
+        if ( !resReadUser.success ) {
+            return done(null, false); // TODO: currently we return wrong jwt token
+                                    // but maybe some error was thrown. On which another response
+                                    // should be send
+        }
+
+        return done(null, resReadUser.data);
+    }
+));
 
 // auth functionality
 app.register(fastifySecureSession, { key: mainConfig.SECURE_SESSION_KEY });
