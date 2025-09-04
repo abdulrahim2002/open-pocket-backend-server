@@ -24,8 +24,8 @@ const app = Fastify({
 
 app.register(fastifyJwt, {
     secret: mainConfig.JWT_GENERATION_SECRET,
-    decoratorName: ""   // TODO: body fastifyJwt and passport-jwt try
-                        // to decorate request creating conflict
+    decoratorName: ""   // TODO: body fastifyJwt and passport-jwt try to
+                        // decorate request with `user` object creating conflict
 });
 
 // TODO: this file is getting fatter. Turn relevant things into plugins
