@@ -5,11 +5,81 @@ import getEndpoint      from "@src/api/v1/get.js";
 import sendEndpoint     from "@src/api/v1/send.js";
 import registerEndpoint from "@src/api/v1/register.js";
 import loginEndpoint    from "@src/api/v1/login.js";
+import usersSchema      from "@src/db/schemas/users.schema.js";
+import readUser         from "@src/db/dbcontrollers/users.readUser.js";
+import { Authenticator }
+                        from "@fastify/passport";
+import fastifySecureSession
+                        from "@fastify/secure-session";
+import { Strategy as LocalStrategy }
+                        from "passport-local";
+import bcrypt           from "bcrypt";
 
 const app = Fastify({
     logger: true,
 });
 
+// TODO: this file is getting fatter. Turn relevant things into plugins
+const fastifyPassport = new Authenticator();
+
+fastifyPassport.use(new LocalStrategy(
+    {
+        usernameField: "email",     // we ask user for email not username
+        passwordField: "password",
+    },
+    async (email, password, done) => {
+        const resReadUser = await readUser(email);
+
+        if ( !resReadUser.success ) {
+            // TODO: when no user is retrieved and when an error occured
+            // these cases should return differently. For this to happen
+            // we need to stop throwing an error if user is not found
+            return done(null, false); // password wrong case.
+        }
+
+        const hashed_password_from_db = resReadUser.data!.hashed_password;
+        if ( (!await bcrypt.compare(password, hashed_password_from_db!)) ) {
+            return done(null, false);
+        }
+
+        return done(null, resReadUser.data);
+    }
+));
+
+/**
+ * This function shall return a user_id, or something that can uniquely identify a user
+ * Here we will use: { user_id, email }; to allow both options.
+**/
+fastifyPassport.registerUserSerializer(
+    async (user: typeof usersSchema.$inferSelect, request) => {
+        // this is the identifier
+        return {
+            user_id: user.user_id,
+            email: user.email,
+        }
+    }
+);
+
+/**
+ * This function does the opposite of the above. It takes your identifier (in our case
+ * its {user_id, email} and returns a user object
+**/
+fastifyPassport.registerUserDeserializer(
+    async (identifierObj: any, request) => {
+        const { user_id } = identifierObj;
+        const resReadUser = await readUser(user_id);
+        if (!resReadUser.success) {
+            return null;
+        }
+
+        return resReadUser.data;
+    }
+);
+
+// auth functionality
+app.register(fastifySecureSession, { key: mainConfig.SECURE_SESSION_KEY });
+app.register(fastifyPassport.initialize());
+app.register(fastifyPassport.secureSession());
 
 
 // register routes
