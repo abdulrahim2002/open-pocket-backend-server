@@ -13,12 +13,9 @@ import fastifySecureSession
                         from "@fastify/secure-session";
 import { Strategy as LocalStrategy }
                         from "passport-local";
-
 import { Strategy as JwtStrategy, ExtractJwt }
                         from "passport-jwt";
-
 import fastifyJwt       from "@fastify/jwt";
-
 import bcrypt           from "bcrypt";
 
 const app = Fastify({
