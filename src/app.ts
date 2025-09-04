@@ -53,6 +53,7 @@ fastifyPassport.use(new LocalStrategy(
 fastifyPassport.registerUserSerializer(
     async (user: typeof usersSchema.$inferSelect, request) => {
         // this is the identifier
+        // TODO: define an interface for this
         return {
             user_id: user.user_id,
             email: user.email,
