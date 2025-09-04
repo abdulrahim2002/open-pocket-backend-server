@@ -49,7 +49,6 @@ fastifyPassport.registerUserSerializer(
 /**
  * This function does the opposite of the above. It takes your identifier (in our case
  * its {user_id, email} and returns a user object.
- * Note: This will polulate request.user with user object returned here!
 **/
 fastifyPassport.registerUserDeserializer(
     async (identifierObj: any, request) => {
