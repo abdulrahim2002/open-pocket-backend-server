@@ -132,7 +132,9 @@ fastifyPassport.use(new JwtStrategy(
 ));
 
 // auth functionality
-app.register(fastifySecureSession, { key: mainConfig.SECURE_SESSION_KEY });
+app.register(fastifySecureSession, {
+    key: Buffer.from(mainConfig.SECURE_SESSION_KEY, "hex")
+});
 app.register(fastifyPassport.initialize());
 app.register(fastifyPassport.secureSession());
 
