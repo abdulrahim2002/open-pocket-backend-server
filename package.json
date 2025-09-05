@@ -12,12 +12,18 @@
     "db:stop": "docker stop postgresql",
     "db:shell": "dotenv -- sh -c 'docker exec -it postgresql psql postgresql://$POSTGRESQL_USERNAME:$POSTGRESQL_PASSWORD@localhost:5432/$POSTGRESQL_DATABASE' ",
     "db:purge": "npm run db:stop && docker rm -f postgresql && docker volume rm pgdata && docker image rm bitnami/postgresql:latest",
-    "drizzle:apply": "NODE_OPTIONS='--import tsx' npx drizzle-kit generate && npx drizzle-kit migrate"
+    "drizzle:apply": "NODE_OPTIONS='--import tsx' npx drizzle-kit generate && npx drizzle-kit migrate",
+    "redis:init": "docker run -d --name redis --env-file .env -p 6379:6379 -v redis:/bitnami/redis/data  bitnami/redis:latest",
+    "redis:start": "docker start redis",
+    "redis:stop": "docker stop redis",
+    "redis:shell": "dotenv -- sh -c 'docker exec -it redis redis-cli -a $REDIS_PASSWORD' ",
+    "redis:purge": "npm run redis:stop && docker rm -f redis && docker volume rm redis && docker image rm -f bitnami/redis:latest"
   },
   "dependencies": {
     "@fastify/jwt": "^10.0.0",
     "@fastify/passport": "^3.0.2",
     "@fastify/secure-session": "^8.2.0",
+    "@redis/client": "^5.8.2",
     "ajv": "^8.17.1",
     "bcrypt": "^6.0.0",
     "drizzle-orm": "^0.44.4",
