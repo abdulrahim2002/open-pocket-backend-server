@@ -17,12 +17,12 @@
  * this ensures that old refresh token is invalidated automatically.
  **/
 
-import refTokenMap                  from "@src/api/v1/commons/abstractStore.js";
-import crypto                       from "node:crypto";
-import mainConfig                   from "@src/configs/main.config.js";
-import { StatusCodes }              from "http-status-codes";
+import refTokenMap      from "@src/api/v1/commons/abstractStore.js";
+import crypto           from "node:crypto";
+import mainConfig       from "@src/configs/main.config.js";
+import { StatusCodes }  from "http-status-codes";
 import { FastifyPluginAsyncJsonSchemaToTs }
-                                    from "@fastify/type-provider-json-schema-to-ts";
+                        from "@fastify/type-provider-json-schema-to-ts";
 
 
 const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
