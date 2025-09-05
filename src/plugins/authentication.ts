@@ -8,7 +8,8 @@ import fastifyJwt           from "@fastify/jwt";
 async function authentication(app: FastifyInstance) {
 
     app.register(fastifySecureSession, {
-        key: Buffer.from(mainConfig.SECURE_SESSION_KEY, "hex")
+        key: Buffer.from(mainConfig.SECURE_SESSION_KEY, "hex"),
+        // TODO: add expiry option
     });
 
     app.register(fastifyJwt, {
