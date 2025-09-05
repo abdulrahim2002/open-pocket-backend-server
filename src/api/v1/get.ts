@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify';
 import getRequestSchema         from '@src/api/v1/contracts/get.contract.js';
-import { fastifyPassport }      from '@src/app.js';
+import fastifyPassport          from '@src/plugins/fastifyPassport.js';
 
 /**
  * /get endpoint
