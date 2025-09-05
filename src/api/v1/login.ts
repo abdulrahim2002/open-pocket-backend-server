@@ -21,6 +21,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             const jwtToken = app.jwt.sign({
                 email: email,
                 id: user_id,
+            }, {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
