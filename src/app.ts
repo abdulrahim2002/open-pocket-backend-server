@@ -135,7 +135,7 @@ app.register(fastifyPassport.secureSession());
 
 
 // register routes
-app.register(routesLoader);
+app.register(routesLoader, { prefix: "/api/v1" });
 
 // health check endpoint
 app.get("/", async (request, response) => "Server is live!");
