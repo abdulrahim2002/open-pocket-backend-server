@@ -52,8 +52,8 @@ const loginEndpointContract = {
                     type: "object",
                     additionalProperties: false,
                     properties: {
-                        type: { type: "string", default: "users" },
-                        id:   { type: "string" },
+                        type:       { type: "string", default: "users" },
+                        user_id:    { type: "string" },
                         attributes: {
                             type: "object",
                             additionalProperties: false,
@@ -64,7 +64,7 @@ const loginEndpointContract = {
                             required: [ "name", "email" ]
                         }
                     },
-                    required: [ "type", "id", "attributes" ]
+                    required: [ "type", "user_id", "attributes" ]
                 },
                 tokens: {
                     type: "object",
