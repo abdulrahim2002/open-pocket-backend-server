@@ -1,7 +1,7 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
 import usersSchema      from "@src/db/schemas/users.schema.js";
-import routesLoader     from "@src/api/v1/index.js";
+import routesLoaderV1     from "@src/api/v1/index.js";
 import readUser         from "@src/db/dbcontrollers/users.readUser.js";
 import { Authenticator }
                         from "@fastify/passport";
@@ -135,7 +135,7 @@ app.register(fastifyPassport.secureSession());
 
 
 // register routes
-app.register(routesLoader, { prefix: "/api/v1" });
+app.register(routesLoaderV1, { prefix: "/api/v1" });
 
 // health check endpoint
 app.get("/", async (request, response) => "Server is live!");
