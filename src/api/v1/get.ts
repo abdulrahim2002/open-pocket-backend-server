@@ -14,8 +14,7 @@ async function getEndpoint( app: FastifyInstance ) {
             preValidation: fastifyPassport.authenticate("jwt")
         },
         async (request, reply) => {
-            console.log(request.user);
-            // send a dummy response
+
             return {
                 status: 1,
                 list: {
