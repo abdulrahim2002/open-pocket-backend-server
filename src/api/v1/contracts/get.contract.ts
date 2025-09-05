@@ -1,6 +1,6 @@
 import type { FastifySchema } from "fastify";
 
-const getRequestSchema: FastifySchema = {
+const getRequestContract: FastifySchema = {
     // request body
     body: {
         type: 'object',
@@ -75,4 +75,4 @@ const getRequestSchema: FastifySchema = {
     },
 };
 
-export default getRequestSchema;
+export default getRequestContract;

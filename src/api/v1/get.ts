@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import getRequestSchema         from '@src/api/v1/contracts/get.contract.js';
+import getRequestContract       from '@src/api/v1/contracts/get.contract.js';
 import fastifyPassport          from '@src/plugins/fastifyPassport.js';
 
 /**
@@ -10,7 +10,7 @@ async function getEndpoint( app: FastifyInstance ) {
     app.post(
         "/get",
         {
-            schema: getRequestSchema,
+            schema: getRequestContract,
             preValidation: fastifyPassport.authenticate("jwt")
         },
         async (request, reply) => {
