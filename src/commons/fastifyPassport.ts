@@ -1,4 +1,5 @@
 import { Authenticator }    from "@fastify/passport";
+import { FastifyRequest }   from "fastify";
 import mainConfig           from "@src/configs/main.config.js";
 import bcrypt               from "bcrypt";
 import usersSchema          from "@src/db/schemas/users.schema.js";
@@ -6,6 +7,7 @@ import readUser             from "@src/db/dbcontrollers/users.readUser.js";
 
 import { Strategy as LocalStrategy }             from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt }   from "passport-jwt";
+import { Strategy as SecureSessionStrategy }     from "passport-custom";
 
 const fastifyPassport = new Authenticator({
     // clearSessionIgnoreFields: add fields you do not want to be cleared in request.session
@@ -56,6 +58,29 @@ fastifyPassport.use(new JwtStrategy(
         const resReadUser = await readUser(jwtPayload.user_id);
 
         if ( !resReadUser.success ) {
+            return done(null, false);
+        }
+
+        return done(null, resReadUser.data);
+    }
+));
+
+// if client comes with encrypted cookie set by fastify/secure-session
+// use it to determine weather user is already authenticated
+fastifyPassport.use("secure-session", new SecureSessionStrategy(
+    async (req: any, done) => {
+
+        // req is incorrectly typed
+        const request = req as FastifyRequest;
+
+        const userId: number = request.session.get("passport")?.user_id;
+        if ( !userId ) {
+            return done(null, false);
+        }
+
+        const resReadUser = await readUser(userId);
+        if (!resReadUser.success) {
+            request.session.delete();
             return done(null, false);
         }
 
