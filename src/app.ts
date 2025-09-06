@@ -1,6 +1,6 @@
 import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
-import authentication   from "@src/plugins/authentication.js";
+import authentication   from "@src/commons/authentication.js";
 import routesLoaderV1   from "@src/api/v1/index.js";
 
 const app = Fastify({

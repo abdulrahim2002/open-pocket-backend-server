@@ -1,7 +1,7 @@
 import fp                   from "fastify-plugin";
 import { FastifyInstance }  from "fastify";
 import mainConfig           from "@src/configs/main.config.js";
-import fastifyPassport      from "@src/plugins/fastifyPassport.js";
+import fastifyPassport      from "@src/commons/fastifyPassport.js";
 import fastifySecureSession from "@fastify/secure-session";
 import fastifyJwt           from "@fastify/jwt";
 

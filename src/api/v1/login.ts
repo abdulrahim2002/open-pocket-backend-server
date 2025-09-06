@@ -1,7 +1,7 @@
 import loginEndpointContract    from "@src/api/v1/contracts/login.contract.js";
 import { StatusCodes }          from "http-status-codes";
 import mainConfig               from "@src/configs/main.config.js";
-import fastifyPassport          from "@src/plugins/fastifyPassport.js";
+import fastifyPassport          from "@src/commons/fastifyPassport.js";
 import refTokenMap              from "@src/api/v1/commons/abstractStore.js";
 import crypto                   from "node:crypto";
 import { FastifyPluginAsyncJsonSchemaToTs }
