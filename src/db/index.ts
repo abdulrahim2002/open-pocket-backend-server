@@ -10,6 +10,9 @@ const schema = {
     users: usersSchema,
 };
 
-const db: NodePgDatabase<typeof schema> = drizzle(mainConfig.DATABASE_URL, { schema  });
+const db: NodePgDatabase<typeof schema> = drizzle(
+    mainConfig.DATABASE_URL,
+    { schema  }
+);
 
 export default db;
