@@ -13,7 +13,7 @@ const fastifyPassport = new Authenticator({
 
 fastifyPassport.registerUserSerializer(
     async (user: typeof usersSchema.$inferSelect, request) => {
-        return { use_id: user.user_id };
+        return { user_id: user.user_id };
     }
 );
 
