@@ -17,6 +17,8 @@
  * this ensures that old refresh token is invalidated automatically.
  **/
 import crypto           from "node:crypto";
+import redisMaps        from "@src/commons/redisMaps.js";
+import redis            from "@src/commons/redis.js";
 import mainConfig       from "@src/configs/main.config.js";
 import { StatusCodes }  from "http-status-codes";
 import IJwtPayload      from "@src/commons/IJwtPayload.js";
@@ -32,9 +34,16 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         "/refresh",
         { schema: refreshEndpointContract },
         async (request, response) => {
+
             // try to find the user in the session store
-            const oldrefreshtoken = request.body.refresh_token;
-            if ( !refTokenMap.has(oldrefreshtoken) ) {
+            const oldRefreshToken = request.body.refresh_token;
+
+            // TODO, we should also ask this user what is the user_id he is claiming
+            // currently we just assume -> if he has the key -> userId for the key is his!
+            // he might be bruteforcing.
+
+            const userId = await redis.hGet(redisMaps.refreshToken_userId, oldRefreshToken);
+            if ( !userId ) {
                 // reject the request as unauthorized;
                 response.status(StatusCodes.UNAUTHORIZED);
                 return {
@@ -45,20 +54,19 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
 
-            const { user_id } = refTokenMap.get(oldrefreshtoken)!;
-
+            // create a new jwt token
             const jwtToken = app.jwt.sign(
-                { user_id: Number(user_id) } as IJwtPayload, {
+                { user_id: Number(userId) } as IJwtPayload, {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
+            // craete a new refresh token and store it in redis
+            // TODO: set an expiry on this newly create refresh token
             const newRefreshToken = crypto.randomBytes(32).toString("hex");
-            refTokenMap.set(newRefreshToken, {
-                user_id
-            });
+            await redis.hSet(redisMaps.refreshToken_userId, newRefreshToken, userId);
 
             // delete the old refresh token
-            refTokenMap.delete(oldrefreshtoken);
+            await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);
 
             response.status(StatusCodes.OK);
             return {
@@ -68,9 +76,9 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                     tokenType:      "Bearer",
                 }
             };
-
         }
-    )
+
+    );
 
 };
 

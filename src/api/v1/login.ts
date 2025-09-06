@@ -2,7 +2,8 @@ import loginEndpointContract    from "@src/api/v1/contracts/login.contract.js";
 import { StatusCodes }          from "http-status-codes";
 import mainConfig               from "@src/configs/main.config.js";
 import fastifyPassport          from "@src/commons/fastifyPassport.js";
-import refTokenMap              from "@src/api/v1/commons/abstractStore.js";
+import redisMaps                from "@src/commons/redisMaps.js";
+import redis                    from "@src/commons/redis.js";
 import crypto                   from "node:crypto";
 import IJwtPayload              from "@src/commons/IJwtPayload.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
@@ -34,10 +35,9 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // We need to augment the structure of our key-value store. To allow
             // us to track and delete active refresh tokens for a given user
             const refreshToken = crypto.randomBytes(32).toString("hex");
-            refTokenMap.set(refreshToken, {
-                user_id
-            });
 
+            // TODO: set an expiration as well
+            await redis.hSet(redisMaps.refreshToken_userId, refreshToken, user_id);
             response.status(StatusCodes.OK);
             return {
                 data: {
