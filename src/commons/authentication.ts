@@ -9,7 +9,13 @@ async function authentication(app: FastifyInstance) {
 
     app.register(fastifySecureSession, {
         key: Buffer.from(mainConfig.SECURE_SESSION_KEY, "hex"),
-        // TODO: add expiry option
+        cookie: {
+            path: "/api/v1",        // setting this somehow enables local strategy to set cookie
+            // httpOnly: true,      // set security options in production
+            // sameSite: "strict",
+            // secure: false,
+        },
+        // expiry: 12312213 (milliseconds)  // set in production
     });
 
     app.register(fastifyJwt, {
