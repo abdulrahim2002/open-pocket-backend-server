@@ -30,6 +30,7 @@ async function readUser(identifier: number|string): Promise<IDbControllerRespons
         }
 
         if ( !foundUser ) {
+            app.log.error(`User with user_id/email: ${identifier}, does not exists`);
             return {
                 success: false,
                 status: OPSTATUS.USER_DOES_NOT_EXISTS,
