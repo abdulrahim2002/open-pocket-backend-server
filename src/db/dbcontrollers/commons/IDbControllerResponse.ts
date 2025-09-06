@@ -13,6 +13,9 @@ export enum OPSTATUS {
     // connection failure
     CONNECTION_FAILURE=8006,
 
+    // custom errrors
+    USER_DOES_NOT_EXISTS=7860,
+
     // other
     UNKNOWN_FAILURE=-1,
 }

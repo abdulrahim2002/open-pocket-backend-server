@@ -30,7 +30,12 @@ async function readUser(identifier: number|string): Promise<IDbControllerRespons
         }
 
         if ( !foundUser ) {
-            throw new Error("Unable to find the user");
+            return {
+                success: false,
+                status: OPSTATUS.USER_DOES_NOT_EXISTS,
+                recommendedHttpResponseCode: StatusCodes.NOT_FOUND,
+                message: "User does not exists",
+            }
         }
 
         return {
