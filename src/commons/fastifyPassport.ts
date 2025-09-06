@@ -52,8 +52,8 @@ fastifyPassport.use(new JwtStrategy(
         secretOrKey: mainConfig.JWT_GENERATION_SECRET,
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     },
-    async (jwtPayload: {id: number, email: string}, done) => {
-        const resReadUser = await readUser(jwtPayload.id);
+    async (jwtPayload: { user_id: number }, done) => {
+        const resReadUser = await readUser(jwtPayload.user_id);
 
         if ( !resReadUser.success ) {
             return done(null, false);

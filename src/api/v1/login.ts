@@ -4,6 +4,7 @@ import mainConfig               from "@src/configs/main.config.js";
 import fastifyPassport          from "@src/commons/fastifyPassport.js";
 import refTokenMap              from "@src/api/v1/commons/abstractStore.js";
 import crypto                   from "node:crypto";
+import IJwtPayload              from "@src/commons/IJwtPayload.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                                 from "@fastify/type-provider-json-schema-to-ts";
 
@@ -23,10 +24,8 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             //
             const { email, user_id, name } = request.user as any;
 
-            const jwtToken = app.jwt.sign({
-                email: email,
-                id: user_id,
-            }, {
+            const jwtToken = app.jwt.sign(
+                { user_id: user_id, } as IJwtPayload, {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
@@ -36,8 +35,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // us to track and delete active refresh tokens for a given user
             const refreshToken = crypto.randomBytes(32).toString("hex");
             refTokenMap.set(refreshToken, {
-                user_id,
-                email
+                user_id
             });
 
             response.status(StatusCodes.OK);

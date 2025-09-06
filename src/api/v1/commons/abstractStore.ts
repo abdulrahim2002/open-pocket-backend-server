@@ -7,8 +7,7 @@
  * replacement.
  **/
 interface IMapEntry {
-    user_id: string,
-    email: string,
+    user_id: string
 }
 
 export default new Map<string, IMapEntry>();

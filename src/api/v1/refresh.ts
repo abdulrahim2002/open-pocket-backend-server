@@ -21,6 +21,7 @@ import refTokenMap      from "@src/api/v1/commons/abstractStore.js";
 import crypto           from "node:crypto";
 import mainConfig       from "@src/configs/main.config.js";
 import { StatusCodes }  from "http-status-codes";
+import IJwtPayload      from "@src/commons/IJwtPayload.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
 
@@ -54,19 +55,16 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
 
-            const { user_id, email } = refTokenMap.get(oldrefreshtoken) as any;
+            const { user_id } = refTokenMap.get(oldrefreshtoken)!;
 
-            const jwtToken = app.jwt.sign({
-                email: email,
-                id: user_id,
-            }, {
+            const jwtToken = app.jwt.sign(
+                { user_id: Number(user_id) } as IJwtPayload, {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
             const newRefreshToken = crypto.randomBytes(32).toString("hex");
             refTokenMap.set(newRefreshToken, {
-                user_id,
-                email
+                user_id
             });
 
             // delete the old refresh token
