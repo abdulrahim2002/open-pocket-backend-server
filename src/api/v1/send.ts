@@ -1,6 +1,6 @@
 import { type FastifyInstance } from "fastify";
 import fastifyPassport          from "@src/commons/fastifyPassport.js";
-import sendRequestSchema        from "@src/api/v1/contracts/send.contract.js";
+import sendEndpointContract     from "@src/api/v1/contracts/send.contract.js";
 
 /**
  * /send endpoint
@@ -10,7 +10,7 @@ async function sendEndpoint( app: FastifyInstance ) {
     app.post(
         "/send",
         {
-            schema: sendRequestSchema,
+            schema: sendEndpointContract,
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, reply) => {

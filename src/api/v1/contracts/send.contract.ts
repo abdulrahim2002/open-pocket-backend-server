@@ -1,6 +1,6 @@
 import type { FastifySchema } from "fastify";
 
-const sendRequestSchema: FastifySchema = {
+const sendEndpointContract: FastifySchema = {
     // request body
     body: {
         type: 'object',
@@ -61,4 +61,4 @@ const sendRequestSchema: FastifySchema = {
     }
 };
 
-export default sendRequestSchema;
+export default sendEndpointContract;
