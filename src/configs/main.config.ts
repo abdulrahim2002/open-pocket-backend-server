@@ -19,6 +19,7 @@ export interface IMainConfig {
     JWT_GENERATION_SECRET:  string,
     JWT_EXPIRES_IN:         string,
     SECURE_SESSION_KEY:     string,
+    REDIS_PASSWORD:         string,
 }
 
 
@@ -33,10 +34,15 @@ const mainConfigSchema: Schema = {
         CUR_SERVER_HOST:        { type: "string", default: "0.0.0.0" },
         JWT_GENERATION_SECRET:  { type: "string" },
         JWT_EXPIRES_IN:         { type: "string" },
-        SECURE_SESSION_KEY:     { type: "string" }
+        SECURE_SESSION_KEY:     { type: "string" },
+        REDIS_PASSWORD:         { type: "string" }
 
     },
-    required: [ "DATABASE_URL", "JWT_GENERATION_SECRET", "JWT_EXPIRES_IN", "SECURE_SESSION_KEY" ],
+    required: [
+        "DATABASE_URL", "JWT_GENERATION_SECRET",
+        "JWT_EXPIRES_IN", "SECURE_SESSION_KEY",
+        "REDIS_PASSWORD"
+    ],
 }
 
 
