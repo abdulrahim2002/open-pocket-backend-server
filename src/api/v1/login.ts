@@ -15,7 +15,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         "/login",
         {
             schema: loginEndpointContract,
-            preValidation: fastifyPassport.authenticate("local", { session: false }),
+            preValidation: fastifyPassport.authenticate("local"),
         },
         async (request, response) => {
 
