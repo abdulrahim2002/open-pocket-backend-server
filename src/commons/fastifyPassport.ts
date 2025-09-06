@@ -88,4 +88,8 @@ fastifyPassport.use("secure-session", new SecureSessionStrategy(
     }
 ));
 
+// TODO: note that `request.logout` will destroy `request.sesison` requiring
+// client to reauthenticate. Hence, implemnt a `/logout` endpoint doing exactly
+// this
+
 export default fastifyPassport;
