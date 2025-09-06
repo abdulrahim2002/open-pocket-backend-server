@@ -1,78 +1,94 @@
 import type { FastifySchema } from "fastify";
 
-const getRequestContract: FastifySchema = {
+const getEndpointContract: FastifySchema = {
     // request body
     body: {
-        type: 'object',
+        type: "object",
         properties: {
-            consumer_key: { type: 'string' },
-            access_token: { type: 'string' },
-            state: { type: 'string', enum: ['all', 'unread', 'archive', 'deleted'], default: 'all' },
-            favorited: { type: 'string', enum: ['0', '1'], default: '0' },
-            tag: { type: 'string', nullable: true },
-            contentType: { type: 'string', enum: ['article', 'video', 'image'], default: 'article' },
-            sort: { type: 'string', enum: ['newest', 'oldest', 'title', 'site'], default: 'newest' },
-            detailType: { type: 'string', enum: ['simple', 'complete'], default: 'simple' },
-            search: { type: 'string', nullable: true },
-            domain: { type: 'string', nullable: true },
-            since: { type: 'string', format: 'uri', nullable: true },
-            count: { type: 'integer', default: 20, minimum: 1, maximum: 100 },
-            offset: { type: 'integer', default: 0, minimum: 0 },
-            total: { type: 'boolean', default: false },
+            consumer_key: { type: "string" },
+            access_token: { type: "string" },
+            state: {
+                type: "string",
+                enum: ["all", "unread", "archive", "deleted"],
+                default: "all",
+            },
+            favorited:  { type: "string", enum: ["0", "1"], default: "0" },
+            tag:        { type: "string", nullable: true },
+            contentType: {
+                type: "string",
+                enum: ["article", "video", "image"],
+                default: "article",
+            },
+            sort: {
+                type: "string",
+                enum: ["newest", "oldest", "title", "site"],
+                default: "newest",
+            },
+            detailType: {
+                type: "string",
+                enum: ["simple", "complete"],
+                default: "simple",
+            },
+            search: { type: "string", nullable: true },
+            domain: { type: "string", nullable: true },
+            since:  { type: "string", format: "uri", nullable: true },
+            count:  { type: "integer", default: 20, minimum: 1, maximum: 100 },
+            offset: { type: "integer", default: 0, minimum: 0 },
+            total:  { type: "boolean", default: false },
         },
-        required: ['consumer_key', 'access_token']
+        required: ["consumer_key", "access_token"],
     },
     // request headers
     headers: {
-        type: 'object',
+        type: "object",
         properties: {
-            'Content-Type': { type: 'string', enum: ['application/json'] },
+            "Content-Type": { type: "string", enum: ["application/json"] },
         },
-        required: ['Content-Type'],
+        required: ["Content-Type"],
     },
     // response schema
     response: {
         default: {
-            type: 'object',
+            type: "object",
             properties: {
-                error: { type: 'boolean', default: true },
-            }
+                error: { type: "boolean", default: true },
+            },
         },
-        '2xx': {
-            type: 'object',
+        "2xx": {
+            type: "object",
             properties: {
-                status: { type: 'integer', default: 1 },
+                status: { type: "integer", default: 1 },
                 list: {
-                    type: 'object',
+                    type: "object",
                     patternProperties: {
-                        '^[0-9]+$': {
-                            type: 'object',
+                        "^[0-9]+$": {
+                            type: "object",
                             properties: {
-                                item_id: { type: 'string' },
-                                resolved_id: { type: 'string' },
-                                given_url: { type: 'string', format: 'uri', nullable: true },
-                                given_title: { type: 'string', nullable: true },
-                                favorite: { type: 'string', enum: ['0', '1'], default: '0' },
-                                status: { type: 'string', enum: ['0', '1'], default: '0' },
-                                resolved_title: { type: 'string', nullable: true },
-                                resolved_url: { type: 'string', format: 'uri', nullable: true },
-                                excerpt: { type: 'string', nullable: true },
-                                is_article: { type: 'string', default: '0' },
-                                has_video: { type: 'string', default: '0' },
-                                has_image: { type: 'string', default: '0' },
-                                word_count: { type: 'string', nullable: true },
-                                tags: { type: 'string', nullable: true },
+                                item_id:        { type: "string" },
+                                resolved_id:    { type: "string" },
+                                given_url:      { type: "string", format: "uri", nullable: true },
+                                given_title:    { type: "string", nullable: true },
+                                favorite:       { type: "string", enum: ["0", "1"], default: "0" },
+                                status:         { type: "string", enum: ["0", "1"], default: "0" },
+                                resolved_title: { type: "string", nullable: true },
+                                resolved_url:   { type: "string", format: "uri", nullable: true },
+                                excerpt:        { type: "string", nullable: true },
+                                is_article:     { type: "string", default: "0" },
+                                has_video:      { type: "string", default: "0" },
+                                has_image:      { type: "string", default: "0" },
+                                word_count:     { type: "string", nullable: true },
+                                tags:           { type: "string", nullable: true },
                                 // authors: to be implemented
                                 // images: to be implemented
                                 // videos: to be implemented
                             },
-                            required: ['item_id' ],
-                        }
-                    }
-                }
-            }
-        }
+                            required: ["item_id"],
+                        },
+                    },
+                },
+            },
+        },
     },
 };
 
-export default getRequestContract;
+export default getEndpointContract;
