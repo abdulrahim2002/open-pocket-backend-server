@@ -16,6 +16,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             preValidation: fastifyPassport.authenticate("local", { session: false }),
         },
         async (request, response) => {
+
             const { email, user_id, name } = request.user as any;
 
             const jwtToken = app.jwt.sign({
