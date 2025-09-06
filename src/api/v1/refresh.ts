@@ -16,15 +16,14 @@
  * as: map[newrefreshtoken] = { email, id }. and delete map[oldrefreshtoken];
  * this ensures that old refresh token is invalidated automatically.
  **/
-
-import refreshEndpointContract from "@src/api/v1/contracts/refresh.contract.js";
-import refTokenMap      from "@src/api/v1/commons/abstractStore.js";
 import crypto           from "node:crypto";
 import mainConfig       from "@src/configs/main.config.js";
 import { StatusCodes }  from "http-status-codes";
 import IJwtPayload      from "@src/commons/IJwtPayload.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
-from "@fastify/type-provider-json-schema-to-ts";
+                        from "@fastify/type-provider-json-schema-to-ts";
+import refreshEndpointContract
+                        from "@src/api/v1/contracts/refresh.contract.js";
 
 
 const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
