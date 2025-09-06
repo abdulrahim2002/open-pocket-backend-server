@@ -17,6 +17,10 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         },
         async (request, response) => {
 
+            // we can be sure that request.session.passport and request.session.session will be available
+            // even if clear fields are set
+            // https://github.com/fastify/fastify-passport/blob/55aad13004def208107353a9d06b714e7d7b31f3/src/Authenticator.ts#L46
+            //
             const { email, user_id, name } = request.user as any;
 
             const jwtToken = app.jwt.sign({
