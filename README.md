@@ -17,15 +17,46 @@
     </a>
 </p>
 
-
 #### Background
 
-- Please see [open-pocket organization](https://github.com/open-pocket)
-for more details on the project.
+- [open-pocket organization](https://github.com/open-pocket) was started
+  by [Andy Waite](https://github.com/andyw8), with the goal of creating
+an open source alternative to [getpocket](https://getpocket.com/)
 
+- in 2025, [getpocket](https://getpocket.com/home) decided to shut down
+  stripping away the beloved (save) sign in firefox.
 
-#### Details
+- significant infracture has been build around getpocket. [try searching
+  getpocket](https://github.com/search?q=getpocket&type=repositories) on
+github and you will find many client implementations. As getpocket shuts
+down, all this infrastructure is going in vain.
 
-- The code in this repository implements REST API for open-pocket.
-- The implementation tries to conform to [get pocket's REST API
-  spec](https://getpocket.com/developer/docs/overview).
+- open-pocket tries to be 100% compatible with [getpocket API
+  specification](https://getpocket.com/developer/docs/overview), so all
+existing clients work seamlessly
+
+#### Current Status
+
+- database [schemas
+  defined](https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/)
+- [most database
+  controllers](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/db/dbcontrollers)
+have been written
+- [email/password](https://github.com/abdulrahim2002/open-pocket-backend-server/blob/main/src/commons/fastifyPassport.ts)
+  based authentication added 
+- JWT token based authentication mechanism fully functional
+- Access token/Refresh token functionality added
+- oauth2 protocol implemented
+- unit tests written for all dbcontrollers using [vitest](https://vitest.dev/)
+
+#### Technologies
+
+- [fastify](https://fastify.dev) + typescript (main framework)
+- main database: postgresql
+- [drizzle ORM](https://orm.drizzle.team/)
+- [redis](https://redis.io/) (currently used on authentication endpoints)
+- [vitest](https://vitest.dev/) for testing 
+- bitnami docker containers for
+  [redis](https://hub.docker.com/r/bitnami/redis) and
+[postgres](https://hub.docker.com/r/bitnami/postgresql) database 
+
