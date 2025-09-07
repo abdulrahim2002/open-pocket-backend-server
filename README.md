@@ -47,7 +47,7 @@ have been written
 - JWT token based authentication mechanism fully functional
 - Access token/Refresh token functionality added
 - oauth2 protocol implemented
-- unit tests written for all dbcontrollers using [vitest](https://vitest.dev/)
+- unit tests written for all dbcontrollers using [vitest](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/tests/dbcontrollers)
 
 #### Technologies
 
