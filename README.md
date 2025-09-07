@@ -5,8 +5,8 @@
   <img 
     src="https://github.com/user-attachments/assets/0e2c776b-0c7e-42e8-b8d7-b96279dbfdfd" 
     alt="Logo" 
-    width="400" 
-    height="400"
+    width="80" 
+    height="80"
   />
 </p>
 
