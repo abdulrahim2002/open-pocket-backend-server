@@ -18,6 +18,7 @@ export interface IMainConfig {
     CUR_SERVER_HOST:            string,
     JWT_GENERATION_SECRET:      string,
     JWT_EXPIRES_IN:             string,
+    REFRESH_TOKEN_EXPIRES_IN:   number,
     SECURE_SESSION_KEY:         string,
     SECURE_SESSION_EXPIRES_IN:  number,
     REDIS_PASSWORD:             string,
@@ -35,6 +36,7 @@ const mainConfigSchema: Schema = {
         CUR_SERVER_HOST:            { type: "string", default: "0.0.0.0" },
         JWT_GENERATION_SECRET:      { type: "string" },
         JWT_EXPIRES_IN:             { type: "string" },
+        REFRESH_TOKEN_EXPIRES_IN:   { type: "number", default: 30 * 24 * 60 * 60 }, // 30 days
         SECURE_SESSION_KEY:         { type: "string" },
         SECURE_SESSION_EXPIRES_IN:  { type: "number", default: 7 * 24 * 60 * 60 }, // 7 days
         REDIS_PASSWORD:             { type: "string" }
