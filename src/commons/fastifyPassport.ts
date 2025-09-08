@@ -27,7 +27,7 @@ fastifyPassport.registerUserDeserializer(
 // local strategy
 fastifyPassport.use(new LocalStrategy(
     {
-        usernameField: "email",     // we ask user for email not username
+        usernameField: "email",
         passwordField: "password",
     },
     async (email, password, done) => {
