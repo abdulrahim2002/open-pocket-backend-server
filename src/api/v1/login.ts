@@ -25,15 +25,27 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
-            // create a new refresh token.
-            // TODO: but what happens to old refresh tokens that this user had?
-            // We need to augment the structure of our key-value store. To allow
-            // us to track and delete active refresh tokens for a given user
+
+            // delete old refresh token for current user.
+            const oldRefreshToken = await redis.hGet(redisMaps.userId_refreshToken,
+                                                    user_id.toString());
+
+            if (oldRefreshToken) {
+                await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);
+            }
+
+
             const refreshToken = crypto.randomBytes(32).toString("hex");
 
+            // refresh_token:user_id map
             await redis.hSet(redisMaps.refreshToken_userId, refreshToken, user_id);
             await redis.hExpire(redisMaps.refreshToken_userId,
                                 [refreshToken], mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
+
+            // user_id:refresh_token map
+            await redis.hSet(redisMaps.userId_refreshToken, user_id, refreshToken);
+            await redis.hExpire(redisMaps.userId_refreshToken, [user_id.toString()],
+                                mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
             response.status(StatusCodes.OK);
             return {
