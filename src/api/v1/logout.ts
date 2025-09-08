@@ -34,7 +34,7 @@ const logoutEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
         }
-    )
+    );
 
 };
 
