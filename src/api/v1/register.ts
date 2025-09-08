@@ -17,6 +17,7 @@ const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) 
             const hashed_password = await bcrypt.hash(password, 3);
 
             const newUser: typeof usersSchema.$inferInsert = {
+                provider: "open-pocket",
                 name: name,
                 email: email,
                 hashed_password: hashed_password,
