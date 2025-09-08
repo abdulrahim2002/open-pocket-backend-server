@@ -10,9 +10,9 @@ async function authentication(app: FastifyInstance) {
     app.register(fastifySecureSession, {
         key: Buffer.from(mainConfig.SECURE_SESSION_KEY, "hex"),
         cookie: {
-            // httpOnly: true,      // set security options in production
-            // sameSite: "strict",
-            // secure: false,
+            httpOnly: true,
+            sameSite: "strict",
+            secure: mainConfig.NODE_ENV === "production",
         },
         expiry: mainConfig.SECURE_SESSION_EXPIRES_IN,
     });
