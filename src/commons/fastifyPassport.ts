@@ -67,8 +67,6 @@ fastifyPassport.use(new JwtStrategy(
 // use it to determine weather user is already authenticated
 fastifyPassport.use("secure-session", new SecureSessionStrategy(
     async (req: any, done) => {
-
-        // req is incorrectly typed
         const request = req as FastifyRequest;
 
         const userId: number = request.session.get("passport")?.user_id;
