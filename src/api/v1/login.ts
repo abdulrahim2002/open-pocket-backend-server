@@ -25,25 +25,25 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
-
-            // delete old refresh token for current user.
+            // find oldRefreshToken from user_id -> refresh_token mapping
             const oldRefreshToken = await redis.hGet(redisMaps.userId_refreshToken,
                                                     user_id.toString());
 
+            // delete oldRefreshToken from refresh_token -> user_id mapping
             if (oldRefreshToken) {
                 await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);
             }
 
+            // generate new refresh token
+            const newRefreshToken = crypto.randomBytes(32).toString("hex");
 
-            const refreshToken = crypto.randomBytes(32).toString("hex");
-
-            // refresh_token:user_id map
-            await redis.hSet(redisMaps.refreshToken_userId, refreshToken, user_id);
+            // update refresh_token -> user_id mapping
+            await redis.hSet(redisMaps.refreshToken_userId, newRefreshToken, user_id);
             await redis.hExpire(redisMaps.refreshToken_userId,
-                                [refreshToken], mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
+                                [newRefreshToken], mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
-            // user_id:refresh_token map
-            await redis.hSet(redisMaps.userId_refreshToken, user_id, refreshToken);
+            // update user_id -> refresh_token mapping
+            await redis.hSet(redisMaps.userId_refreshToken, user_id, newRefreshToken);
             await redis.hExpire(redisMaps.userId_refreshToken, [user_id.toString()],
                                 mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
@@ -59,13 +59,11 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 },
                 tokens: {
                     accessToken:    jwtToken,
-                    refreshToken:   refreshToken,
+                    refreshToken:   newRefreshToken,
                     tokenType:      "Bearer",
                 }
             };
-
         }
-
     );
 };
 
