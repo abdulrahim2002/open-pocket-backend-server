@@ -61,9 +61,10 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             });
 
             // craete a new refresh token and store it in redis
-            // TODO: set an expiry on this newly create refresh token
             const newRefreshToken = crypto.randomBytes(32).toString("hex");
+
             await redis.hSet(redisMaps.refreshToken_userId, newRefreshToken, userId);
+            await redis.hExpire(redisMaps.refreshToken_userId, [newRefreshToken], 20, "NX");
 
             // delete the old refresh token
             await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);

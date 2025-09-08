@@ -31,8 +31,9 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // us to track and delete active refresh tokens for a given user
             const refreshToken = crypto.randomBytes(32).toString("hex");
 
-            // TODO: set an expiration as well
             await redis.hSet(redisMaps.refreshToken_userId, refreshToken, user_id);
+            await redis.hExpire(redisMaps.refreshToken_userId, [refreshToken], 20, "NX");
+
             response.status(StatusCodes.OK);
             return {
                 data: {

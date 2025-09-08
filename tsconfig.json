@@ -6,7 +6,6 @@
     "rootDir": ".",
     "outDir": "./dist",
 
-
     // useful option but does not work with path aliased imports
     // "rewriteRelativeImportExtensions": true,
 
