@@ -21,36 +21,33 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
 
             const userId = await redis.hGet(redisMaps.refreshToken_userId, oldRefreshToken);
             if ( !userId ) {
-                // reject the request as unauthorized;
                 response.status(StatusCodes.UNAUTHORIZED);
                 return {
                     error: {
                         code: StatusCodes.UNAUTHORIZED,
-                        message: "Unauthorized"
+                        message: "Invalid Refresh Token"
                     }
                 }
             }
 
-            // create a new jwt token
             const jwtToken = app.jwt.sign(
                 { user_id: Number(userId) } as IJwtPayload, {
                 expiresIn: mainConfig.JWT_EXPIRES_IN
             });
 
-            // craete a new refresh token and store it in redis
             const newRefreshToken = crypto.randomBytes(32).toString("hex");
 
-            // refresh_token:user_id map
+            // update refresh_token -> user_id mapping
             await redis.hSet(redisMaps.refreshToken_userId, newRefreshToken, userId);
             await redis.hExpire(redisMaps.refreshToken_userId, [newRefreshToken],
                                 mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
-            // user_id:refresh_token map
+            // update user_id -> refresh_token mapping
             await redis.hSet(redisMaps.userId_refreshToken, userId, newRefreshToken);
             await redis.hExpire(redisMaps.userId_refreshToken, [userId],
                                 mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
-            // delete the old refresh token
+            // delete oldRefreshToken from refresh_token -> user_id mapping
             await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);
 
             response.status(StatusCodes.OK);
