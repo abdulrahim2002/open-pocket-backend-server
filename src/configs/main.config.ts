@@ -19,6 +19,7 @@ export interface IMainConfig {
     JWT_GENERATION_SECRET:  string,
     JWT_EXPIRES_IN:         string,
     SECURE_SESSION_KEY:     string,
+    SECURE_SESSION_EXPIRES_IN: number,
     REDIS_PASSWORD:         string,
 }
 
@@ -35,6 +36,7 @@ const mainConfigSchema: Schema = {
         JWT_GENERATION_SECRET:  { type: "string" },
         JWT_EXPIRES_IN:         { type: "string" },
         SECURE_SESSION_KEY:     { type: "string" },
+        SECURE_SESSION_EXPIRES_IN: { type: "number", default: 7 * 24 * 60 * 60 }, // 7 days
         REDIS_PASSWORD:         { type: "string" }
 
     },
