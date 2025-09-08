@@ -9,9 +9,7 @@ import { Strategy as LocalStrategy }             from "passport-local";
 import { Strategy as JwtStrategy, ExtractJwt }   from "passport-jwt";
 import { Strategy as SecureSessionStrategy }     from "passport-custom";
 
-const fastifyPassport = new Authenticator({
-    // clearSessionIgnoreFields: add fields you do not want to be cleared in request.session
-});
+const fastifyPassport = new Authenticator();
 
 fastifyPassport.registerUserSerializer(
     async (user: typeof usersSchema.$inferSelect, request) => {
