@@ -18,8 +18,8 @@ const registerEndpoint: FastifyPluginAsyncJsonSchemaToTs = async function (app) 
 
             const newUser: typeof usersSchema.$inferInsert = {
                 provider: "open-pocket",
-                name: name,
                 email: email,
+                name: name,
                 hashed_password: hashed_password,
             };
 
