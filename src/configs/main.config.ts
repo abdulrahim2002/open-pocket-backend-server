@@ -10,6 +10,7 @@ config({ processEnv: mainConfig });
 
 // define the interface/contract for mainConfig
 export interface IMainConfig {
+    NODE_ENV:                   string,
     POSTGRESQL_DATABASE:        string,
     POSTGRESQL_USERNAME:        string,
     POSTGRESQL_PASSWORD:        string,
@@ -28,6 +29,7 @@ export interface IMainConfig {
 const mainConfigSchema: Schema = {
     type: "object",
     properties: {
+        NODE_ENV:                   { type: "string", default: "development" },
         POSTGRESQL_DATABASE:        { type: "string" },
         POSTGRESQL_USERNAME:        { type: "string" },
         POSTGRESQL_PASSWORD:        { type: "string" },
