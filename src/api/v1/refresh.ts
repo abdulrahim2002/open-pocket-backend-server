@@ -64,7 +64,8 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             const newRefreshToken = crypto.randomBytes(32).toString("hex");
 
             await redis.hSet(redisMaps.refreshToken_userId, newRefreshToken, userId);
-            await redis.hExpire(redisMaps.refreshToken_userId, [newRefreshToken], 20, "NX");
+            await redis.hExpire(redisMaps.refreshToken_userId, [newRefreshToken],
+                                mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
             // delete the old refresh token
             await redis.hDel(redisMaps.refreshToken_userId, oldRefreshToken);

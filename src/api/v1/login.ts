@@ -32,7 +32,8 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             const refreshToken = crypto.randomBytes(32).toString("hex");
 
             await redis.hSet(redisMaps.refreshToken_userId, refreshToken, user_id);
-            await redis.hExpire(redisMaps.refreshToken_userId, [refreshToken], 20, "NX");
+            await redis.hExpire(redisMaps.refreshToken_userId,
+                                [refreshToken], mainConfig.REFRESH_TOKEN_EXPIRES_IN, "NX");
 
             response.status(StatusCodes.OK);
             return {
