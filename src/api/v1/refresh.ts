@@ -16,7 +16,6 @@ const refreshEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         "/refresh",
         { schema: refreshEndpointContract },
         async (request, response) => {
-
             const oldRefreshToken = request.body.refresh_token;
 
             const userId = await redis.hGet(redisMaps.refreshToken_userId, oldRefreshToken);
