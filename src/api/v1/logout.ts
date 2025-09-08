@@ -13,20 +13,14 @@ const logoutEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             preValidation: fastifyPassport.authenticate("secure-session")
         },
         async (request, response) => {
-            const user = request.user as any;
             request.logout();
 
             if (!request.session.get("passport")) {
-                // session data deleted successfully
                 response.status(StatusCodes.OK);
                 return {
-                    data: {
-                        type: "users",
-                        user_id: String(user.user_id),
-                        attributes: {
-                            name: user.name,
-                            email: user.email
-                        }
+                    meta: {
+                        code: StatusCodes.OK,
+                        message: "Ok"
                     }
                 }
             }
