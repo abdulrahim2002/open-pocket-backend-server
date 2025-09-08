@@ -6,8 +6,7 @@
     "rootDir": ".",
     "outDir": "./dist",
 
-    // "types": [],
-    // "types": ["node"],
+    "types": ["node", "fastify"],
 
     // useful option but does not work with path aliased imports
     // "rewriteRelativeImportExtensions": true,
