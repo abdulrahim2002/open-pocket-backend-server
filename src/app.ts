@@ -4,6 +4,7 @@ import authentication   from "@src/commons/authentication.js";
 import routesLoaderV1   from "@src/api/v1/index.js";
 
 const app = Fastify({
+    trustProxy: true,
     logger: true,
 });
 
