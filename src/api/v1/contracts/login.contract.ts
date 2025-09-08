@@ -72,7 +72,7 @@ const loginEndpointContract = {
                     properties: {
                         accessToken:   { type: "string" },
                         refreshToken:  { type: "string" },
-                        tokenType:     { type: "string" }, // MUST be "Bearer"
+                        tokenType:     { type: "string", enum: ["Bearer"] }
                     },
                     required: [ "accessToken", "refreshToken", "tokenType" ]
                 }

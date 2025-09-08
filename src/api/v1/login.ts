@@ -60,7 +60,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 tokens: {
                     accessToken:    jwtToken,
                     refreshToken:   newRefreshToken,
-                    tokenType:      "Bearer",
+                    tokenType:      "Bearer" as const,
                 }
             };
         }
