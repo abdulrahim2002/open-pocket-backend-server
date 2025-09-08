@@ -51,7 +51,7 @@ const loginEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             return {
                 data: {
                     type: "users",
-                    user_id: String(user_id),
+                    id: String(user_id),
                     attributes: {
                         name: name,
                         email: email
