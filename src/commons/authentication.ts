@@ -20,8 +20,7 @@ async function authentication(app: FastifyInstance) {
 
     app.register(fastifyJwt, {
         secret: mainConfig.JWT_GENERATION_SECRET,
-        decoratorName: "",  // both fastifyJwt and passport-jwt try to decorate
-                            // request with `user` object creating conflict
+        decoratorName: "",
     });
 
     app.register(fastifyPassport.initialize());
