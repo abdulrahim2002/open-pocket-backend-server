@@ -15,7 +15,7 @@ async function authentication(app: FastifyInstance) {
             // sameSite: "strict",
             // secure: false,
         },
-        // expiry: 12312213 (milliseconds)  // set in production
+        expiry: mainConfig.SECURE_SESSION_EXPIRES_IN,
     });
 
     app.register(fastifyJwt, {
