@@ -8,7 +8,7 @@ export default defineConfig({
     globals: true,
     environment: "node",
     include: ["src/tests/**/*.test.ts"],
-    // vite tries to fire up multiple instances of fastify app
+    // vitest tries to fire up multiple instances of fastify app
     // which try to run on same port resulting in error.
     // TODO: find a better fix than turing file parallelism off
     // https://vitest.dev/guide/parallelism.html#file-parallelism
