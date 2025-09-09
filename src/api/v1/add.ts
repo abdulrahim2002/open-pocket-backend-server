@@ -24,8 +24,9 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
-                resolved_url: `Supplied url: ${request.body.url}, resolved url: WIP`,
-                resolved_title: `Supplied title: ${request.body.title}, resolved title: WIP`,
+                // TODO: add normal url/title along with resolved url/title
+                resolved_url: request.body.url!,
+                resolved_title: request.body.title!,
                 excerpt: "Backend parser not implemented yet",
                 word_count: 0,
                 has_image: 0,
