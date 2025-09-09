@@ -22,11 +22,31 @@ const addRequestContract = {
     },
     // response schema
     response: {
+        // inspired by: https://docs.oasis-open.org/odata/odata-json-format/v4.0/errata02/os/odata-json-format-v4.0-errata02-os-complete.html#_Toc403940655
         default: {
             type: "object",
             properties: {
-                error: { type: "boolean", default: true },
+                error: {
+                    type: "object",
+                    properties: {
+                        code:    { type: "integer" },
+                        message: { type: "string" },
+                        details: {
+                            type: "array",
+                            items: {
+                                type: "object",
+                                properties: {
+                                    code:    { type: "number" },
+                                    message: { type: "string" }
+                                },
+                                required: [ "code", "message" ]
+                            }
+                        },
+                    },
+                    required: [ "code", "message" ]
+                }
             },
+            required: [ "error" ]
         },
         "2xx": {
             type: "object",
