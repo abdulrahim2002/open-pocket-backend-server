@@ -54,10 +54,11 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
             }
 
-            // find all tags that apply
+            // create all tags that apply
             const tags = request.body.tags?.split(",");
             if (tags) {
                 for ( const tag of tags ) {
+                    if (!tag) continue;
                     const resCreateTag = await createTag({
                         user_id: request.user!.user_id!,
                         item_id: resCreateArticle.data!.item_id,
