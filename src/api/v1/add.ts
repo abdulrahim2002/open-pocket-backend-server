@@ -2,7 +2,7 @@
  * /add endpoint
  * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/add/
  **/
-import addRequestSchema from "@src/api/v1/contracts/add.contract.js";
+import addRequestContract from "@src/api/v1/contracts/add.contract.js";
 import { StatusCodes }  from "http-status-codes";
 import fastifyPassport  from "@src/commons/fastifyPassport.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
@@ -14,7 +14,7 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
     app.post(
         "/add",
         {
-            schema: addRequestSchema,
+            schema: addRequestContract,
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, reply) => {
