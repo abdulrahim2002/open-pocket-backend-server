@@ -1,10 +1,13 @@
 /**
  * /add endpoint
  * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/add/
+ * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Processes/add_request_lifecycle/
  **/
-import addRequestContract from "@src/api/v1/contracts/add.contract.js";
+import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
+import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
 import { StatusCodes }  from "http-status-codes";
 import fastifyPassport  from "@src/commons/fastifyPassport.js";
+import addRequestContract from "@src/api/v1/contracts/add.contract.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
 
@@ -17,23 +20,79 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             schema: addRequestContract,
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
-        async (request, reply) => {
-            reply.status(StatusCodes.OK);
+        async (request, response) => {
+
+            // we het the following items in the request body:
+            // tags:           { type: "string", nullable: true },
+            // tweet_id:       { type: "string", nullable: true },
+            // consumer_key:   { type: "string" },
+            // access_token:   { type: "string" },
+
+            // create a new article
+            const resCreateArticle = await createArticle({
+                user_id: request.user!.user_id!,
+                resolved_url: `Supplied url: ${request.body.url}, resolved url: WIP`,
+                resolved_title: `Supplied title: ${request.body.title}, resolved title: WIP`,
+                excerpt: "Backend parser not implemented yet",
+                word_count: 0,
+                has_image: 0,
+                has_video: 0,
+                is_index: false,
+                is_article: true,
+                author_id: undefined, // TODO: Implement Authors | needs backend parser
+                status: 0,
+                favorite: false,
+                time_added: new Date(),
+                time_updated: new Date(),
+                top_image_url: "Backend parser not implemented yet",
+            });
+
+            if (!resCreateArticle.success) {
+                const   errorCode = resCreateArticle.recommendedHttpResponseCode ||
+                                    StatusCodes.INTERNAL_SERVER_ERROR,
+                        errorMsg  = resCreateArticle.message || "Something went wrong!";
+
+                response.status(errorCode);
+                return {
+                    error: {
+                        code: errorCode,
+                        message: errorMsg,
+                    }
+                }
+            }
+
+            // find all tags that apply
+            const tags = request.body.tags?.split(",");
+            if (tags) {
+                for ( const tag of tags ) {
+                    const resCreateTag = await createTag({
+                        user_id: request.user!.user_id!,
+                        item_id: resCreateArticle.data!.item_id,
+                        tag_name: tag,
+                    });
+
+                    if ( !resCreateTag.success ) {
+                        app.log.error(`Could not create tag ${tag}. Messaeg: ${resCreateTag.message}`);
+                    }
+                }
+            }
+
+            response.status(StatusCodes.OK);
             return {
-                item_id: "12345",
-                normal_url: "https://example.com/article",
-                resolved_id: "67890",
-                resolved_url: "https://example.com/resolved",
-                domain_id: "domain123",
-                origin_domain_id: "origin123",
-                response_code: "200",
-                mime_type: "text/html",
-                content_length: "1024",
-                encoding: "utf-8",
+                item_id: resCreateArticle.data!.item_id.toString(),
+                normal_url: resCreateArticle.data!.resolved_url!,
+                resolved_id: resCreateArticle.data!.item_id.toString(),
+                resolved_url: resCreateArticle.data!.resolved_url!,
+                domain_id: "Domain ID is not implemented yet, schema needs upgrade",
+                origin_domain_id: "Origin domain ID not implemented yet, schema needs upgrade",
+                response_code: StatusCodes.OK.toString(),
+                mime_type: "Needs backend parser | WIP",
+                content_length: "Needs backend parser | WIP",
+                encoding: "Needs backend parser | WIP",
                 date_resolved: new Date().toISOString(),
                 date_published: new Date().toISOString(),
-                title: "Sample Article Title",
-                excerpt: "This is a sample excerpt of the article.",
+                title: resCreateArticle.data!.resolved_title,
+                excerpt: "Needs backend parser | WIP",
             }
 
         }
