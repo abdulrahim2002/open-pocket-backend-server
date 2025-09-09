@@ -23,7 +23,7 @@ async function createTag(tag: tagInsertShape): Promise<IDbControllerResponse<tag
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
-            message: `tag create successfully`,
+            message: `tag created successfully`,
             recommendedHttpResponseCode: StatusCodes.CREATED,
             data: res[0],
         }
