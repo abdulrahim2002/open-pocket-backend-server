@@ -55,9 +55,9 @@ const addRequestContract = {
                     items: {
                         type: "object",
                         properties: {
-                            author_id: { type: "string" },
-                            name: { type: "string", nullable: true },
-                            url: { type: "string", format: "uri", nullable: true },
+                            author_id:  { type: "string" },
+                            name:       { type: "string", nullable: true },
+                            url:        { type: "string", format: "uri", nullable: true },
                         },
                         required: ["name"],
                     },
@@ -68,11 +68,11 @@ const addRequestContract = {
                     items: {
                         type: "object",
                         properties: {
-                            image_id: { type: "string" },
-                            src: { type: "string", format: "uri", nullable: true },
-                            width: { type: "integer", nullable: true },
-                            height: { type: "integer", nullable: true },
-                            credit: { type: "string", nullable: true },
+                            image_id:   { type: "string" },
+                            src:        { type: "string", format: "uri", nullable: true },
+                            width:      { type: "integer", nullable: true },
+                            height:     { type: "integer", nullable: true },
+                            credit:     { type: "string", nullable: true },
                         },
                         required: ["src"],
                     },
@@ -83,11 +83,11 @@ const addRequestContract = {
                     items: {
                         type: "object",
                         properties: {
-                            video_id: { type: "string" },
-                            src: { type: "string", format: "uri" },
-                            width: { type: "integer", nullable: true },
-                            height: { type: "integer", nullable: true },
-                            type: { type: "string", nullable: true },
+                            video_id:   { type: "string" },
+                            src:        { type: "string", format: "uri" },
+                            width:      { type: "integer", nullable: true },
+                            height:     { type: "integer", nullable: true },
+                            type:       { type: "string", nullable: true },
                         },
                         required: ["src"],
                     },
