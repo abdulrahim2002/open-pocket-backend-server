@@ -21,13 +21,6 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, response) => {
-
-            // we het the following items in the request body:
-            // tags:           { type: "string", nullable: true },
-            // tweet_id:       { type: "string", nullable: true },
-            // consumer_key:   { type: "string" },
-            // access_token:   { type: "string" },
-
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
