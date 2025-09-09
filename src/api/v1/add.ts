@@ -4,6 +4,7 @@
  **/
 import addRequestSchema from "@src/api/v1/contracts/add.contract.js";
 import { StatusCodes }  from "http-status-codes";
+import fastifyPassport  from "@src/commons/fastifyPassport.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
 
@@ -14,6 +15,7 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         "/add",
         {
             schema: addRequestSchema,
+            preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, reply) => {
             reply.status(StatusCodes.OK);
