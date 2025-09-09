@@ -1,4 +1,4 @@
-const addRequestContract = {
+const addEndpointContract = {
     // request body
     body: {
         type: "object",
@@ -122,4 +122,4 @@ const addRequestContract = {
     },
 } as const;
 
-export default addRequestContract;
+export default addEndpointContract;
