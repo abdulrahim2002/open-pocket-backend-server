@@ -7,7 +7,7 @@ import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
 import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
 import { StatusCodes }  from "http-status-codes";
 import fastifyPassport  from "@src/commons/fastifyPassport.js";
-import addRequestContract from "@src/api/v1/contracts/add.contract.js";
+import addEndpointContract from "@src/api/v1/contracts/add.contract.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
 
@@ -17,7 +17,7 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
     app.post(
         "/add",
         {
-            schema: addRequestContract,
+            schema: addEndpointContract,
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, response) => {
