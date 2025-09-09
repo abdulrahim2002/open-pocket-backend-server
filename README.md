@@ -6,12 +6,11 @@
 </h4>
 
 <p align="center">
-<!--     <h2>Open Pocket Backend Server</h2> -->
     <a href="https://abdulrahim2002.github.io/open-pocket-backend-server/">
-      <img 
-        src="https://github.com/user-attachments/assets/0e2c776b-0c7e-42e8-b8d7-b96279dbfdfd" 
-        alt="Logo" 
-        width="150" 
+      <img
+        src="https://github.com/user-attachments/assets/0e2c776b-0c7e-42e8-b8d7-b96279dbfdfd"
+        alt="Logo"
+        width="150"
         height="150"
       />
     </a>
@@ -43,7 +42,7 @@ existing clients work seamlessly
   controllers](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/db/dbcontrollers)
 have been written
 - [email/password](https://github.com/abdulrahim2002/open-pocket-backend-server/blob/main/src/commons/fastifyPassport.ts)
-  based authentication added 
+  based authentication added
 - JWT token based authentication mechanism fully functional
 - Access token/Refresh token functionality added
 - oauth2 protocol implemented
@@ -55,8 +54,8 @@ have been written
 - main database: postgresql
 - [drizzle ORM](https://orm.drizzle.team/)
 - [redis](https://redis.io/) (currently used on authentication endpoints)
-- [vitest](https://vitest.dev/) for testing 
+- [vitest](https://vitest.dev/) for testing
 - bitnami docker containers for
   [redis](https://hub.docker.com/r/bitnami/redis) and
-[postgres](https://hub.docker.com/r/bitnami/postgresql) database 
+[postgres](https://hub.docker.com/r/bitnami/postgresql) database
 
