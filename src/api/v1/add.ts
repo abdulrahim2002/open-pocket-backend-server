@@ -1,13 +1,13 @@
-import type { FastifyInstance } from "fastify";
-import addRequestSchema         from "@src/api/v1/contracts/add.contract.js";
-
 /**
  * /add endpoint
  * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/add/
  **/
+import type { FastifyInstance } from "fastify";
+import addRequestSchema         from "@src/api/v1/contracts/add.contract.js";
+
 async function addEndpoint(app: FastifyInstance) {
     app.post('/add', { schema: addRequestSchema }, async (request, reply) => {
-        // dummy response
+
         return {
             item_id: "12345",
             normal_url: "https://example.com/article",
