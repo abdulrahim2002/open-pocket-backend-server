@@ -11,7 +11,7 @@ type userShape = typeof usersSchema.$inferSelect;
 
 // define function signatures for email/id overloads
 function readUser(user_id: number): Promise<IDbControllerResponse<userShape>>;
-function readUser(email: string): Promise<IDbControllerResponse<userShape>>;
+function readUser(email: string):   Promise<IDbControllerResponse<userShape>>;
 
 async function readUser(identifier: number|string): Promise<IDbControllerResponse<userShape>> {
     try {
