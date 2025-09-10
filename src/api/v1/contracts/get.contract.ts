@@ -95,7 +95,7 @@ const getEndpointContract = {
                                 has_video:      { type: "string", default: "0" },
                                 has_image:      { type: "string", default: "0" },
                                 word_count:     { type: "string", nullable: true },
-                                tags:           { type: "string", nullable: true },
+                                // tags: to be implemented,
                                 // authors: to be implemented
                                 // images: to be implemented
                                 // videos: to be implemented
