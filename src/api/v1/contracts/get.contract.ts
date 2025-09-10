@@ -1,6 +1,4 @@
-import type { FastifySchema } from "fastify";
-
-const getEndpointContract: FastifySchema = {
+const getEndpointContract = {
     // request body
     body: {
         type: "object",
@@ -89,6 +87,6 @@ const getEndpointContract: FastifySchema = {
             },
         },
     },
-};
+} as const;
 
 export default getEndpointContract;
