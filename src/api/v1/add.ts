@@ -7,6 +7,7 @@ import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
 import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
 import { StatusCodes }  from "http-status-codes";
 import fastifyPassport  from "@src/commons/fastifyPassport.js";
+import parser           from "@src/commons/parser.js";
 import addEndpointContract from "@src/api/v1/contracts/add.contract.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
@@ -21,24 +22,27 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, response) => {
+
+            const resParser = await parser(request.url);
+
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
                 // TODO: add normal url/title along with resolved url/title
-                resolved_url: request.body.url!,
-                resolved_title: request.body.title!,
-                excerpt: "Backend parser not implemented yet",
-                word_count: 0,
-                has_image: 0,
-                has_video: 0,
-                is_index: false,
-                is_article: true,
-                author_id: undefined, // TODO: Implement Authors | needs backend parser
-                status: 0,
-                favorite: false,
-                time_added: new Date(),
-                time_updated: new Date(),
-                top_image_url: "Backend parser not implemented yet",
+                resolved_url:       resParser.resolved_url,
+                resolved_title:     resParser.resolved_title,
+                excerpt:            resParser.excerpt,
+                word_count:         resParser.word_count,
+                has_image:          resParser.has_image,
+                has_video:          resParser.has_video,
+                is_index:           resParser.is_index,
+                is_article:         resParser.is_article,
+                author_id:          undefined, // TODO: Implement Authors | needs backend parser
+                status:             0,
+                favorite:           false,
+                time_added:         new Date(),
+                time_updated:       new Date(),
+                top_image_url:      resParser.top_image_url,
             });
 
             if (!resCreateArticle.success) {
@@ -81,14 +85,14 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 domain_id: "Domain ID is not implemented yet, schema needs upgrade",
                 origin_domain_id: "Origin domain ID not implemented yet, schema needs upgrade",
                 response_code: StatusCodes.OK.toString(),
-                mime_type: "Needs backend parser | WIP",
-                content_length: "Needs backend parser | WIP",
-                encoding: "Needs backend parser | WIP",
+                mime_type: "Needs backend parser, schema upgrade | WIP",
+                content_length: "Needs backend parser, schema upgrade | WIP",
+                encoding: "Needs backend parser, schema upgrade | WIP",
                 date_resolved: new Date().toISOString(),
                 date_published: new Date().toISOString(),
                 title: resCreateArticle.data!.resolved_title,
-                excerpt: "Needs backend parser | WIP",
-            }
+                excerpt: resCreateArticle.data!.excerpt,
+            };
 
         }
 
