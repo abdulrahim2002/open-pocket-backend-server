@@ -88,13 +88,13 @@ const getEndpointContract = {
                                 given_title:    { type: "string" },
                                 favorite:       { type: "string", enum: ["0", "1"] },
                                 status:         { type: "string", enum: ["0", "1"] },
-                                resolved_title: { type: "string", nullable: true },
+                                resolved_title: { type: "string" },
                                 resolved_url:   { type: "string", format: "uri" },
                                 excerpt:        { type: "string" },
-                                is_article:     { type: "string",  },
-                                has_video:      { type: "string",  },
-                                has_image:      { type: "string",  },
-                                word_count:     { type: "string",  },
+                                is_article:     { type: "string" },
+                                has_video:      { type: "string" },
+                                has_image:      { type: "string" },
+                                word_count:     { type: "string" },
                                 // tags: to be implemented,
                                 // authors: to be implemented
                                 // images: to be implemented
