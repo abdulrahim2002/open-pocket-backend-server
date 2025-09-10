@@ -1,7 +1,7 @@
 /**
  * /add endpoint
- * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/add/
- * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Processes/add_request_lifecycle/
+ * https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/add/
+ * https://abdulrahim2002.github.io/open-pocket-docs/docs/Processes/add_request_lifecycle/
  **/
 import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
 import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
