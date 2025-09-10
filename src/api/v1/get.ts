@@ -11,10 +11,9 @@ async function getEndpoint( app: FastifyInstance ) {
         "/get",
         {
             schema: getEndpointContract,
-            preValidation: fastifyPassport.authenticate("jwt")
+            preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
-        async (request, reply) => {
-
+        async (request, response) => {
             return {
                 status: 1,
                 list: {
