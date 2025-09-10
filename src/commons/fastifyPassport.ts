@@ -50,7 +50,10 @@ fastifyPassport.use(new LocalStrategy(
 fastifyPassport.use(new JwtStrategy(
     {
         secretOrKey: mainConfig.JWT_GENERATION_SECRET,
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        jwtFromRequest: ExtractJwt.fromExtractors([
+            ExtractJwt.fromAuthHeaderAsBearerToken(),
+            ExtractJwt.fromBodyField("access_token"),
+        ]),
     },
     async (jwtPayload: { user_id: number }, done) => {
         const resReadUser = await readUser(jwtPayload.user_id);
