@@ -23,7 +23,7 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         },
         async (request, response) => {
 
-            const resParser = await parser(request.url);
+            const resParser = await parser(request.body.url);
 
             // create a new article
             const resCreateArticle = await createArticle({
