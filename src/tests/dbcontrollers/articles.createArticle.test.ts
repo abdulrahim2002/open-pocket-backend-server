@@ -28,6 +28,8 @@ test("createArticle", async () => {
         user_id: resCreateUser.data!.user_id, // very imp.
         status: 0,
         favorite: false,
+        given_url: "https://givenurl.com",
+        given_title: "Title supplied by the user",
         resolved_title: "Sample Resolved Title",
         resolved_url: "https://sample-resolved-url.com/",
         excerpt: "sample excerpt describing the item in detail",
