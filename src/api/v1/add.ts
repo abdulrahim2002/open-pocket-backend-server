@@ -28,7 +28,8 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
-                // TODO: add normal url/title along with resolved url/title
+                given_url:          "TODO: implement given url",
+                given_title:        "TODO: implement given title",
                 resolved_url:       resParser.resolved_url,
                 resolved_title:     resParser.resolved_title,
                 excerpt:            resParser.excerpt,
