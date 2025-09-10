@@ -41,8 +41,8 @@ async function getEndpoint( app: FastifyInstance ) {
                 articles[article.item_id.toString()] = {
                     item_id: article.item_id.toString(),
                     resolved_id:    "TODO: Needs schema update",
-                    given_url:      "TODO: needs schema update",
-                    given_title:    "TODO: needs scheam update",
+                    given_url:      article.given_url,
+                    given_title:    article.given_title,
                     favorite:       article.favorite,
                     status:         article.status,
                     resolved_title: article.resolved_title,
