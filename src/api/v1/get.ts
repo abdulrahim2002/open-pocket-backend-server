@@ -1,6 +1,8 @@
 import type { FastifyInstance } from 'fastify';
 import getEndpointContract      from '@src/api/v1/contracts/get.contract.js';
+import readArticlesByUser       from '@src/db/dbcontrollers/articles.readArticlesByUser.js';
 import fastifyPassport          from '@src/commons/fastifyPassport.js';
+import { StatusCodes }          from 'http-status-codes';
 
 /**
  * /get endpoint
@@ -14,26 +16,56 @@ async function getEndpoint( app: FastifyInstance ) {
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, response) => {
-            return {
-                status: 1,
-                list: {
-                    "12345": {
-                        item_id: "12345",
-                        resolved_id: "67890",
-                        given_url: "https://example.com/article",
-                        given_title: "Okay it appears to be owrking",
-                        favorite: "0",
-                        status: "1",
-                        resolved_title: "Sample Article Title",
-                        resolved_url: "https://example.com/resolved",
-                        excerpt: "This is a sample excerpt of the article.",
-                        is_article: "1",
-                        has_video: "0",
-                        has_image: "1",
-                        word_count: "500",
+            const resReadArticlesByUser = await readArticlesByUser(request.user!.user_id);
+
+            if (!resReadArticlesByUser.success) {
+                const   errorCode = resReadArticlesByUser.recommendedHttpResponseCode ||
+                                    StatusCodes.INTERNAL_SERVER_ERROR,
+                        errorMessage = resReadArticlesByUser.message ||
+                                        "Something went wrong!";
+
+                response.code(errorCode);
+                return {
+                    erorr: {
+                        code: errorCode,
+                        message: errorMessage
                     }
                 }
             }
+
+            const articles: Record<string, any> = {
+                // mapping: item_id -> item object
+            };
+
+            for ( const article of resReadArticlesByUser.data! ) {
+                articles[article.item_id.toString()] = {
+                    item_id: article.item_id.toString(),
+                    resolved_id:    "TODO: Needs schema update",
+                    given_url:      "TODO: needs schema update",
+                    given_title:    "TODO: needs scheam update",
+                    favorite:       article.favorite,
+                    status:         article.status,
+                    resolved_title: article.resolved_title,
+                    resolved_url:   article.resolved_url,
+                    excerpt:        article.excerpt,
+                    is_article:     article.is_article,
+                    has_video:      article.has_video,
+                    has_image:      article.has_image,
+                    word_count:     article.word_count,
+                    // tags: WIP
+                    // arthors: WIP
+                    // images: WIP
+                    // videso: WIP
+                };
+            }
+
+            response.status(StatusCodes.OK);
+            return {
+                // this is not documented in detail anywhere.But i suppose 1 means success
+                // and 0 means failure
+                status: 1,
+                list: articles,
+            };
     });
 }
 
