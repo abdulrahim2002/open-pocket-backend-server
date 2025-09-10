@@ -28,8 +28,8 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
-                given_url:          "TODO: implement given url",
-                given_title:        "TODO: implement given title",
+                given_url:          request.body.url,
+                given_title:        request.body.title || "",
                 resolved_url:       resParser.resolved_url,
                 resolved_title:     resParser.resolved_title,
                 excerpt:            resParser.excerpt,
@@ -79,20 +79,20 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
 
             response.status(StatusCodes.OK);
             return {
-                item_id: resCreateArticle.data!.item_id.toString(),
-                normal_url: resCreateArticle.data!.resolved_url!,
-                resolved_id: resCreateArticle.data!.item_id.toString(),
-                resolved_url: resCreateArticle.data!.resolved_url!,
-                domain_id: "Domain ID is not implemented yet, schema needs upgrade",
-                origin_domain_id: "Origin domain ID not implemented yet, schema needs upgrade",
-                response_code: StatusCodes.OK.toString(),
-                mime_type: "Needs backend parser, schema upgrade | WIP",
-                content_length: "Needs backend parser, schema upgrade | WIP",
-                encoding: "Needs backend parser, schema upgrade | WIP",
-                date_resolved: new Date().toISOString(),
-                date_published: new Date().toISOString(),
-                title: resCreateArticle.data!.resolved_title,
-                excerpt: resCreateArticle.data!.excerpt,
+                item_id:            resCreateArticle.data!.item_id.toString(),
+                normal_url:         resCreateArticle.data!.resolved_url!,
+                resolved_id:        resCreateArticle.data!.item_id.toString(),
+                resolved_url:       resCreateArticle.data!.resolved_url!,
+                domain_id:          "Domain ID is not implemented yet, schema needs upgrade",
+                origin_domain_id:   "Origin domain ID not implemented yet, schema needs upgrade",
+                response_code:      StatusCodes.OK.toString(),
+                mime_type:          "Needs backend parser, schema upgrade | WIP",
+                content_length:     "Needs backend parser, schema upgrade | WIP",
+                encoding:           "Needs backend parser, schema upgrade | WIP",
+                date_resolved:      new Date().toISOString(),
+                date_published:     new Date().toISOString(),
+                title:              resCreateArticle.data!.resolved_title,
+                excerpt:            resCreateArticle.data!.excerpt,
             };
 
         }
