@@ -6,7 +6,7 @@
 </h4>
 
 <p align="center">
-    <a href="https://abdulrahim2002.github.io/open-pocket-backend-server/">
+    <a href="https://abdulrahim2002.github.io/open-pocket-docs/">
       <img
         src="https://github.com/user-attachments/assets/0e2c776b-0c7e-42e8-b8d7-b96279dbfdfd"
         alt="Logo"
@@ -37,7 +37,7 @@ existing clients work seamlessly
 #### Current Status
 
 - database [schemas
-  defined](https://abdulrahim2002.github.io/open-pocket-backend-server/docs/Database-Layer/database-schema/)
+  defined](https://abdulrahim2002.github.io/open-pocket-docs/docs/Database-Layer/database-schema/)
 - [most database
   controllers](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/db/dbcontrollers)
 have been written
