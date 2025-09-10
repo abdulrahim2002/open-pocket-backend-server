@@ -15,8 +15,8 @@ const articlesSchema = pgTable(
         user_id:            integer().notNull(),
         status:             smallint().notNull().default(0),
         favorite:           boolean().default(false),
-        // TODO: we also need given URL/title fields since /get endpoint must return them
-        // https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/get/#example-response
+        given_url:          text().notNull(),
+        given_title:        text(),
         resolved_title:     text(),
         resolved_url:       text(),
         excerpt:            text(),
