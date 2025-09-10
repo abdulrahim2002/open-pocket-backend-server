@@ -28,6 +28,8 @@ test("createTag", async () => {
         user_id: resCreateUser.data!.user_id,
         status: 0,
         favorite: false,
+        given_url: "https://example.com/",
+        given_title: "The title that user provided in the request",
         resolved_title: "Sample Resolved Title",
         resolved_url: "https://sample-resolved-url.com/",
         excerpt: "sample excerpt describing the item in detail",
@@ -80,7 +82,7 @@ test("createTag", async () => {
     expect(resCreateTag).toMatchObject({
         success: true,
         status: OPSTATUS.SUCCESS,
-        message: "tag create successfully",
+        message: "tag created successfully",
         recommendedHttpResponseCode: StatusCodes.CREATED,
         data: testTagForCreateTag,
     });
