@@ -16,6 +16,8 @@ async function getEndpoint( app: FastifyInstance ) {
             preValidation: fastifyPassport.authenticate(["secure-session", "jwt"])
         },
         async (request, response) => {
+
+            // TODO: add a config object to support custom filtering
             const resReadArticlesByUser = await readArticlesByUser(request.user!.user_id);
 
             if (!resReadArticlesByUser.success) {
