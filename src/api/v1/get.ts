@@ -6,7 +6,7 @@ import { StatusCodes }          from 'http-status-codes';
 
 /**
  * /get endpoint
- * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/get/
+ * https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/get/
  **/
 async function getEndpoint( app: FastifyInstance ) {
     app.post(
