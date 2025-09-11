@@ -17,6 +17,11 @@ export interface IParserResponse {
     is_index: boolean,
     is_article: boolean,
     top_image_url: string,
+
+    // metadata
+    mime_type: string,
+    content_length: string,
+    encoding: string,
 };
 
 async function parser(url: string): Promise<IParserResponse> {
@@ -31,6 +36,10 @@ async function parser(url: string): Promise<IParserResponse> {
         is_index: false,
         is_article: false,
         top_image_url: "WIP",
+
+        mime_type:      "Needs backend parser, schema upgrade | WIP",
+        content_length: "Needs backend parser, schema upgrade | WIP",
+        encoding:       "Needs backend parser, schema upgrade | WIP",
     }
 }
 
