@@ -32,6 +32,8 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 given_title:        request.body.title || "",
                 resolved_url:       resParser.resolved_url,
                 resolved_title:     resParser.resolved_title,
+                domain_id:          BigInt(1231123), // TODO: implement a domains table
+                origin_domain_id:   BigInt(123123),  // TODO: implement a domains table
                 excerpt:            resParser.excerpt,
                 word_count:         resParser.word_count,
                 has_image:          resParser.has_image,
@@ -83,8 +85,8 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 normal_url:         resCreateArticle.data!.resolved_url!,
                 resolved_id:        resCreateArticle.data!.item_id.toString(),
                 resolved_url:       resCreateArticle.data!.resolved_url!,
-                domain_id:          "Domain ID is not implemented yet, schema needs upgrade",
-                origin_domain_id:   "Origin domain ID not implemented yet, schema needs upgrade",
+                domain_id:          resCreateArticle.data!.domain_id?.toString() || "",
+                origin_domain_id:   resCreateArticle.data!.origin_domain_id?.toString() || "",
                 response_code:      StatusCodes.OK.toString(),
                 mime_type:          "Needs backend parser, schema upgrade | WIP",
                 content_length:     "Needs backend parser, schema upgrade | WIP",
