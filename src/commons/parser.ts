@@ -6,11 +6,17 @@
  * If the original article redirects. For example, say it was
  * bit.ly/qdsq3 then the parser shall find out the final resolved url.
 */
+import { extract } from "@extractus/article-extractor";
+import { StatusCodes } from "http-status-codes";
+// TODO: we can use metascrapper for some fields
+// TODO: we can use also use metadata-scrapper
+
 export interface IParserResponse {
     success: boolean,
     status: number,
+    recommendedHttpResponseCode: number,
     message: string,
-    data: {
+    data: undefined | {
         // final URL after following redirect
         resolved_url: string,
         // automatically found title in resolved_url article
@@ -35,29 +41,52 @@ export interface IParserResponse {
         content_length: string,
         // encoding of the page
         encoding: string,
-    }
+
+        // domain 
+        domain: string,
+    },
 };
 
 async function parser(url: string): Promise<IParserResponse> {
 
-    return {
-        success: true,
-        status: 0,
-        message: "",
-        data: {
-            resolved_url: url,
-            resolved_title: "WIP",
-            excerpt: "WIP",
-            word_count: 0,
-            has_image: 0,
-            has_video: 0,
-            is_index: false,
-            is_article: false,
-            top_image_url: "WIP",
+    try {
+        const articleMetadata = await extract(url);
+        if (!articleMetadata) {
+            throw new Error("Unknown Failure"); // handled below
+        }
 
-            mime_type:      "Needs backend parser, schema upgrade | WIP",
-            content_length: "Needs backend parser, schema upgrade | WIP",
-            encoding:       "Needs backend parser, schema upgrade | WIP",
+        return {
+            success: true,
+            status: 0,
+            message: "",
+            recommendedHttpResponseCode: StatusCodes.OK,
+            data: {
+                resolved_url:   articleMetadata.url || "",
+                resolved_title: articleMetadata.title || "",
+                excerpt:        articleMetadata.description || "",
+                word_count:     0,
+                has_image:      (articleMetadata.image) ? 1 : 0,
+                has_video:      0,     // TODO: cannot tell this reliably
+                is_index:       false, // TODO: cannot tell this reliably
+                is_article:     false, // TODO: cannot tell this reliably
+                top_image_url:  articleMetadata.image || "",
+                mime_type:      "Needs backend parser, schema upgrade | WIP",
+                content_length: articleMetadata.content?.length.toString() || "0",
+                encoding:       "Needs backend parser, schema upgrade | WIP",
+
+                // source is the domain in most cases
+                domain: articleMetadata.source || "",
+            }
+        }
+    }
+    catch (error: any) {
+        // TODO: investigate error
+        return {
+            success: false,
+            status: 0,
+            recommendedHttpResponseCode: StatusCodes.INTERNAL_SERVER_ERROR,
+            message: error.message,
+            data: undefined
         }
     }
 }

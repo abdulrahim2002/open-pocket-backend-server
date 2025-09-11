@@ -25,6 +25,17 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
 
             const resParser = await parser(request.body.url);
 
+            if (!resParser.success) {
+                // TODO: think: to return or not to return?
+                response.status(resParser.recommendedHttpResponseCode);
+                return {
+                    error: {
+                        code: resParser.recommendedHttpResponseCode,
+                        message: resParser.message,
+                    }
+                }
+            }
+
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
