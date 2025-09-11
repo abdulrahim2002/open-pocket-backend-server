@@ -32,6 +32,8 @@ test("createArticle", async () => {
         given_title: "Title supplied by the user",
         resolved_title: "Sample Resolved Title",
         resolved_url: "https://sample-resolved-url.com/",
+        domain_id: BigInt(213123),
+        origin_domain_id: BigInt(34242),
         excerpt: "sample excerpt describing the item in detail",
         is_article: true,
         is_index: false,

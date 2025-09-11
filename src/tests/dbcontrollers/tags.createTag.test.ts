@@ -32,6 +32,8 @@ test("createTag", async () => {
         given_title: "The title that user provided in the request",
         resolved_title: "Sample Resolved Title",
         resolved_url: "https://sample-resolved-url.com/",
+        domain_id: BigInt(1243525),
+        origin_domain_id: BigInt(12542244),
         excerpt: "sample excerpt describing the item in detail",
         is_article: true,
         is_index: false,
