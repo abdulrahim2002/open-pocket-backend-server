@@ -6,8 +6,8 @@
  * If the original article redirects. For example, say it was
  * bit.ly/qdsq3 then the parser shall find out the final resolved url.
 */
-import { extract } from "@extractus/article-extractor";
-import { StatusCodes } from "http-status-codes";
+import { extract }      from "@extractus/article-extractor";
+import { StatusCodes }  from "http-status-codes";
 // TODO: we can use metascrapper for some fields
 // TODO: we can use also use metadata-scrapper
 
@@ -92,7 +92,7 @@ async function parser(url: string): Promise<IParserResponse> {
                 encoding:       "Needs backend parser, schema upgrade | WIP",
 
                 // source is the domain in most cases
-                domain: articleMetadata.source || "",
+                domain:         articleMetadata.source || "",
             }
         }
     }
