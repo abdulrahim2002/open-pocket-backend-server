@@ -10,7 +10,7 @@ const addEndpointContract = {
             consumer_key:   { type: "string" },
             access_token:   { type: "string" },
         },
-        required: ["url", "consumer_key", "access_token"],
+        required: ["url", "consumer_key"],
     },
     // request headers
     headers: {
