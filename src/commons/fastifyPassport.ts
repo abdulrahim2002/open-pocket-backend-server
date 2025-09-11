@@ -66,8 +66,7 @@ fastifyPassport.use(new JwtStrategy(
     }
 ));
 
-// if client comes with encrypted cookie set by fastify/secure-session
-// use it to determine weather user is already authenticated
+// authenticate with encrypted cookie set up by fastify/secure-session
 fastifyPassport.use("secure-session", new SecureSessionStrategy(
     async (req: any, done) => {
         const request = req as FastifyRequest;
