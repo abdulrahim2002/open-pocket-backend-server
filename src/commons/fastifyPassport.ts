@@ -86,9 +86,7 @@ fastifyPassport.use("secure-session", new SecureSessionStrategy(
     }
 ));
 
-// add typing informaiton to request.user
 type IUserShape = typeof usersSchema.$inferSelect;
-
 declare module "fastify" {
     interface PassportUser extends IUserShape {}
 }
