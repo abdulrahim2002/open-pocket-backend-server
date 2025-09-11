@@ -19,6 +19,8 @@ const articlesSchema = pgTable(
         given_title:        text(),
         resolved_title:     text(),
         resolved_url:       text(),
+        domain_id:          bigint({mode: "bigint"}),    // domain id for given_url
+        origin_domain_id:   bigint({mode: "bigint"}),    // domain id for resolved url
         excerpt:            text(),
         is_article:         boolean(),
         is_index:           boolean(),
