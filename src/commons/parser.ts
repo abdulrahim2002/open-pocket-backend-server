@@ -47,6 +47,23 @@ export interface IParserResponse {
     },
 };
 
+// see possible values for "type" at: https://github.com/extractus/article-extractor/blob/main/src/utils/extractLdSchema.js
+const articleLike = [
+    "article",
+    "advertisercontentarticle",
+    "newsarticle",
+    "analysisnewsarticle",
+    "askpublicnewsarticle",
+    "backgroundnewsarticle",
+    "opinionnewsarticle",
+    "reportagenewsarticle",
+    "reviewnewsarticle",
+    "report",
+    "satiricalarticle",
+    "scholarlyarticle",
+    "medicalscholarlyarticle",
+];
+
 async function parser(url: string): Promise<IParserResponse> {
 
     try {
@@ -68,7 +85,7 @@ async function parser(url: string): Promise<IParserResponse> {
                 has_image:      (articleMetadata.image) ? 1 : 0,
                 has_video:      0,     // TODO: cannot tell this reliably
                 is_index:       false, // TODO: cannot tell this reliably
-                is_article:     false, // TODO: cannot tell this reliably
+                is_article:     articleLike.includes(articleMetadata.type || ""),
                 top_image_url:  articleMetadata.image || "",
                 mime_type:      "Needs backend parser, schema upgrade | WIP",
                 content_length: articleMetadata.content?.length.toString() || "0",
