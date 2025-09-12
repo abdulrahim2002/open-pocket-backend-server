@@ -83,7 +83,6 @@ const getEndpointContract = {
                             type: "object",
                             properties: {
                                 item_id:        { type: "string" },
-                                resolved_id:    { type: "string" },
                                 given_url:      { type: "string", format: "uri" },
                                 given_title:    { type: "string" },
                                 favorite:       { type: "string", enum: ["0", "1"] },

@@ -42,7 +42,6 @@ const getEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
             for ( const article of resReadArticlesByUser.data! ) {
                 articles[article.item_id.toString()] = {
                     item_id: article.item_id.toString(),
-                    resolved_id:    "TODO: Needs schema update",
                     given_url:      article.given_url,
                     given_title:    article.given_title,
                     favorite:       article.favorite,
