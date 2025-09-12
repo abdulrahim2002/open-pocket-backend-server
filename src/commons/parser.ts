@@ -10,11 +10,13 @@ import metascraper              from "metascraper";
 import metascraperTitle         from "metascraper-title";
 import metascraperDescription   from "metascraper-description";
 import metascraperImage         from "metascraper-image"; 
+import metascraperVideo         from "metascraper-video";
 
 const scraper = metascraper([
     metascraperTitle(),
     metascraperDescription(),
     metascraperImage(),
+    metascraperVideo(),
 ]);
 
 import { StatusCodes }  from "http-status-codes";
@@ -83,7 +85,7 @@ async function parser(url: string): Promise<IParserResponse> {
                 excerpt:        articleMetadata.description ?? "",
                 word_count:     -1,    // TODO: cannot tell this reliably
                 has_image:      (articleMetadata.image) ? 1 : 0,
-                has_video:      0,     // TODO: cannot tell this reliably
+                has_video:      (articleMetadata.video) ? 1 : 0,
                 is_index:       false, // TODO: cannot tell this reliably
                 is_article:     false, // TODO: cannot tell this reliably
                 top_image_url:  articleMetadata.image ?? "",
