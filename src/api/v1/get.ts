@@ -1,14 +1,15 @@
-import type { FastifyInstance } from 'fastify';
 import getEndpointContract      from '@src/api/v1/contracts/get.contract.js';
 import readArticlesByUser       from '@src/db/dbcontrollers/articles.readArticlesByUser.js';
 import fastifyPassport          from '@src/commons/fastifyPassport.js';
 import { StatusCodes }          from 'http-status-codes';
+import { FastifyPluginAsyncJsonSchemaToTs } from '@fastify/type-provider-json-schema-to-ts';
 
 /**
  * /get endpoint
  * https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/get/
  **/
-async function getEndpoint( app: FastifyInstance ) {
+const getEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
+
     app.post(
         "/get",
         {
@@ -28,16 +29,15 @@ async function getEndpoint( app: FastifyInstance ) {
 
                 response.code(errorCode);
                 return {
-                    erorr: {
+                    error: {
                         code: errorCode,
                         message: errorMessage
                     }
                 }
             }
 
-            const articles: Record<string, any> = {
-                // mapping: item_id -> item object
-            };
+            // mapping: item_id -> item object
+            const articles: Record<string, any> = {};
 
             for ( const article of resReadArticlesByUser.data! ) {
                 articles[article.item_id.toString()] = {
@@ -68,7 +68,9 @@ async function getEndpoint( app: FastifyInstance ) {
                 status: 1,
                 list: articles,
             };
-    });
-}
+        
+        }
+    );
+};
 
 export default getEndpoint;
