@@ -1,10 +1,10 @@
 /**
  * Parser for open-pocket. The purpose of this parser is to go to a
  * specific URL, and gather more information about the web page. For
- * example: excerpt, resolved title, word count, ect.
+ * example: title, description etc.
  *
- * If the original article redirects. For example, say it was
- * bit.ly/qdsq3 then the parser shall find out the final resolved url.
+ * If the original article redirects. For example, say it was bit.ly/qdsq3, 
+ * then the parser shall find out the final resolved url
 */
 import metascraper              from "metascraper";
 import metascraperTitle         from "metascraper-title";
