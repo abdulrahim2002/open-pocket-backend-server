@@ -6,10 +6,18 @@
  * If the original article redirects. For example, say it was
  * bit.ly/qdsq3 then the parser shall find out the final resolved url.
 */
-import { extract }      from "@extractus/article-extractor";
+import metascraper              from "metascraper";
+import metascraperTitle         from "metascraper-title";
+import metascraperDescription   from "metascraper-description";
+import metascraperImage         from "metascraper-image"; 
+
+const scraper = metascraper([
+    metascraperTitle(),
+    metascraperDescription(),
+    metascraperImage(),
+]);
+
 import { StatusCodes }  from "http-status-codes";
-// TODO: we can use metascrapper for some fields
-// TODO: we can use also use metadata-scrapper
 
 export interface IParserResponse {
     success: boolean,
@@ -41,36 +49,28 @@ export interface IParserResponse {
         content_length: string,
         // encoding of the page
         encoding: string,
-
-        // domain 
-        domain: string,
-    },
+    }
 };
-
-// see possible values for "type" at: https://github.com/extractus/article-extractor/blob/main/src/utils/extractLdSchema.js
-const articleLike = [
-    "article",
-    "advertisercontentarticle",
-    "newsarticle",
-    "analysisnewsarticle",
-    "askpublicnewsarticle",
-    "backgroundnewsarticle",
-    "opinionnewsarticle",
-    "reportagenewsarticle",
-    "reviewnewsarticle",
-    "report",
-    "satiricalarticle",
-    "scholarlyarticle",
-    "medicalscholarlyarticle",
-];
 
 async function parser(url: string): Promise<IParserResponse> {
 
     try {
-        const articleMetadata = await extract(url);
-        if (!articleMetadata) {
-            throw new Error("Unknown Failure"); // handled below
-        }
+        const   controller = new AbortController(),
+                // TODO: make parser timeout configurable
+                trigger = setTimeout( () => controller.abort(), 5000 );
+
+        const response = await fetch(url, {
+            signal: controller.signal,
+            redirect: "follow",
+        });
+
+        clearTimeout(trigger);
+
+        const articleMetadata = await scraper({ 
+            url: url, 
+            html: await response.text(),
+            validateUrl: true 
+        });
 
         return {
             success: true,
@@ -78,21 +78,18 @@ async function parser(url: string): Promise<IParserResponse> {
             message: "",
             recommendedHttpResponseCode: StatusCodes.OK,
             data: {
-                resolved_url:   articleMetadata.url ?? "",
+                resolved_url:   response.url,
                 resolved_title: articleMetadata.title ?? "",
                 excerpt:        articleMetadata.description ?? "",
-                word_count:     0,
+                word_count:     -1,    // TODO: cannot tell this reliably
                 has_image:      (articleMetadata.image) ? 1 : 0,
                 has_video:      0,     // TODO: cannot tell this reliably
                 is_index:       false, // TODO: cannot tell this reliably
-                is_article:     articleLike.includes(articleMetadata.type ?? ""),
+                is_article:     false, // TODO: cannot tell this reliably
                 top_image_url:  articleMetadata.image ?? "",
-                mime_type:      "Needs backend parser, schema upgrade | WIP",
-                content_length: articleMetadata.content?.length.toString() ?? "0",
-                encoding:       "Needs backend parser, schema upgrade | WIP",
-
-                // source is the domain in most cases
-                domain:         articleMetadata.source ?? "",
+                mime_type:      response.headers.get("content-type")?.split(";")[0] ?? "",
+                content_length: response.headers.get("content-length") ?? "",
+                encoding:       response.headers.get("content-type")?.split(";")[1] ?? "",
             }
         }
     }
