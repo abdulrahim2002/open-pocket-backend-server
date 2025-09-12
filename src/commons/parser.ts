@@ -78,21 +78,21 @@ async function parser(url: string): Promise<IParserResponse> {
             message: "",
             recommendedHttpResponseCode: StatusCodes.OK,
             data: {
-                resolved_url:   articleMetadata.url || "",
-                resolved_title: articleMetadata.title || "",
-                excerpt:        articleMetadata.description || "",
+                resolved_url:   articleMetadata.url ?? "",
+                resolved_title: articleMetadata.title ?? "",
+                excerpt:        articleMetadata.description ?? "",
                 word_count:     0,
                 has_image:      (articleMetadata.image) ? 1 : 0,
                 has_video:      0,     // TODO: cannot tell this reliably
                 is_index:       false, // TODO: cannot tell this reliably
-                is_article:     articleLike.includes(articleMetadata.type??""),
-                top_image_url:  articleMetadata.image || "",
+                is_article:     articleLike.includes(articleMetadata.type ?? ""),
+                top_image_url:  articleMetadata.image ?? "",
                 mime_type:      "Needs backend parser, schema upgrade | WIP",
-                content_length: articleMetadata.content?.length.toString() || "0",
+                content_length: articleMetadata.content?.length.toString() ?? "0",
                 encoding:       "Needs backend parser, schema upgrade | WIP",
 
                 // source is the domain in most cases
-                domain:         articleMetadata.source || "",
+                domain:         articleMetadata.source ?? "",
             }
         }
     }
