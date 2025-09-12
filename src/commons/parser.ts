@@ -89,7 +89,7 @@ async function parser(url: string): Promise<IParserResponse> {
                 top_image_url:  articleMetadata.image ?? "",
                 mime_type:      response.headers.get("content-type")?.split(";")[0] ?? "",
                 content_length: response.headers.get("content-length") ?? "",
-                encoding:       response.headers.get("content-type")?.split(";")[1] ?? "",
+                encoding:       response.headers.get("content-type")?.split(";")[1]?.split("=")[1] ?? "",
             }
         }
     }
