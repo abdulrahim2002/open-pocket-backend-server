@@ -1,0 +1,22 @@
+meta {
+  name: get
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseurl}}/{{version}}/get
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "consumer_key": "NOT_REQUIRED",
+    "access_token": "IF_TOKEN_HAVE_HERE"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
