@@ -7,7 +7,7 @@ import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
 import createTag        from "@src/db/dbcontrollers/tags.createTag.js";
 import { StatusCodes }  from "http-status-codes";
 import fastifyPassport  from "@src/commons/fastifyPassport.js";
-import parser           from "@src/commons/parser.js";
+import parser           from "@open-pocket/article-parser";
 import addEndpointContract from "@src/api/v1/contracts/add.contract.js";
 import { FastifyPluginAsyncJsonSchemaToTs }
                         from "@fastify/type-provider-json-schema-to-ts";
@@ -23,45 +23,30 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
         },
         async (request, response) => {
 
-            const resParser = await parser(request.body.url);
-
-            if (!resParser.success) {
-                // TODO: think: to return or not to return?
-                // we shall populate the parser fields on a best effort basis. 
-                // Think about, What happens when the user is trying to save a url
-                // to pdf or file. e.g. file://home/doc.pdf
-                // in this case, the parser will surely fail. Therefore, we shall not
-                // return on parser failure
-                response.status(resParser.recommendedHttpResponseCode);
-                return {
-                    error: {
-                        code: resParser.recommendedHttpResponseCode,
-                        message: resParser.message,
-                    }
-                }
-            }
+            const resParser = await parser(request.body.url, 5000);
+            app.log.info(resParser);
 
             // create a new article
             const resCreateArticle = await createArticle({
                 user_id: request.user!.user_id!,
                 given_url:          request.body.url,
                 given_title:        request.body.title || "",
-                resolved_url:       resParser.data!.resolved_url,
-                resolved_title:     resParser.data!.resolved_title,
+                resolved_url:       (resParser?.resolved_url) ?? "",
+                resolved_title:     resParser?.resolved_title || request.body.title || "",
                 domain_id:          BigInt(1231123), // TODO: implement a domains table
                 origin_domain_id:   BigInt(123123),  // TODO: implement a domains table
-                excerpt:            resParser.data!.excerpt,
-                word_count:         resParser.data!.word_count,
-                has_image:          resParser.data!.has_image,
-                has_video:          resParser.data!.has_video,
-                is_index:           resParser.data!.is_index,
-                is_article:         resParser.data!.is_article,
+                excerpt:            resParser?.excerpt || "",
+                word_count:         resParser?.word_count || 0,
+                has_image:          resParser?.images.length ? 1 : 0,
+                has_video:          resParser?.videos.length ? 1 : 0,
+                is_index:           false,          // TODO: implement or depreciate?
+                is_article:         resParser?.is_article,
                 author_id:          undefined, // TODO: Implement Authors | needs backend parser
                 status:             0,
                 favorite:           false,
                 time_added:         new Date(),
                 time_updated:       new Date(),
-                top_image_url:      resParser.data!.top_image_url,
+                top_image_url:      resParser?.top_image_url || "",
             });
 
             if (!resCreateArticle.success) {
@@ -104,9 +89,9 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 domain_id:          resCreateArticle.data!.domain_id?.toString() || "",
                 origin_domain_id:   resCreateArticle.data!.origin_domain_id?.toString() || "",
                 response_code:      StatusCodes.OK.toString(),
-                mime_type:          resParser.data!.mime_type,
-                content_length:     resParser.data!.content_length,
-                encoding:           resParser.data!.encoding,
+                mime_type:          resParser?.mime_type || "",
+                content_length:     resParser?.content_length.toString() || "0",
+                encoding:           resParser?.encoding || "",
                 date_resolved:      new Date().toISOString(),
                 date_published:     new Date().toISOString(),
                 title:              resCreateArticle.data!.resolved_title,
