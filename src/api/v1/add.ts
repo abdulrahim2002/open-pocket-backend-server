@@ -27,6 +27,11 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
 
             if (!resParser.success) {
                 // TODO: think: to return or not to return?
+                // we shall populate the parser fields on a best effort basis. 
+                // Think about, What happens when the user is trying to save a url
+                // to pdf or file. e.g. file://home/doc.pdf
+                // in this case, the parser will surely fail. Therefore, we shall not
+                // return on parser failure
                 response.status(resParser.recommendedHttpResponseCode);
                 return {
                     error: {
