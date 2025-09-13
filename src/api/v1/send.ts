@@ -4,7 +4,7 @@ import sendEndpointContract     from "@src/api/v1/contracts/send.contract.js";
 
 /**
  * /send endpoint
- * https://abdulrahim2002.github.io/open-pocket-backend-server/docs/API-spec/Endpoints/send/
+ * https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/
  **/
 async function sendEndpoint( app: FastifyInstance ) {
     app.post(
