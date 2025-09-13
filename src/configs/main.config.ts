@@ -1,4 +1,4 @@
-import { config } from "dotenv";
+import { config }      from "dotenv";
 import { type Schema } from "ajv";
 import ajv             from "@src/commons/ajv.js";
 
