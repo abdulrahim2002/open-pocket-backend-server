@@ -2,8 +2,8 @@
  * @description add an item to the user's pocket list
  * see: https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/#action-add
 */
-import ajv from "@src/commons/ajv.js";
-import app from "@src/app.js";
+import ajv    from "@src/commons/ajv.js";
+import app    from "@src/app.js";
 import parser from "@open-pocket/article-parser";
 import { type Schema }  from "ajv";
 import createArticle    from "@src/db/dbcontrollers/articles.createArticle.js";
