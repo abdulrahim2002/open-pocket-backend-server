@@ -8,6 +8,12 @@ const sendEndpointContract: FastifySchema = {
             consumer_key: { type: "string" },
             access_token: { type: "string" },
             actions: {
+                /**
+                 * each action contains "action" which is one of the following
+                 * along with propertis required for that action. Since we cannot
+                 * determine these properties beforehand, we let them pass though
+                 * hereand validate them in the relevant action handler.
+                **/
                 type: "array",
                 items: {
                     type: "object",
@@ -15,30 +21,13 @@ const sendEndpointContract: FastifySchema = {
                         action: {
                             type: "string",
                             enum: [
-                                "add",
-                                "archive",
-                                "readd",
-                                "favorite",
-                                "unfavorite",
-                                "delete",
-                                "tags_add",
-                                "tags_remove",
-                                "tags_replace",
-                                "tags_clear",
-                                "tag_rename",
-                                "tag_delete",
+                                "add", "archive", "readd", "favorite", "unfavorite", "delete", "tags_add",
+                                "tags_remove", "tags_replace", "tags_clear", "tag_rename", "tag_delete",
                             ],
                         },
-                        // This is actually inacurate. We need to define a different schema for each action
-                        item_id:    { type: "string", nullable: true },
-                        ref_id:     { type: "string", nullable: true },
-                        tags:       { type: "string", nullable: true },
-                        time:       { type: "string", format: "date-time", nullable: true },
-                        title:      { type: "string", nullable: true },
-                        url:        { type: "string", format: "uri", nullable: true },
-                        old_tag:    { type: "string", nullable: true },
-                        new_tag:    { type: "string", nullable: true },
                     },
+                    required: ["action"],
+                    additionalProperties: true, // let additional properties pass through
                 },
             },
         },
