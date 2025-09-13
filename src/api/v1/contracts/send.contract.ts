@@ -29,6 +29,7 @@ const sendEndpointContract = {
                 },
             },
         },
+        required: ["consumer_key", "actions"]
     },
     // request headers
     headers: {
