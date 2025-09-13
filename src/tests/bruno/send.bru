@@ -1,0 +1,30 @@
+meta {
+  name: send
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseurl}}/{{version}}/send
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "consumer_key": "TODO",
+    "access_token": "wrong_token_sorry",
+    "actions": [
+      {
+        "action": "add",
+        "url": "https://github.com/abdulrahim2002/open-pocket-backend-server",
+        "title": "Open Pocket Backend Server",
+        "tags": "tech, get-pocket, pocket, read-it-later"
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+}
