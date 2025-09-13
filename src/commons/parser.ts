@@ -3,13 +3,13 @@
  * specific URL, and gather more information about the web page. For
  * example: title, description etc.
  *
- * If the original article redirects. For example, say it was bit.ly/qdsq3, 
+ * If the original article redirects. For example, say it was bit.ly/qdsq3,
  * then the parser shall find out the final resolved url
 */
 import metascraper              from "metascraper";
 import metascraperTitle         from "metascraper-title";
 import metascraperDescription   from "metascraper-description";
-import metascraperImage         from "metascraper-image"; 
+import metascraperImage         from "metascraper-image";
 import metascraperVideo         from "metascraper-video";
 
 const scraper = metascraper([
@@ -68,10 +68,10 @@ async function parser(url: string): Promise<IParserResponse> {
 
         clearTimeout(trigger);
 
-        const articleMetadata = await scraper({ 
-            url: url, 
+        const articleMetadata = await scraper({
+            url: url,
             html: await response.text(),
-            validateUrl: true 
+            validateUrl: true
         });
 
         return {
