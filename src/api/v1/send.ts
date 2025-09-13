@@ -33,7 +33,10 @@ const sendEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 }
                 else {
                     // pass the whole actionObject. Unnecessary fields will be ignored!
-                    resCurAction = await actionMap[actionObj.action]!(actionObj);
+                    resCurAction = await actionMap[actionObj.action]!({
+                        user_id: request.user!.user_id,
+                        ...actionObj // everything else
+                    });
                 }
 
                 action_results.push(resCurAction);
