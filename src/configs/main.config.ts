@@ -8,8 +8,9 @@ const ajv = new Ajv({useDefaults: true, coerceTypes: true});
 const mainConfig = {};
 config({ processEnv: mainConfig });
 
+
 // define the interface/contract for mainConfig
-export interface IMainConfig {
+interface IMainConfig {
     NODE_ENV:                   string,
     POSTGRESQL_DATABASE:        string,
     POSTGRESQL_USERNAME:        string,
@@ -59,3 +60,4 @@ if ( !ajv.validate(mainConfigSchema, mainConfig) ) {
 
 
 export default mainConfig as IMainConfig;
+export { type IMainConfig, ajv };
