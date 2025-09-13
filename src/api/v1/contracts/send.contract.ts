@@ -45,12 +45,6 @@ const sendEndpointContract: FastifySchema = {
         default: {
             type: "object",
             properties: {
-                error: { type: "boolean", default: true },
-            },
-        },
-        "2xx": {
-            type: "object",
-            properties: {
                 status: { type: "integer", default: 1 },
                 action_results: {
                     type: "array",
