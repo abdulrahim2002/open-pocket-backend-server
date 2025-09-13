@@ -20,8 +20,9 @@ const addActionParamsSchema: Schema = {
     type: "object",
     properties: {
         user_id: { type: "number" },
-        url:     { type: "string", format: "uri" },
-        tags:    { type: "string", default: "" },
+        // TODO: add support for formats in ajv instance
+        url:     { type: "string" },
+        tags:    { type: "string", default: "" }, // format: "uri"
         title:   { type: "string", default: "" },
     },
     required: ["user_id", "url"]
