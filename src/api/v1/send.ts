@@ -5,9 +5,9 @@
 import fastifyPassport          from "@src/commons/fastifyPassport.js";
 import sendEndpointContract     from "@src/api/v1/contracts/send.contract.js";
 import actionMap                from "@src/api/v1/actions/index.js";
+import { StatusCodes }          from "http-status-codes";
 import { FastifyPluginAsyncJsonSchemaToTs }
                                 from "@fastify/type-provider-json-schema-to-ts";
-import { StatusCodes } from "http-status-codes";
 
 
 const sendEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
