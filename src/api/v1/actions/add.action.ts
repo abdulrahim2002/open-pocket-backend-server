@@ -28,7 +28,7 @@ const addActionParamsSchema: Schema = {
 };
 
 
-async function add(params: IaddActionParams): Promise<boolean> {
+async function addAction(params: IaddActionParams): Promise<boolean> {
 
     // first check if params conform to schema.
     if (!ajv.validate(addActionParamsSchema, params)) {
@@ -77,4 +77,4 @@ async function add(params: IaddActionParams): Promise<boolean> {
 }
 
 
-export default add;
+export default addAction;
