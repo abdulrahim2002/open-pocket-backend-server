@@ -27,7 +27,9 @@ const addActionParamsSchema: Schema = {
     required: ["user_id", "url"]
 };
 
+
 async function add(params: IaddActionParams): Promise<boolean> {
+
     // first check if params conform to schema.
     if (!ajv.validate(addActionParamsSchema, params)) {
         app.log.error("add.action: invalid parameters!");
@@ -38,25 +40,25 @@ async function add(params: IaddActionParams): Promise<boolean> {
         const resParser = await parser(params.url, 5000);
 
         const articleData: typeof articlesSchema.$inferInsert = {
-            user_id:    params.user_id,
-            given_url:  params.url,
-            status: 0,
-            favorite: false,
-            given_title: params.title ?? null,
-            resolved_title: resParser?.resolved_title ?? "",
-            resolved_url: resParser?.resolved_url ?? "",
-            domain_id: BigInt(-1), // TODO: implement domain parsing
-            origin_domain_id: BigInt(-1), // TODO: implement domain information
-            excerpt: resParser?.excerpt ?? "",
-            is_article: resParser?.is_article ?? false,
-            is_index: false, // TODO: depreciate is_index field properly
-            has_video: resParser?.videos ? 1 : 0,
-            has_image: resParser?.images ? 1 : 0,
-            word_count: resParser?.word_count ?? 0,
-            time_added: new Date(),
-            time_updated: new Date(),
-            top_image_url: resParser?.top_image_url ?? "",
-            author_id: -1, // TODO: implement author parsing
+            user_id:                    params.user_id,
+            given_url:                  params.url,
+            status:                     0,
+            favorite:                   false,
+            given_title:                params.title ?? null,
+            resolved_title:             resParser?.resolved_title ?? "",
+            resolved_url:               resParser?.resolved_url ?? "",
+            domain_id:                  BigInt(-1), // TODO: implement domain parsing
+            origin_domain_id:           BigInt(-1), // TODO: implement domain information
+            excerpt:                    resParser?.excerpt ?? "",
+            is_article:                 resParser?.is_article ?? false,
+            is_index:                   false, // TODO: depreciate is_index field properly
+            has_video:                  resParser?.videos ? 1 : 0,
+            has_image:                  resParser?.images ? 1 : 0,
+            word_count:                 resParser?.word_count ?? 0,
+            time_added:                 new Date(),
+            time_updated:               new Date(),
+            top_image_url:              resParser?.top_image_url ?? "",
+            author_id:                  -1, // TODO: implement author parsing
         };
 
         const resCreateArticle = await createArticle(articleData);
@@ -73,5 +75,6 @@ async function add(params: IaddActionParams): Promise<boolean> {
         return false;
     }
 }
+
 
 export default add;
