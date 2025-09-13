@@ -1,7 +1,6 @@
 import { config } from "dotenv";
-import { Ajv, type Schema } from "ajv";
-
-const ajv = new Ajv({useDefaults: true, coerceTypes: true});
+import { type Schema } from "ajv";
+import ajv             from "@src/commons/ajv.js";
 
 
 // load environment variables into mainConfig
@@ -60,4 +59,3 @@ if ( !ajv.validate(mainConfigSchema, mainConfig) ) {
 
 
 export default mainConfig as IMainConfig;
-export { type IMainConfig, ajv };
