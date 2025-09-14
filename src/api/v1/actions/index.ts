@@ -9,6 +9,7 @@ import tagsRemoveAction from "@src/api/v1/actions/tags_remove.js";
 import tagsClearAction  from "@src/api/v1/actions/tags_clear.action.js";
 import tagsReplaceAction from "@src/api/v1/actions/tags_replace.action.js";
 import tagRenameAction  from "@src/api/v1/actions/tag_rename.action.js";
+import tagDeleteAction  from "@src/api/v1/actions/tag_delete.action.js";
 
 const actionMap: { [key: string]: Function } = {
     "add":          addAction,
@@ -22,6 +23,7 @@ const actionMap: { [key: string]: Function } = {
     "tags_clear":   tagsClearAction,
     "tags_replace": tagsReplaceAction,
     "tag_rename":   tagRenameAction,
+    "tag_delete":   tagDeleteAction,
 };
 
 export default actionMap;
