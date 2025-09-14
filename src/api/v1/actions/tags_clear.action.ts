@@ -1,8 +1,7 @@
 /**
- * @description remove tags on an article. to do this, we can simply remove all tags
- * in the given list
+ * @description remove all tags on an item.
  *
- * see: https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/#action-tags_remove
+ * see: https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/#action-tags_clear
  */
 import deleteTags       from "@src/db/dbcontrollers/tags.deleteTags.js";
 import { type Schema }  from "ajv";
