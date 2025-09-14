@@ -13,16 +13,17 @@ import { eq, and, inArray }     from "drizzle-orm";
 
 type tagShape = typeof tagsSchema.$inferSelect;
 
-async function deleteTagsByName(item_id: bigint, user_id: number, tags: string[]):
+async function deleteTagsByName(item_id: bigint, user_id: number, tags?: string[]):
                 Promise<IDbControllerResponse<tagShape[]>> {
 
     try {
+        // see: https://orm.drizzle.team/docs/guides/conditional-filters-in-query
         const deletedTags = await db.delete(tagsSchema)
                                     .where(
                                         and(
                                             eq(tagsSchema.item_id, item_id),
                                             eq(tagsSchema.user_id, user_id),
-                                            inArray(tagsSchema.tag_name, tags)
+                                            tags ? inArray(tagsSchema.tag_name, tags) : undefined
                                         )
                                     )
                                     .returning();
