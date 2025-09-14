@@ -13,7 +13,7 @@ import { eq, and, inArray }     from "drizzle-orm";
 
 type tagShape = typeof tagsSchema.$inferSelect;
 
-async function deleteTagsByName(item_id: bigint, user_id: number, tags?: string[]):
+async function deleteTags(item_id: bigint, user_id: number, tags?: string[]):
                 Promise<IDbControllerResponse<tagShape[]>> {
 
     try {
@@ -44,4 +44,4 @@ async function deleteTagsByName(item_id: bigint, user_id: number, tags?: string[
     }
 }
 
-export default deleteTagsByName;
+export default deleteTags;

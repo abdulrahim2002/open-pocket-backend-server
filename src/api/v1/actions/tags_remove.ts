@@ -4,7 +4,7 @@
  *
  * see: https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/#action-tags_remove
  */
-import deleteTagsByName from "@src/db/dbcontrollers/tags.deleteTagByName.js";
+import deleteTags       from "@src/db/dbcontrollers/tags.deleteTags.js";
 import { type Schema }  from "ajv";
 import app              from "@src/app.js";
 import ajv              from "@src/commons/ajv.js";
@@ -41,7 +41,7 @@ async function tagsRemoveAction( data: ITagsRemove ): Promise<boolean> {
             throw new Error("item_id is out of range");
         }
 
-        const resRemoveTags = await deleteTagsByName(
+        const resRemoveTags = await deleteTags(
             item_id,
             data.user_id,
             data.tags.split(",").map(t => t.trim())
