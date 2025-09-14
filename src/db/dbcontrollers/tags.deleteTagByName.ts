@@ -28,6 +28,10 @@ async function deleteTagByName(user_id: number, tag_name: string):
 
         app.log.info(`${deletedTags.length} tags deleted successfully`);
 
+        if (!deletedTags.length) {
+            throw new Error("Maybe the tag didn't existed or somehting else went wrong!");
+        }
+
         return {
             success: true,
             status: OPSTATUS.SUCCESS,
