@@ -6,6 +6,7 @@ import unFavoriteAction from "@src/api/v1/actions/unfavorite.action.js";
 import deleteAction     from "@src/api/v1/actions/delete.action.js";
 import tagsAddAction    from "@src/api/v1/actions/tags_add.action.js";
 import tagsRemoveAction from "@src/api/v1/actions/tags_remove.js";
+import tagsClearAction  from "@src/api/v1/actions/tags_clear.action.js";
 
 const actionMap: { [key: string]: Function } = {
     "add":          addAction,
@@ -15,7 +16,8 @@ const actionMap: { [key: string]: Function } = {
     "unfavorite":   unFavoriteAction,
     "delete":       deleteAction,
     "tags_add":     tagsAddAction,
-    "tags_remove":  tagsRemoveAction
+    "tags_remove":  tagsRemoveAction,
+    "tags_clear":   tagsClearAction,
 };
 
 export default actionMap;
