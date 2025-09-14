@@ -3,6 +3,7 @@ import archiveAction    from "@src/api/v1/actions/archive.action.js";
 import readdAction      from "@src/api/v1/actions/readd.action.js";
 import favoriteAction   from "@src/api/v1/actions/favorite.action.js";
 import unFavoriteAction from "@src/api/v1/actions/unfavorite.action.js";
+import deleteAction     from "@src/api/v1/actions/delete.action.js";
 
 const actionMap: { [key: string]: Function } = {
     "add":      addAction,
@@ -10,6 +11,7 @@ const actionMap: { [key: string]: Function } = {
     "readd":    readdAction,
     "favorite": favoriteAction,
     "unfavorite": unFavoriteAction,
+    "delete":   deleteAction,
 };
 
 export default actionMap;
