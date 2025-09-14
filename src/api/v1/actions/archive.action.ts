@@ -4,7 +4,7 @@ import app              from "@src/app.js";
 import ajv              from "@src/commons/ajv.js";
 
 
-interface IArchiveParams {
+interface IArchiveAction {
     item_id:    string,
 };
 
@@ -20,7 +20,7 @@ const archiveActionSchema: Schema = {
 };
 
 
-async function archiveAction( data: IArchiveParams ): Promise<boolean> {
+async function archiveAction( data: IArchiveAction ): Promise<boolean> {
 
     try {
 
