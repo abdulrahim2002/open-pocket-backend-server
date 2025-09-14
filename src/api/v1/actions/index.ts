@@ -7,13 +7,13 @@ import deleteAction     from "@src/api/v1/actions/delete.action.js";
 import tagsAddAction    from "@src/api/v1/actions/tags_add.action.js";
 
 const actionMap: { [key: string]: Function } = {
-    "add":      addAction,
-    "archive":  archiveAction,
-    "readd":    readdAction,
-    "favorite": favoriteAction,
-    "unfavorite": unFavoriteAction,
-    "delete":   deleteAction,
-    "tags_add": tagsAddAction,
+    "add":          addAction,
+    "archive":      archiveAction,
+    "readd":        readdAction,
+    "favorite":     favoriteAction,
+    "unfavorite":   unFavoriteAction,
+    "delete":       deleteAction,
+    "tags_add":     tagsAddAction,
 };
 
 export default actionMap;
