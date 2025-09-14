@@ -3,14 +3,14 @@
  **/
 import db               from "@src/db/index.js";
 import app              from "@src/app.js";
-import { eq }           from "drizzle-orm";
+import { eq, and }      from "drizzle-orm";
 import tagsSchema       from "@src/db/schemas/tags.schema.js";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
 import IDbControllerResponse, { OPSTATUS }
                         from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
-async function renameTag(old_tagname: string, new_tagname: string):
+async function renameTag(user_id: number, old_tagname: string, new_tagname: string):
                 Promise<IDbControllerResponse<boolean|undefined>> {
 
     try {
@@ -19,7 +19,10 @@ async function renameTag(old_tagname: string, new_tagname: string):
                                             tag_name: new_tagname,
                                         })
                                         .where(
-                                            eq(tagsSchema.tag_name, old_tagname)
+                                            and(
+                                                eq(tagsSchema.tag_name, old_tagname),
+                                                eq(tagsSchema.user_id, user_id)
+                                            )
                                          )
                                         .returning();
 
