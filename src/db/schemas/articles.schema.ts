@@ -40,6 +40,9 @@ const articlesSchema = pgTable(
             columns: [ articlesSchema.user_id ],
             foreignColumns: [ usersSchema.user_id ],
         }),
+        // TODO: when adding tags.tag_id foreign key, make sure to CASCADE on delete
+        // or sentinal values will be left behind in tags table (which is foreign key
+        // violation) when you try to delete an article
     ]
 );
 
