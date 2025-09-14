@@ -10,7 +10,7 @@ import IDbControllerResponse, { OPSTATUS }
 // only status and favorite can be updated by external users
 type IArticleUpdateObj = Pick<typeof articlesSchema.$inferInsert, "status" | "favorite">;
 
-async function updateArticle(articleId: bigint,  updateObj: IArticleUpdateObj):
+async function updateArticle(item_id: bigint,  updateObj: IArticleUpdateObj):
                 Promise<IDbControllerResponse<typeof articlesSchema.$inferSelect>> {
 
 
@@ -20,10 +20,10 @@ async function updateArticle(articleId: bigint,  updateObj: IArticleUpdateObj):
                                             ...updateObj,
                                             time_updated: new Date(),
                                         })
-                                        .where( eq(articlesSchema.item_id, articleId) )
+                                        .where( eq(articlesSchema.item_id, item_id) )
                                         .returning();
 
-        app.log.info(`Article updated with id: ${articleId}`);
+        app.log.info(`Article updated with id: ${item_id}`);
 
         if (!resUpdateArticle.length) {
             // most likely the article does not exist. Return error
@@ -34,7 +34,7 @@ async function updateArticle(articleId: bigint,  updateObj: IArticleUpdateObj):
             success:        true,
             status:         OPSTATUS.SUCCESS,
             recommendedHttpResponseCode: StatusCodes.OK,
-            message:       `Article updated with id: ${articleId}`,
+            message:       `Article updated with id: ${item_id}`,
             data:           resUpdateArticle[0]!,
         }
 
