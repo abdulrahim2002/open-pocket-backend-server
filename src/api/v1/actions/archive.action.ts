@@ -14,7 +14,7 @@ const archiveActionSchema: Schema = {
     properties: {
         // bigint range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
         // see: https://www.postgresql.org/docs/current/datatype-numeric.html
-        item_id: { type: "string", pattern: "^\d+$", minLength: 1, maxLength: 20 }
+        item_id: { type: "string", pattern: "^\\d+$", minLength: 1, maxLength: 20 }
     },
     required: ["item_id"]
 };
