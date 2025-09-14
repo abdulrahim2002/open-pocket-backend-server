@@ -1,3 +1,7 @@
+/**
+ * @description Archive an article by setting its status to 1.
+ * see: https://abdulrahim2002.github.io/open-pocket-docs/docs/API-spec/Endpoints/send/#action-archive
+ */
 import updateArticle    from "@src/db/dbcontrollers/article.updateArticle.js";
 import { type Schema }  from "ajv";
 import app              from "@src/app.js";
