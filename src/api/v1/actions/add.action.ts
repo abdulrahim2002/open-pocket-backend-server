@@ -30,14 +30,14 @@ const addActionParamsSchema: Schema = {
 
 
 async function addAction(params: IaddActionParams): Promise<boolean> {
-
-    // first check if params conform to schema.
-    if (!ajv.validate(addActionParamsSchema, params)) {
-        app.log.error("add.action: invalid parameters!");
-        return false;
-    }
-
     try {
+
+        // first check if params conform to schema.
+        if (!ajv.validate(addActionParamsSchema, params)) {
+            throw new Error("addAction: invalid parameters: " +
+                            ajv.errorsText());
+        }
+
         const resParser = await parser(params.url, 5000);
 
         const articleData: typeof articlesSchema.$inferInsert = {
