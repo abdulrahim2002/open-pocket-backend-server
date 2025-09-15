@@ -4,7 +4,7 @@ import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import createUser       from "@src/db/dbcontrollers/users.createUser.js";
 import deleteUser       from "@src/db/dbcontrollers/users.deleteUser.js";
 import usersSchema      from "@src/db/schemas/users.schema.js";
-import { OPSTATUS }     from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import OPSTATUS         from "@src/commons/opstatus.js";
 import { StatusCodes }  from "http-status-codes";
 import readArticlesByUser from "@src/db/dbcontrollers/articles.readArticlesByUser.js";
 
