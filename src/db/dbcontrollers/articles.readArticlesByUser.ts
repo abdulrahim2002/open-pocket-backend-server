@@ -2,10 +2,10 @@ import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import db               from "@src/db/index.js";
 import app              from "@src/app.js";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
-import { eq } from "drizzle-orm";
-import IDbControllerResponse, { OPSTATUS }
-                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
-import { StatusCodes } from "http-status-codes";
+import OPSTATUS         from "@src/commons/opstatus.js";
+import { eq }           from "drizzle-orm";
+import { StatusCodes }  from "http-status-codes";
+import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 
 type IArticle = typeof articlesSchema.$inferSelect;

@@ -4,8 +4,8 @@ import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import { eq }           from "drizzle-orm";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
-import IDbControllerResponse, { OPSTATUS }
-                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import OPSTATUS         from "@src/commons/opstatus.js";
+import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 
 type articleShape = typeof articlesSchema.$inferSelect;
