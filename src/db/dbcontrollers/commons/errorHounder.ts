@@ -8,8 +8,8 @@
 import { DrizzleQueryError } from "drizzle-orm";
 import { DatabaseError }     from "pg-protocol";
 import { StatusCodes }       from "http-status-codes";
-import IDbControllerResponse, { OPSTATUS }
-                            from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import OPSTATUS              from "@src/commons/opstatus.js";
+import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
 
 export default function houndError(error: Error): IDbControllerResponse<any> {
 
