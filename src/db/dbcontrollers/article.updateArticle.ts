@@ -4,8 +4,8 @@ import { eq }           from "drizzle-orm";
 import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
-import IDbControllerResponse, { OPSTATUS }
-                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import OPSTATUS         from "@src/commons/opstatus.js";
 
 // only status and favorite can be updated by external users
 type IArticleUpdateObj = Pick<typeof articlesSchema.$inferInsert, "status" | "favorite">;
