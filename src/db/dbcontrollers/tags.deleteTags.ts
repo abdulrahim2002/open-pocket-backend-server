@@ -5,11 +5,11 @@
 import app              from "@src/app.js";
 import db               from "@src/db/index.js";
 import tagsSchema       from "@src/db/schemas/tags.schema.js";
-import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
-import IDbControllerResponse, { OPSTATUS }
-                        from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
-import { eq, and, inArray }     from "drizzle-orm";
+import OPSTATUS         from "@src/commons/opstatus.js";
+import { StatusCodes }  from "http-status-codes";
+import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import { eq, and, inArray }  from "drizzle-orm";
 
 type tagShape = typeof tagsSchema.$inferSelect;
 
