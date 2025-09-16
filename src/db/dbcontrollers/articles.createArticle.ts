@@ -3,7 +3,7 @@ import app              from "@src/app.js";
 import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
-import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
 
 type articleInsertShape = typeof articlesSchema.$inferInsert;

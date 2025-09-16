@@ -8,7 +8,7 @@ import tagsSchema       from "@src/db/schemas/tags.schema.js";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
-import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 
 async function renameTag(user_id: number, old_tagname: string, new_tagname: string):
                 Promise<IDbControllerResponse<boolean|undefined>> {

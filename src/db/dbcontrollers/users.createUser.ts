@@ -4,7 +4,7 @@ import usersSchema      from "@src/db/schemas/users.schema.js";
 import { StatusCodes }  from "http-status-codes";
 import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
-import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 
 type UserInsertShape = typeof usersSchema.$inferInsert;
 type UserShape       = typeof usersSchema.$inferSelect;

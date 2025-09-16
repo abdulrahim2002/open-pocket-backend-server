@@ -5,7 +5,7 @@ import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
 import { eq }           from "drizzle-orm";
 import { StatusCodes }  from "http-status-codes";
-import IDbControllerResponse from "@src/db/dbcontrollers/commons/IDbControllerResponse.js";
+import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 
 
 type IArticle = typeof articlesSchema.$inferSelect;
