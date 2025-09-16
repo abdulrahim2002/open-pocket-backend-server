@@ -1,7 +1,7 @@
 import app              from "@src/app.js";
 import db               from "@src/db/index.js";
 import tagsSchema       from "@src/db/schemas/tags.schema.js";
-import houndError       from "@src/db/dbcontrollers/commons/errorHounder.js";
+import houndError       from "@src/commons/errorHounder.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
 import { StatusCodes }  from "http-status-codes";
 import { eq }           from "drizzle-orm";
