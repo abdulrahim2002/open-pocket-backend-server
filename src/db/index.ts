@@ -5,9 +5,9 @@ import usersSchema      from "@src/db/schemas/users.schema.js";
 import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 
 const schema = {
-    articles: articlesSchema,
-    tags: tagsSchema,
-    users: usersSchema,
+    articles:   articlesSchema,
+    tags:       tagsSchema,
+    users:      usersSchema,
 };
 
 const db: NodePgDatabase<typeof schema> = drizzle(
