@@ -3,7 +3,7 @@ import app              from "@src/app.js";
 import articlesSchema   from "@src/db/schemas/articles.schema.js";
 import { eq }           from "drizzle-orm";
 import { StatusCodes }  from "http-status-codes";
-import houndError       from "@src/commons/errorHounder.js";
+import houndError       from "@src/commons/houndError.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
 import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 

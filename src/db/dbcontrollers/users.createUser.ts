@@ -2,7 +2,7 @@ import db               from "@src/db/index.js";
 import app              from "@src/app.js";
 import usersSchema      from "@src/db/schemas/users.schema.js";
 import { StatusCodes }  from "http-status-codes";
-import houndError       from "@src/commons/errorHounder.js";
+import houndError       from "@src/commons/houndError.js";
 import OPSTATUS         from "@src/commons/opstatus.js";
 import IDbControllerResponse from "@src/commons/IDbControllerResponse.js";
 
