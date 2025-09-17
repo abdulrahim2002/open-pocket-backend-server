@@ -22,13 +22,7 @@
   with the goal of creating an open source alternative to
   [getpocket](https://getpocket.com/)
 
-- in 2025, [getpocket](https://getpocket.com/home) decided to shut down
-  stripping away the beloved (save) sign in firefox.
-
-- significant infracture has been build around getpocket. [try searching
-  getpocket](https://github.com/search?q=getpocket&type=repositories) on
-github and you will find many client implementations. As getpocket shuts
-down, all this infrastructure goes in vain.
+- in 2025, [getpocket](https://getpocket.com/home) decided to shut down.
 
 - open-pocket tries to be 100% compatible with [getpocket API
   specification](https://getpocket.com/developer/docs/overview), so all
