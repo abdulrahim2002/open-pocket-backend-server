@@ -19,8 +19,8 @@
 #### Background
 
 - [open-pocket organization](https://github.com/open-pocket) was started
-  by [Andy Waite](https://github.com/andyw8), with the goal of creating
-an open source alternative to [getpocket](https://getpocket.com/)
+  with the goal of creating an open source alternative to
+  [getpocket](https://getpocket.com/)
 
 - in 2025, [getpocket](https://getpocket.com/home) decided to shut down
   stripping away the beloved (save) sign in firefox.
