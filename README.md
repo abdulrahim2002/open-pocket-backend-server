@@ -51,5 +51,5 @@ have been written
 - [vitest](https://vitest.dev/) for testing
 - bitnami docker containers for
   [redis](https://hub.docker.com/r/bitnami/redis) and
-[postgres](https://hub.docker.com/r/bitnami/postgresql) database
+  [postgres](https://hub.docker.com/r/bitnami/postgresql) database
 
