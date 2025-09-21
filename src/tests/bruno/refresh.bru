@@ -1,0 +1,21 @@
+meta {
+  name: refresh
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseurl}}/{{version}}/refresh
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "refresh_token": "refresh_token"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
