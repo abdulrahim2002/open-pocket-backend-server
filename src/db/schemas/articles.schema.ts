@@ -23,7 +23,6 @@ const articlesSchema = pgTable(
         origin_domain_id:   bigint({mode: "bigint"}),    // domain id for resolved url
         excerpt:            text(),
         is_article:         boolean(),
-        is_index:           boolean(),
         has_video:          smallint().default(0),
         has_image:          smallint().default(0),
         word_count:         integer(),
