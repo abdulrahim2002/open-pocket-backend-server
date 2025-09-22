@@ -36,7 +36,6 @@ test("createArticle", async () => {
         origin_domain_id: BigInt(34242),
         excerpt: "sample excerpt describing the item in detail",
         is_article: true,
-        is_index: false,
         has_video: 0,
         has_image: 0,
         word_count: 123,
