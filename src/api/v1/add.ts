@@ -39,7 +39,6 @@ const addEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                 word_count:         resParser?.word_count || 0,
                 has_image:          resParser?.images.length ? 1 : 0,
                 has_video:          resParser?.videos.length ? 1 : 0,
-                is_index:           false,          // TODO: implement or depreciate?
                 is_article:         resParser?.is_article,
                 author_id:          undefined, // TODO: Implement Authors | needs backend parser
                 status:             0,
