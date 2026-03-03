@@ -16,39 +16,38 @@
     </a>
 </p>
 
-#### Background
+---
 
-- [open-pocket organization](https://github.com/open-pocket) was started
-  with the goal of creating an open source alternative to
-  [getpocket](https://getpocket.com/)
+## Background
 
-- in 2025, [getpocket](https://getpocket.com/home) decided to shut down.
+**Open-Pocket** was created to provide an open source alternative to Pocket.
 
-- open-pocket tries to be 100% compatible with [getpocket API
-  specification](https://getpocket.com/developer/docs/overview), so all
-existing clients work seamlessly
+In 2025, Pocket announced its shutdown. The project aims to deliver a fully open and community-driven replacement.
 
-#### Current Status
+Open-Pocket is designed to be 100% compatible with the Pocket API specification, ensuring that existing Pocket clients can integrate without modification.
 
-- database [schemas
-  defined](https://abdulrahim2002.github.io/open-pocket-docs/docs/Database-Layer/database-schema/)
-- [most database
-  controllers](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/db/dbcontrollers)
-have been written
-- [email/password](https://github.com/abdulrahim2002/open-pocket-backend-server/blob/main/src/commons/fastifyPassport.ts)
-  based authentication added
-- JWT token based authentication mechanism fully functional
-- Access token/Refresh token functionality added
-- unit tests written for all dbcontrollers using [vitest](https://github.com/abdulrahim2002/open-pocket-backend-server/tree/main/src/tests/dbcontrollers)
+---
 
-#### Technologies
+## Current Status
 
-- [fastify](https://fastify.dev) + typescript (main framework)
-- main database: postgresql
-- [drizzle ORM](https://orm.drizzle.team/)
-- [redis](https://redis.io/) (currently used on authentication endpoints)
-- [vitest](https://vitest.dev/) for testing
-- bitnami docker containers for
-  [redis](https://hub.docker.com/r/bitnami/redis) and
-  [postgres](https://hub.docker.com/r/bitnami/postgresql) database
+* [x] Database schemas defined
+* [x] Most database controllers implemented
+* [x] Email and password based authentication added
+* [x] JWT-based authentication fully functional
+* [x] Access token and refresh token mechanism implemented
+* [x] Unit tests written for all database controllers using Vitest
 
+---
+
+## Technologies
+
+* Fastify with TypeScript as the main framework
+* PostgreSQL as the primary database
+* Drizzle ORM for database access
+* Redis (currently used for authentication endpoints)
+* Vitest for testing
+* Bitnami Docker containers for Redis and PostgreSQL
+
+---
+
+If you want, I can also make the **Technologies section visually distinct**, like a clean bullet grid or table, so it looks more professional. Do you want me to do that?
