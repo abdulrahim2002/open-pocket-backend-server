@@ -49,5 +49,3 @@ Open-Pocket is designed to be 100% compatible with the Pocket API specification,
 * Bitnami Docker containers for Redis and PostgreSQL
 
 ---
-
-If you want, I can also make the **Technologies section visually distinct**, like a clean bullet grid or table, so it looks more professional. Do you want me to do that?
