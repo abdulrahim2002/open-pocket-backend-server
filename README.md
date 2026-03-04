@@ -26,7 +26,6 @@ In 2025, Pocket announced its shutdown. The project aims to deliver a fully open
 
 Open-Pocket is designed to be 100% compatible with the Pocket API specification, ensuring that existing Pocket clients can integrate without modification.
 
----
 
 ## Current Status
 
@@ -37,7 +36,6 @@ Open-Pocket is designed to be 100% compatible with the Pocket API specification,
 * [x] Access token and refresh token mechanism implemented
 * [x] Unit tests written for all database controllers using Vitest
 
----
 
 ## Technologies
 
@@ -47,5 +45,3 @@ Open-Pocket is designed to be 100% compatible with the Pocket API specification,
 * Redis (currently used for authentication endpoints)
 * Vitest for testing
 * Bitnami Docker containers for Redis and PostgreSQL
-
----
