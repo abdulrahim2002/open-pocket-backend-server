@@ -20,6 +20,7 @@
     "redis:purge": "npm run redis:stop && docker rm -f redis && docker volume rm redis && docker image rm -f bitnami/redis:latest"
   },
   "dependencies": {
+    "@fastify/cors": "^11.2.0",
     "@fastify/jwt": "^10.0.0",
     "@fastify/passport": "^3.0.2",
     "@fastify/secure-session": "^8.2.0",
