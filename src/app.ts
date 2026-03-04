@@ -2,11 +2,18 @@ import Fastify          from "fastify";
 import mainConfig       from "@src/configs/main.config.js";
 import authentication   from "@src/commons/authentication.js";
 import routesLoaderV1   from "@src/api/v1/index.js";
+import cors             from "@fastify/cors";
 
 const app = Fastify({
     trustProxy: true,
     logger: true,
 });
+
+// allow CORS only on development environment
+if (mainConfig.NODE_ENV === "development") 
+{
+    await app.register(cors, { origin: true });
+}
 
 // authentication infrastructure
 app.register(authentication);
