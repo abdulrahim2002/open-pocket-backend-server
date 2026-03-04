@@ -1,5 +1,5 @@
 {
-  "extends": "fastify-tsconfig",
+  "extends": ["fastify-tsconfig"],
 
   "compilerOptions": {
     // File Layout
