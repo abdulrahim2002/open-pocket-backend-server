@@ -10,10 +10,7 @@ const app = Fastify({
 });
 
 // allow CORS only on development environment
-if (mainConfig.NODE_ENV === "development") 
-{
-    await app.register(cors, { origin: true });
-}
+mainConfig.NODE_ENV === "development" && app.register(cors, { origin: true });
 
 // authentication infrastructure
 app.register(authentication);
