@@ -51,7 +51,7 @@ async function addAction(params: IaddActionParams): Promise<boolean> {
             origin_domain_id:           BigInt(-1), // TODO: implement domain information
             excerpt:                    resParser?.excerpt ?? "",
             is_article:                 resParser?.is_article ?? false,
-            is_index:                   false, // TODO: depreciate is_index field properly
+            // is_index:                   false, // TODO: depreciate is_index field properly
             has_video:                  resParser?.videos ? 1 : 0,
             has_image:                  resParser?.images ? 1 : 0,
             word_count:                 resParser?.word_count ?? 0,
