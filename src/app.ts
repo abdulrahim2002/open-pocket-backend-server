@@ -9,8 +9,32 @@ const app = Fastify({
     logger: true,
 });
 
-// allow CORS only on development environment
-mainConfig.NODE_ENV === "development" && app.register(cors, { origin: true });
+// allow CORS
+mainConfig.NODE_ENV === "development" && await app.register(cors, {
+    origin: (origin, callback) => {
+        // allow requests with no origin (Bruno, curl, server-to-server)
+        if (!origin) return callback(null, true);
+        
+        const allowedOrigins = [
+            // hard coded string origins
+            "http://localhost:8080",
+            // regex origin: GitHub Codespaces — match any port on the same codespace
+            /^https:\/\/friendly-guacamole-5prg9qrx9wgfvgp5-\d+\.app\.github\.dev$/,
+        ];
+        
+        const isAllowed = allowedOrigins.some(o => 
+            typeof o === "string" ? o === origin : o.test(origin)
+        );
+        
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS: origin ${origin} not allowed`), false);
+        }
+    },
+    credentials: true,
+    methods: ["GET", "POST"],
+});
 
 // authentication infrastructure
 app.register(authentication);
