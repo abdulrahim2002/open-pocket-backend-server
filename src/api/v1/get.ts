@@ -49,12 +49,15 @@ const getEndpoint: FastifyPluginAsyncJsonSchemaToTs = async (app) => {
                     resolved_title: article.resolved_title,
                     resolved_url:   article.resolved_url,
                     excerpt:        article.excerpt,
+                    word_count:     article.word_count,
                     is_article:     article.is_article,
                     has_video:      article.has_video,
                     has_image:      article.has_image,
-                    word_count:     article.word_count,
+                    time_added:     article.time_added,
+                    time_updated:   article.time_updated,
+                    top_image_url:  article.top_image_url,
                     // tags: WIP
-                    // arthors: WIP
+                    // authors: WIP
                     // images: WIP
                     // videso: WIP
                 };
