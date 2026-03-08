@@ -86,7 +86,7 @@ const getEndpointContract = {
                                 given_url:      { type: "string", format: "uri" },
                                 given_title:    { type: "string" },
                                 favorite:       { type: "string", enum: ["0", "1"] },
-                                status:         { type: "string", enum: ["0", "1"] },
+                                status:         { type: "string", enum: ["0", "1", "2"] },
                                 resolved_title: { type: "string" },
                                 resolved_url:   { type: "string", format: "uri" },
                                 excerpt:        { type: "string" },
@@ -94,6 +94,9 @@ const getEndpointContract = {
                                 has_video:      { type: "string" },
                                 has_image:      { type: "string" },
                                 word_count:     { type: "string" },
+                                time_added:     { type: "string" },
+                                time_updated:   { type: "string", nullable: true },
+                                top_image_url:  { type: "string", format: "uri", nullable: true },
                                 // tags: to be implemented,
                                 // authors: to be implemented
                                 // images: to be implemented
